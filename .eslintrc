@@ -1,0 +1,28 @@
+{
+  "extends": "airbnb",
+  "plugin": [
+    "react"
+  ],
+  "parser": "babel-eslint",
+  "env": {
+    "node": true,
+    "browser": true,
+    "mocha": true,
+    "es6": true
+  },
+  "rules": {
+    "max-len": 1,
+    "no-nested-ternary": 1,
+    "arrow-body-style": 0,
+    "comma-dangle": 0,
+    "no-console": 0,
+    "vars-on-top": 0,
+    "new-cap": 0
+  },
+  "globals": {
+    "remote": true,
+    "$": true,
+    "React": true,
+    "ipc": true
+  }
+}

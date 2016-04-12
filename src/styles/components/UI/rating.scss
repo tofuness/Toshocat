@@ -1,0 +1,27 @@
+.ui-rating {
+	@extend .cf;
+	margin-left: -10px;
+}
+.ui-rating-icon {
+	float: left;
+	cursor: pointer;
+	padding-right: 5px;
+	color: $cran-red;
+	font-size: 26px;
+	line-height: 18px;
+}
+.ui-rating-label {
+	float: left;
+	margin-left: 5px;
+	width: 33px;
+	color: $winter-black;
+	line-height: 26px;
+	font-weight: 700;
+	text-align: center;
+}
+.ui-rating-zero {
+	cursor: pointer;
+	float: left;
+	width: 10px;
+	height: 26px;
+}

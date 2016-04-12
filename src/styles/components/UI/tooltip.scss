@@ -1,0 +1,12 @@
+.tooltip {
+  opacity: 1!important;
+  padding: 5px 10px!important;
+  color: #fff!important;
+  font-size: ms(0)!important;
+  background: $lapis-blue!important;
+  transition: none!important;
+  line-height: 1;
+  &:after {
+    border-top-color: $lapis-blue!important;
+  }
+}

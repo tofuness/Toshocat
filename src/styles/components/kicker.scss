@@ -1,0 +1,30 @@
+.kicker {
+	@extend .cf;
+	@extend .ts-slow;
+	position: absolute;
+	top: 0;
+	left: 0;
+	padding: 12px 0 0 12px;
+	transform: translateY(-40px);
+	&.visible {
+		transform: translateY(0);
+	}
+}
+.kicker-topic {
+	float: left;
+	color: #fff;
+	font-weight: 700;
+	letter-spacing: 0.65px;
+}
+.kicker-pipe {
+	float: left;
+	margin: 0 10px;
+	color: #fff;
+	line-height: ms(1);
+}
+.kicker-description {
+	float: left;
+	color: transparentize(#fff, 0.3);
+	font-size: ms(0);
+	line-height: 15px;
+}

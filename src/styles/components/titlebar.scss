@@ -1,0 +1,43 @@
+.titlebar {
+	@extend .cf;
+	overflow: hidden;
+	border-bottom: 1px solid $border-on-black;
+}
+.titlebar-draggable {
+	float: left;
+	width: calc(100% - 100px);
+	height: 40px;
+	-webkit-app-region: drag;
+}
+.titlebar-controls {
+	cursor: pointer;
+	float: right;
+	padding-right: 6px;
+	& div {
+		float: left;
+		width: 30px;
+		height: 20px;
+		color: $titlebar-button;
+		&:hover {
+			color: $titlebar-button-hover!important;
+		}
+		&:active {
+			transform: translateY(1px);
+		}
+	}
+}
+.titlebar-minimize {
+	padding-top: 16px;
+	font-size: 16px;
+	text-align: center;
+}
+.titlebar-maximize {
+	padding-top: 12px;
+	font-size: 16px;
+	text-align: center;
+}
+.titlebar-close {
+	padding-top: 12px;
+	font-size: 15px;
+	text-align: center;
+}

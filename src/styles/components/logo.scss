@@ -1,0 +1,120 @@
+.logo {
+	position: relative;
+	margin: 20px 0 10px 20px;
+	width: 52px;
+}
+.logo-image {
+	transition: 0.18s ease all;
+	width: 32px;
+	height: 32px;
+	background: url(../../logo.png) center center;
+	background-size: contain;
+	border-radius: 32px;
+}
+.logo-menu-arrow {
+	@extend .ts;
+	position: absolute;
+	top: 7px;
+	left: 35px;
+	color: mix(white, $winter-black, 30%);
+	font-size: 18px;
+	transform-origin: center 9px;
+	&.active {
+		color: $tetra-yellow;
+		transform: rotateX(180deg);
+	}
+}
+.logo-menu {
+	display: none;
+	position: absolute;
+	top: 42px;
+	left: 1px;
+	background: #fff;
+	border-radius: 4px;
+	box-shadow: 0 4px 16px transparentize(#000, 0.6);
+	z-index: 2;
+	&.visible {
+		display: block;
+		animation-name: slideDownIn;
+		animation-duration: 240ms;
+		animation-timing-function: cubic-bezier(0.19, 1, 0.22, 1);
+	}
+	&:after {
+		bottom: 100%;
+		left: 50%;
+		border: solid transparent;
+		content: " ";
+		height: 0;
+		width: 0;
+		position: absolute;
+		pointer-events: none;
+		border-color: rgba(255, 255, 255, 0);
+		border-bottom-color: #fff;
+		border-width: 5px;
+		margin-left: -62px;
+	}
+}
+.logo-menu-option {
+	@extend .cf;
+	min-width: 200px;
+	padding: 10px 10px;
+	border-bottom: 1px solid $border-on-white;
+	background-size: contain;
+	background-repeat: no-repeat;
+	&:last-child {
+		border: none;
+		border-bottom-left-radius: 4px;
+		border-bottom-right-radius: 4px;
+	}
+	&:hover {
+		background: $border-on-white;
+	}
+}
+.logo-menu-label {
+	padding: 10px;
+	color: $onblack-mouseprint;
+	font-size: ms(0);
+	font-weight: 700;
+	text-transform: uppercase;
+	letter-spacing: 0.65px;
+	border-bottom: 1px solid $border-on-white;
+}
+.logo-menu-current {
+	visibility: hidden;
+	float: right;
+	padding: 2px 5px;
+	opacity: 0;
+	color: $lapis-blue;
+	font-size: ms(0);
+	line-height: normal;
+	letter-spacing: 0.3px;
+	text-transform: uppercase;
+	&.visible {
+		@extend .ts-slow;
+		visibility: visible;
+		opacity: 1;
+	}
+}
+.logo-menu-icon {
+	float: left;
+	width: 18px;
+	height: 18px;
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: left center;
+	border-radius: 2px;
+	&.hummingbird {
+		background-image: url(../images/hblogo.png);
+	}
+	&.myanimelist {
+		background-image: url(../images/mallogo.jpg);
+	}
+	&.toshocat {
+		background-image: url(../images/toshocatlogo.png);
+	}
+}
+.logo-menu-text {
+	float: left;
+	padding-left: 10px;
+	line-height: 18px;
+}

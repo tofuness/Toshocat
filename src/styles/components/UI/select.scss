@@ -1,0 +1,124 @@
+.ui-select {
+	display: inline-block;
+	position: relative;
+}
+.ui-select-options {
+	position: absolute;
+}
+.ui-select-current-text {
+	display: inline-block;
+}
+.ui-select-current {
+	& .ui-select-arrow {
+		@extend .ts;
+		display: inline-block;
+		position: relative;
+		float: right;
+		margin-left: 2px;
+		top: 3px;
+		right: 0px;
+		font-size: 9px;
+		backface-visibility: visible;
+		transform: transform-origin(center center);
+		&.active {
+			transform: rotateX(180deg) translateY(2px);
+		}
+	}
+}
+
+// Picker
+.picker {
+	.ui-select-current {
+		cursor: pointer;
+		padding: 7px 10px;
+		width: 110px;
+		background: $dover-gray;
+		border-radius: 4px;
+		&.active {
+			color: $onblack-byline;
+			background: $winter-black;
+		}
+	}
+	.ui-select-options {
+		z-index: 2;
+		top: 40px;
+		left: -38px;
+		padding: 5px 0;
+		background: $winter-black;
+		border-radius: 4px;
+		box-shadow: 0 2px 8px transparentize(#000, 0.7);
+		&.active {
+			animation-name: slideDownIn;
+			animation-duration: 240ms;
+			animation-timing-function: cubic-bezier(0.19, 1, 0.22, 1);
+		}
+		&:after {
+			bottom: 100%;
+			left: 50%;
+			border: solid transparent;
+			content: " ";
+			height: 0;
+			width: 0;
+			position: absolute;
+			pointer-events: none;
+			border-color: rgba(255, 255, 255, 0);
+			border-bottom-color: $winter-black;
+			border-width: 5px;
+			margin-left: -5px;
+		}
+	}
+	.ui-select-option {
+		cursor: pointer;
+		padding: 5px 15px;
+		color: $onblack-byline;
+		&:hover {
+			color: #fff;
+			background: $lapis-blue;
+		}
+	}
+}
+
+.search-settings {
+	.ui-select-current {
+		cursor: pointer;
+		padding-bottom: 1px;
+		box-shadow: 0 1px 0 $ongray-heading;
+	}
+	.ui-select-options {
+		z-index: 2;
+		top: 28px;
+		left: -45px;
+		padding: 5px 0;
+		background: $winter-black;
+		border-radius: 4px;
+		box-shadow: 0 1px 3px $boxshadow;
+		&.active {
+			animation-name: slideDownIn;
+			animation-duration: 240ms;
+			animation-timing-function: cubic-bezier(0.19, 1, 0.22, 1);
+		}
+		&:after {
+			bottom: 100%;
+			left: 50%;
+			border: solid transparent;
+			content: " ";
+			height: 0;
+			width: 0;
+			position: absolute;
+			pointer-events: none;
+			border-color: rgba(255, 255, 255, 0);
+			border-bottom-color: $winter-black;
+			border-width: 5px;
+			margin-left: -5px;
+		}
+	}
+	.ui-select-option {
+		cursor: pointer;
+		padding: 5px 15px;
+		color: $onblack-byline;
+		&:hover {
+			color: #fff;
+			background: $lapis-blue;
+		}
+	}
+}

@@ -1,0 +1,21 @@
+#app {
+	@extend .cf;
+	@extend .ns;
+	@extend .roboto;
+	@extend .ts-slow;
+	overflow: hidden;
+	cursor: default;
+	height: 100%;
+	color: $winter-black;
+	font-size: ms(1);
+}
+#app-container {
+	@extend .mask;
+	float: left;
+	margin: 20px 20px 0 0;
+	width: calc(100% - 180px - 20px);
+	height: calc(100% - 61px);
+	background: #fff;
+	border-top-left-radius: 4px;
+	border-top-right-radius: 4px;
+}

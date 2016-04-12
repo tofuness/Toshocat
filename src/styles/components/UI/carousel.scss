@@ -1,0 +1,24 @@
+.carousel {
+	position: relative;
+	width: 100%;
+}
+.carousel-top {
+	@extend .cf;
+	padding-bottom: 10px;
+}
+.carousel-header {
+	float: left;
+}
+.carousel-title {
+	font-weight: 700;
+}
+.carousel-byline {
+	padding-top: 2px;
+	color: $byline;
+	font-size: ms(0);
+}
+.carousel-content {
+	@extend .ts;
+	@extend .cf;
+	display: flex;
+}

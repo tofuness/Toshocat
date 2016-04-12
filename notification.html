@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Toshocat Notification</title>
+</head>
+<body>
+  <div id="notification">
+    LOL
+  </div>
+  <script type="text/javascript">
+    window.$ = window.jQuery = require('./vendor/jquery');
+    window.ipc = require('electron').ipcRenderer;
+  </script>
+  <script type="text/javascript">
+    var bundlePath = './build/notification.js';
+    if (typeof process !== 'undefined' && process.env.NODE_ENV === 'development') {
+      console.log('Running in development. Loading up dev server files...');
+      var bundlePath = 'http://localhost:8080/build/notification.js';
+    }
+    $.getScript(bundlePath);
+  </script></body>
+</html>

@@ -1,0 +1,48 @@
+// Primary
+$lapis-blue: #357cfe;
+$tetra-yellow: #ffdc1a;
+$winter-black: #202326;
+//$winter-black: #272a2e;
+$dover-gray: #dcdfe4;
+
+// Secondary
+$fez-red: #d73636;
+$slime-green: #65ce37;
+$cran-red: #d73636;
+
+// Generic application
+$hoverable-blue: $lapis-blue;
+$hoverable-blue-hover: mix(white, $lapis-blue, 10%);
+$hoverable-blue-active: mix(black, $lapis-blue, 5%);
+
+$hoverable-gray-hover: mix(black, $dover-gray, 5%);
+$hoverable-gray-active: mix(black, $dover-gray, 10%);
+
+$border-on-black: mix(white, $winter-black, 5%);
+$border-on-white: #dcdfe4;
+
+$boxshadow: transparentize($winter-black, 0.7);
+
+// Text
+$heading: $winter-black;
+$byline: #999;
+$body: #575858;
+
+// On black
+$onblack-heading: $dover-gray;
+$onblack-byline: mix(white, $winter-black, 40%);
+$onblack-mouseprint: mix(white, $winter-black, 15%);
+$onblack-tint: mix(white, $winter-black, 5%);
+
+$ongray-heading: mix(black, $dover-gray, 50%);
+$ongray-byline: mix(black, $dover-gray, 30%);
+
+// Title bar
+$titlebar-button: mix(white, $winter-black, 30%);
+$titlebar-button-hover: mix(white, $winter-black, 50%);
+
+// Side bar
+$sidebar-navigation-link-active: mix(white, $lapis-blue, 80%);
+
+// Picker
+$picker-btn-added: #999;

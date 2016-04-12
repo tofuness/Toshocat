@@ -1,0 +1,14 @@
+.picker {
+	.ui-counter-input {
+		outline: none;
+		padding: 5px 0;
+		width: 40px;
+		font-weight: 700;
+		text-align: center;
+		border: 2px solid $dover-gray;
+		border-radius: 4px;
+		&:focus {
+			border: 2px solid $winter-black;
+		}
+	}
+}
