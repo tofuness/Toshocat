@@ -52,6 +52,15 @@
 html, body, #mount {
 	overflow: hidden;
 	height: 100%;
+	background: #fff;
+}
+body {
+	opacity: 0;
+	will-change: opacity;
+	transition: opacity 1s cubic-bezier(.33,0,.2,1) .25s;
+	&.visible {
+		opacity: 1!important;
+	}
 }
 #mount {
 	background: $winter-black;

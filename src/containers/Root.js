@@ -16,8 +16,8 @@ import RSSReaderContainer from './RSSReaderContainer';
 class Root extends Component {
   componentDidMount() {
     setTimeout(() => {
-      $('body').fadeIn(400);
-    }, 300);
+      $('body').addClass('visible');
+    }, 500);
   }
   render() {
     const store = this.props.store;
