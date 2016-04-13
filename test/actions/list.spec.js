@@ -30,12 +30,14 @@ describe('list actions', () => {
   });
 
   describe('switchSyncer', () => {
-    it('should switch syncer', () => {
-      const malSyncer = new SyncerFactory({
+    let malSyncer;
+    beforeEach(() => {
+      malSyncer = new SyncerFactory({
         username: 'john',
         password: 'smith'
       }, 'MyAnimeList');
-
+    });
+    it('should switch syncer', () => {
       const getState = {};
       const expectedActions = [{
         type: actionTypes.SWITCH_SYNCER,
@@ -48,10 +50,6 @@ describe('list actions', () => {
     });
 
     it('should not switch syncer if provided syncer is not derived from Syncer', () => {
-      const malSyncer = new SyncerFactory({
-        username: 'john',
-        password: 'smith'
-      }, 'MyAnimeList');
       const getState = { currentSyncer: malSyncer };
       const expectedActions = [{
         type: actionTypes.SWITCH_SYNCER_FAILURE

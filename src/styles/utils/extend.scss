@@ -5,11 +5,8 @@
 @import url(https://file.myfontastic.com/E4KG3MY5eJGdB96mnocJZJ/icons.css);
 @import url(https://fonts.googleapis.com/css?family=Oswald);
 
-@import url(https://fonts.googleapis.com/css?family=Lato:400,900,300,700);
+@import url(https://fonts.googleapis.com/css?family=Roboto+Mono:400,500,700);
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,700,800,300);
-@import url(https://fonts.googleapis.com/css?family=Noto+Sans:400,700);
-@import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,900,700,300);
-@import url(https://fonts.googleapis.com/css?family=Merriweather+Sans:400,700,800,300);
 
 .ns {
 	-webkit-user-select: none;
@@ -64,6 +61,9 @@
 }
 .robotocondensed {
 	font-family: 'Roboto Condensed', sans-serif;
+}
+.robotomono {
+	font-family: 'Roboto Mono';
 }
 .button {
 	cursor: pointer;

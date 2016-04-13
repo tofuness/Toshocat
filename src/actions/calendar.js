@@ -7,8 +7,6 @@ import {
 import request from 'superagent';
 import settings from '../utils/settings';
 
-console.log(settings.path);
-
 /**
  * Load calendar data
  * @return {Function}

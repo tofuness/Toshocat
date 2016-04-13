@@ -16,5 +16,13 @@ export default {
    */
   isAnime: (type) => {
     return ['tv', 'movie', 'ova', 'special', 'ona', 'music'].indexOf(type) > -1;
+  },
+  /**
+   * Validate a url
+   * @param  {String}  string
+   * @return {Boolean}        True if string is a valid url
+   */
+  isUrl(string) {
+    return /^(?:\w+:)?\/\/([^\s\.]+\.\S{2}|localhost[\:?\d]*)\S*$/.test(string);
   }
 };

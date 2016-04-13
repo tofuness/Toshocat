@@ -11,7 +11,7 @@ import ExploreContainer from './ExploreContainer';
 import CalendarContainer from './CalendarContainer';
 import SettingsContainer from './SettingsContainer';
 import ExploreCollections from '../components/ExploreCollections';
-import RSSReaderContainer from './RSSReaderContainer';
+import RSSFeedContainer from './RSSFeedContainer';
 
 class Root extends Component {
   componentDidMount() {
@@ -33,7 +33,7 @@ class Root extends Component {
             <Route path="/explore" component={ExploreContainer}>
               <Route path="collections" component={ExploreCollections} />
             </Route>
-            <Route path="/rss" component={RSSReaderContainer} />
+            <Route path="/rss" component={RSSFeedContainer} />
             <Route path="/settings" component={SettingsContainer} />
           </Route>
         </Router>
