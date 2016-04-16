@@ -2,11 +2,8 @@ const webpack = require('webpack');
 console.log('Running build in ' + process.env.NODE_ENV);
 const env = process.env.NODE_ENV;
 const definePlugin = new webpack.DefinePlugin({
-  __DEV__: JSON.stringify(process.env.NODE_ENV) === 'production',
-  'process.env': {
-    // Just a flag to let some files know that we need to do remote.require(...)
-    APP_ENV: JSON.stringify('browser')
-  }
+  'process.env.NODE_ENV': JSON.stringify(env),
+  'process.env.APP_ENV': JSON.stringify('browser')
 });
 module.exports = {
   entry: {

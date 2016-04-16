@@ -37,7 +37,7 @@ class App extends Component {
         </div>
         <SeriesContainer />
         <LoadingMessage />
-        <DevTools />
+        { process.env.NODE_ENV === 'production' ? null : <DevTools /> }
       </div>
     );
   }
