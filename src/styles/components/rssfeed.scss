@@ -1,0 +1,10 @@
+.feed {
+  overflow-y: scroll;
+  height: 100%;
+}
+.feed-item {
+  @extend .robotomono;
+  padding: 10px;
+  font-size: ms(0);
+  border-bottom: 1px solid $border-on-white;
+}

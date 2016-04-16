@@ -9,30 +9,42 @@ class SideBarNavigation extends Component {
           Main
         </div>
         <div className="sidebar-navigation-link">
-          <Link to="/animelist" activeClassName="active">Anime list</Link>
+          <Link to="/animelist" activeClassName="active">
+            <span className="icon-list"></span>Anime list
+          </Link>
         </div>
         <div className="sidebar-navigation-link">
-          <Link to="/mangalist" activeClassName="active">Manga list</Link>
+          <Link to="/mangalist" activeClassName="active">
+            <span className="icon-list"></span>Manga list
+          </Link>
         </div>
         <div className="sidebar-navigation-spacer"></div>
         <div className="sidebar-navigation-label">
           Browse
         </div>
         <div className="sidebar-navigation-link">
-          <Link to="/calendar" activeClassName="active">Calendar</Link>
+          <Link to="/calendar" activeClassName="active">
+            <span className="icon-calendar"></span>Calendar
+          </Link>
         </div>
         <div className="sidebar-navigation-link">
-          <Link to="/rss" activeClassName="active">RSS Feed</Link>
+          <Link to="/rss" activeClassName="active">
+            <span className="icon-rss"></span>RSS Feed
+          </Link>
         </div>
         <div className="sidebar-navigation-link">
-          <Link to="/search" activeClassName="active">Search</Link>
+          <Link to="/search" activeClassName="active">
+            <span className="icon-magnifying-glass"></span>Search
+        </Link>
         </div>
         <div className="sidebar-navigation-spacer"></div>
         <div className="sidebar-navigation-label">
           System
         </div>
         <div className="sidebar-navigation-link">
-          <Link to="/settings" activeClassName="active">Settings</Link>
+          <Link to="/settings" activeClassName="active">
+            <span className="icon-gear"></span>Settings
+          </Link>
         </div>
       </div>
     );

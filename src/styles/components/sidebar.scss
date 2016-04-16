@@ -15,11 +15,21 @@
 }
 .sidebar-navigation-link {
 	display: block;
+	& span {
+		display: inline-block;
+		vertical-align: middle;
+		padding-right: 5px;
+		font-size: 16px;
+		font-weight: normal;
+    -webkit-font-smoothing: none;
+  	text-rendering: none;
+	}
 }
 .sidebar-navigation-link a {
 	@extend .opensans;
 	cursor: pointer;
-	padding: 7px 20px;
+	margin-left: 5px;
+	padding: 7px 20px 7px 15px;
 	display: inline-block;
 	color: $onblack-byline;
 	background: transparent;
@@ -27,12 +37,13 @@
 	border-top-right-radius: 2px;
 	border-bottom-right-radius: 2px;
 	background: $winter-black;
-	box-shadow: inset 0 0 0 transparent;
+	box-shadow: 0 0 0 transparent;
+	@extend .ts;
 	&:hover {
-		color: #fff;
+		color: mix($onblack-byline, #fff, 30%);
 	}
 	&.active {
-		color: #fff;
-		box-shadow: inset 4px 0 0 $lapis-blue;
+		color: mix($onblack-byline, #fff, 30%);
+		box-shadow: -4px 0 0 $lapis-blue;
 	}
 }
