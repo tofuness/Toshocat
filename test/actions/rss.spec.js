@@ -24,9 +24,9 @@ describe('rss actions', () => {
         RSS: expectedResponse.items
       }];
 
-      nock('https://rss2json.com')
-      .get('/api.json')
-      .query({ rss_url: getState.RSSUrl })
+      nock('https://ajax.googleapis.com/ajax/services/feed/')
+      .get('/load')
+      .query({ q: getState.RSSUrl, v: '1.0', num: 100 })
       .reply(200, expectedResponse);
 
       const store = mockStore(getState);
