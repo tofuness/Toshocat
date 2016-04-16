@@ -6,9 +6,6 @@ class Calendar extends Component {
     if (!this.props.currentCalendar.length) {
       this.props.loadCalendar();
     }
-    $('.day-info').velocity('toshocat.slideDownIn', {
-      stagger: 30
-    });
   }
   render() {
     return (
