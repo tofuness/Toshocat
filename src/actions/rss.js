@@ -26,13 +26,14 @@ export function loadRSS() {
     }
     return new Promise((resolve, reject) => {
       request
-      .get('https://rss2json.com/api.json')
-      .query({ rss_url: RSSUrl })
+      .get('https://ajax.googleapis.com/ajax/services/feed/load?v=1.0&num=100')
+      .query({ q: RSSUrl })
       .end((err, res) => {
         if (!err) {
+          console.log(JSON.parse(res.text));
           dispatch({
             type: SHOW_RSS_SUCCESS,
-            RSS: _.get(res.body, 'items') || []
+            RSS: _.get(JSON.parse(res.text), 'responseData.feed.entries') || []
           });
           resolve(res.body);
         } else {

@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 
 class RSSFeed extends Component {
   componentDidMount = () => {
-    this.props.switchRSS('http://www.nyaa.se/?page=rss&cats=1_37&filter=2');
+    this.props.switchRSS('http://tokyotosho.info/rss.php?filter=1,11&zwnj=0');
     this.props.loadRSS();
   }
   render() {
