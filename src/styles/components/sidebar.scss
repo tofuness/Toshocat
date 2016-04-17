@@ -38,12 +38,11 @@
 	border-bottom-right-radius: 2px;
 	background: $winter-black;
 	box-shadow: 0 0 0 transparent;
-	@extend .ts;
 	&:hover {
 		color: mix($onblack-byline, #fff, 30%);
 	}
 	&.active {
 		color: mix($onblack-byline, #fff, 30%);
-		box-shadow: -4px 0 0 $lapis-blue;
+		box-shadow: -5px 0 0 $lapis-blue;
 	}
 }
