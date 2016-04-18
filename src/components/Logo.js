@@ -13,6 +13,21 @@ class Logo extends Component {
       visible: false
     };
   }
+  componentDidMount = () => {
+    switch (this.props.currentListName) {
+      case 'toshocat':
+        this.switchToToshocat();
+        break;
+      case 'hummingbird':
+        this.switchToHummingbird();
+        break;
+      case 'myanimelist':
+        this.switchToMyAnimeList();
+        break;
+      default:
+        break;
+    }
+  }
   onOutsideEvent() {
     if (this.state.visible) {
       this.setState({
