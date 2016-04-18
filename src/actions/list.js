@@ -9,7 +9,8 @@ import {
   SWITCH_LIST_FAILURE,
   UPDATE_CURRENT_LIST_NAME,
   SWITCH_SYNCER,
-  SWITCH_SYNCER_FAILURE
+  SWITCH_SYNCER_FAILURE,
+  SYNC_LIST
 } from '../constants/actionTypes';
 import request from 'superagent';
 import _ from 'lodash';
@@ -36,7 +37,7 @@ export function loadList() {
 /**
  * Switch to another list
  * @param  {String} listName List name
- * @return {Boolean|Function}
+ * @return {Object|Function}
  */
 export function switchList(listName) {
   if (!listName) {
@@ -49,6 +50,37 @@ export function switchList(listName) {
       currentListName: listName
     });
     dispatch(loadList());
+  };
+}
+
+/**
+ * Syncs new list with a list stored in local storage.
+ * Makes sure that old fields are not naively removed.
+ * @param  {String} listName List name
+ * @param  {Array} newList   List
+ * @return {Function}
+ */
+export function syncList(listName, newList) {
+  return (dispatch) => {
+    const unsyncedList = toshoStore.getList(listName);
+    const syncedList = _.map(newList, (entry) => {
+      // Check if we have this entry since before
+      const unsyncedEntry = _.find(unsyncedList, (o) => {
+        return o._id === entry._id;
+      });
+
+      if (unsyncedEntry) {
+        return _.merge({}, unsyncedEntry, entry);
+      }
+      return entry;
+    });
+
+    toshoStore.saveList(listName, syncedList);
+
+    dispatch({
+      type: SYNC_LIST,
+      syncedList
+    });
   };
 }
 

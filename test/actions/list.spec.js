@@ -29,6 +29,45 @@ describe('list actions', () => {
     nock.cleanAll();
   });
 
+  describe('syncList', () => {
+    it('should old list with new list', () => {
+      // Note: We are restoring and re-stubbing here
+      toshoStore.getList.restore();
+      sinon.stub(toshoStore, 'getList').returns([
+        {
+          _id: 'someid',
+          item: {
+            item_notes: 'Old notes'
+          }
+        }
+      ]);
+      const getState = {};
+      const expectedActions = [{
+        type: actionTypes.SYNC_LIST,
+        syncedList: [
+          {
+            _id: 'someid',
+            item: {
+              item_notes: 'Old notes',
+              item_progress: 123
+            }
+          }
+        ]
+      }];
+      const store = mockStore(getState);
+      store.dispatch(actions.syncList('dummylist', [
+        {
+          _id: 'someid',
+          item: {
+            item_notes: undefined,
+            item_progress: 123
+          }
+        }
+      ]));
+      expect(store.getActions()).to.eql(expectedActions);
+    });
+  });
+
   describe('switchSyncer', () => {
     let malSyncer;
     beforeEach(() => {
