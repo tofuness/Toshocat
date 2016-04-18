@@ -26,7 +26,13 @@ describe('rss actions', () => {
 
       nock('https://ajax.googleapis.com/ajax/services/feed/')
       .get('/load')
-      .query({ q: getState.RSSUrl, v: '1.0', num: 100 })
+      .query((queryObject) => {
+        return (
+          queryObject.q.indexOf('nyaa.se') > -1 &&
+          queryObject.num === '-1' &
+          queryObject.v === '1.0'
+        );
+      })
       .reply(200, expectedResponse);
 
       const store = mockStore(getState);
