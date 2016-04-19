@@ -12,11 +12,18 @@ html, body {
   height: 100%;
 }
 #notification {
+  @extend .ts;
+  opacity: 0;
   color: #000;
   margin: 20px 0 0 20px;
   padding: 20px;
   width: calc(100% - 60px);
   height: calc(100% - 60px);
   background: $winter-black;
+  transform: scale(0.4);
   box-shadow: 0 1px 6px transparentize($winter-black, 0.6);
+  &.visible {
+    opacity: 1;
+    transform: scale(1);
+  }
 }

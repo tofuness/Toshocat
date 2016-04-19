@@ -11,7 +11,10 @@ class Kicker extends Component {
     };
   }
   componentDidMount = () => {
+    ipcRenderer.removeAllListeners('media-detected');
+    ipcRenderer.removeAllListeners('media-lost');
     ipcRenderer.on('media-detected', (event, data) => {
+      console.log('Did I unmount?');
       if (data[0].animeTitle !== this.state.seriesTitle) {
         this.setState({
           seriesTitle: data[0].animeTitle,

@@ -37,13 +37,14 @@ function closeMainWindow() {
   mainWindow.close();
 }
 
-const task = require('ms-task');
-const os = require('os');
 const anitomy = require('./src/utils/anitomy');
-const childProcess = require('child_process');
+const execa = require('execa');
+const os = require('os');
 
 function scrobble(callback) {
-  task.list('/V /NH /fo CSV | findstr ".mkv .mp4 .avi"', (err, data) => {
+  execa.shell('tasklist /V /NH /fo CSV | findstr ".mkv .mp4 .avi"')
+  .then((result) => {
+    const data = result.stdout;
     if (data !== '') {
       const instances = data.trim().split(os.EOL).map((instance) => {
         return instance
@@ -51,12 +52,16 @@ function scrobble(callback) {
           .split('","')[8]
           .replace(/ \- VLC(.*)+/g, '');
       });
-      anitomy.parse(childProcess, instances[0], (parsedData) => {
+      anitomy.parse(instances[0], (parsedData) => {
         callback(parsedData);
       });
     } else {
       callback(false);
     }
+  })
+  .catch((err) => {
+    console.log(err);
+    callback(false);
   });
 }
 
@@ -116,12 +121,17 @@ app.on('ready', () => {
   mainWindow.webContents.on('new-window', (e) => {
     e.preventDefault();
   });
+
+  let scrobbleInterval;
+  // 'did-finish-load' runs everytime you press f5.
+  // Need to clear interval to avoid this from hogging memory
   mainWindow.webContents.on('did-finish-load', () => {
-    setInterval(() => {
+    clearInterval(scrobbleInterval);
+    scrobbleInterval = setInterval(() => {
       scrobble((parsedData) => {
         mainWindow.webContents.send(parsedData ? 'media-detected' : 'media-lost', parsedData);
       });
-    }, 5000);
+    }, 8000);
     mainWindow.show();
   });
 
