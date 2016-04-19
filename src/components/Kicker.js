@@ -5,7 +5,8 @@ import _ from 'lodash';
 const task = remote.require('ms-task');
 // /V /NH /fi "IMAGENAME eq vlc.exe" /fo CSV
 import anitomy from '../utils/anitomy';
-let childProcess = remote.require('child_process');
+const childProcess = remote.require('child_process');
+const os = remote.require('os');
 
 class Kicker extends Component {
   constructor(props) {
@@ -14,30 +15,33 @@ class Kicker extends Component {
       seriesName: '',
       seriesEpisode: '',
       visible: false
-    }
+    };
   }
   componentDidMount = () => {
     this.scrobbleInterval = setInterval(() => {
-      task.list('/V /NH /fi "IMAGENAME eq vlc.exe" /fo CSV', (err, data) => {
+      task.list('/V /NH /fo CSV | findstr ".mkv .mp4 .avi"', (err, data) => {
         if (data.indexOf('INFO: No tasks are running which match the specified criteria.') > -1) {
           this.setState({
             visible: false
           });
-          return false;
+        } else {
+          const instances = data.trim().split(os.EOL).map((instance) => {
+            return instance
+              .substr(1, instance.length - 2)
+              .split('","')[8]
+              .replace(/ \- VLC(.*)+/g, '');
+          });
+          anitomy.parse(childProcess, instances[0], (parsedData) => {
+            if (this.state.seriesName !== parsedData.animeTitle) {
+              this.setState({
+                seriesName: _.get(parsedData, 'animeTitle'),
+                seriesEpisode: parseInt(_.get(parsedData, 'episodeNumber'), 10),
+                visible: true
+              });
+              this.props.scrobble(parsedData);
+            }
+          });
         }
-        const instances = data.trim().split('\r\n').map((instance) => {
-          return instance.substr(1, instance.length - 2).split('","')[8].replace(/ \- VLC(.*)+/g, '');
-        });
-        anitomy.parse(childProcess, instances[0], (parsedData) => {
-          if (this.state.seriesName !== parsedData.animeTitle) {
-            this.setState({
-              seriesName: _.get(parsedData, 'animeTitle'),
-              seriesEpisode: _.get(parsedData, 'episodeNumber'),
-              visible: true
-            });
-            this.props.scrobble(parsedData);
-          }
-        });
       });
     }, 5000);
   }
