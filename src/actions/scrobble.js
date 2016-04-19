@@ -34,11 +34,11 @@ function _scoreItems(items, title) {
 }
 
 /**
- * Scrobble anime
+ * Shows notification window and asks user to confirm the scrobble
  * @param  {Object} data Data object from anitomy
  * @return {Function}
  */
-export function scrobble(data) {
+export function requestScrobble(data) {
   return (dispatch, getState) => {
     const { latestScrobble, currentList } = getState();
     if (!_.isEqual(latestScrobble, data)) {
@@ -50,9 +50,17 @@ export function scrobble(data) {
           const matchestFromSearch = _scoreItems(res.body, data.animeTitle);
           if (matchesFromList.length && matchestFromSearch[0]._id === matchesFromList[0]._id) {
             console.log(matchestFromSearch[0].title + ' is a match');
+            ipcRenderer.send('scrobble', {
+              seriesTitle: matchestFromSearch[0].title,
+              seriesEpisode: parseInt(data.episodeNumber, 10) || 1
+            });
           } else {
             console.log(matchestFromSearch);
             console.log(`might be ${matchestFromSearch[0].title} ${matchestFromSearch[0].mal_id}`);
+            ipcRenderer.send('scrobble', {
+              seriesTitle: matchestFromSearch[0].title,
+              seriesEpisode: parseInt(data.episodeNumber, 10) || 1
+            });
           }
         }
       });

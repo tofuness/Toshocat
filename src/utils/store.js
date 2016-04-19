@@ -10,6 +10,7 @@ export default {
     return this.set(`list.${listName}`, list);
   },
   get(key) {
+    if (typeof Storage === 'undefined') return false;
     let currentStore = localStorage.getItem(key);
     if (currentStore === null) {
       currentStore = {};
@@ -19,6 +20,7 @@ export default {
     return currentStore;
   },
   set(key, data) {
+    if (typeof Storage === 'undefined') return false;
     return localStorage.setItem(key, JSON.stringify(data));
   }
 };

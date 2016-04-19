@@ -23,6 +23,6 @@
     "remote": true,
     "$": true,
     "React": true,
-    "ipc": true
+    "ipcRenderer": true
   }
 }

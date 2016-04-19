@@ -23,6 +23,7 @@ class App extends Component {
   render() {
     return (
       <div id="app" ref="app">
+        <LoadingMessage />
         <ReactTooltip
           multiline
           type="dark"
@@ -36,7 +37,6 @@ class App extends Component {
           {this.props.children}
         </div>
         <SeriesContainer />
-        <LoadingMessage />
         { process.env.NODE_ENV === 'production' ? null : <DevTools /> }
       </div>
     );

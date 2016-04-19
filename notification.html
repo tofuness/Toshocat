@@ -6,11 +6,10 @@
 </head>
 <body>
   <div id="notification">
-    LOL
   </div>
   <script type="text/javascript">
     window.$ = window.jQuery = require('./vendor/jquery');
-    window.ipc = require('electron').ipcRenderer;
+    window.ipcRenderer = require('electron').ipcRenderer;
   </script>
   <script type="text/javascript">
     var bundlePath = './build/notification.js';

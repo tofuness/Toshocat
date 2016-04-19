@@ -8,22 +8,9 @@
     "start-prod": "cross-env NODE_ENV=production ./node_modules/.bin/electron .",
     "dev": "cross-env NODE_ENV=development webpack-dev-server --inline --hot",
     "test": "mocha --compilers js:babel-core/register --recursive --timeout 2000",
-    "ava": "ava",
     "test:watch": "npm run test --watch",
     "build": "cross-env NODE_ENV=production webpack -p",
     "lint": "eslint -c .eslintrc src/**/*.js"
-  },
-  "ava": {
-    "require": [
-      "babel-register"
-    ],
-    "babel": {
-      "presets": [
-        "es2015",
-        "stage-0",
-        "react"
-      ]
-    }
   },
   "author": "Dennis Jin <desuvader@gmail.com>",
   "license": "MIT",
@@ -70,7 +57,6 @@
     "velocity-animate": "^1.2.3"
   },
   "devDependencies": {
-    "ava": "^0.14.0",
     "babel-eslint": "^5.0.0",
     "chai": "^3.4.1",
     "cross-env": "^1.0.7",

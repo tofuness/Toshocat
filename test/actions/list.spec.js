@@ -31,7 +31,6 @@ describe('list actions', () => {
 
   describe('syncList', () => {
     it('should old list with new list', () => {
-      // Note: We are restoring and re-stubbing here
       toshoStore.getList.restore();
       sinon.stub(toshoStore, 'getList').returns([
         {
@@ -64,8 +63,6 @@ describe('list actions', () => {
           }
         }
       ]));
-
-      toshoStore.getList.restore();
       expect(store.getActions()).to.eql(expectedActions);
     });
   });

@@ -11,7 +11,7 @@ const BrowserWindow = require('browser-window');
 const Positioner = require('electron-positioner');
 const Tray = require('tray');
 const Menu = require('menu');
-const ipc = require('ipc');
+const ipcMain = require('electron').ipcMain;
 
 let appIcon = null;
 let mainWindow = null;
@@ -35,6 +35,29 @@ function closeMainWindow() {
   appIcon.destroy();
   appIcon = null;
   mainWindow.close();
+}
+
+const task = require('ms-task');
+const os = require('os');
+const anitomy = require('./src/utils/anitomy');
+const childProcess = require('child_process');
+
+function scrobble(callback) {
+  task.list('/V /NH /fo CSV | findstr ".mkv .mp4 .avi"', (err, data) => {
+    if (data !== '') {
+      const instances = data.trim().split(os.EOL).map((instance) => {
+        return instance
+          .substr(1, instance.length - 2)
+          .split('","')[8]
+          .replace(/ \- VLC(.*)+/g, '');
+      });
+      anitomy.parse(childProcess, instances[0], (parsedData) => {
+        callback(parsedData);
+      });
+    } else {
+      callback(false);
+    }
+  });
 }
 
 app.on('ready', () => {
@@ -94,16 +117,21 @@ app.on('ready', () => {
     e.preventDefault();
   });
   mainWindow.webContents.on('did-finish-load', () => {
+    setInterval(() => {
+      scrobble((parsedData) => {
+        mainWindow.webContents.send(parsedData ? 'media-detected' : 'media-lost', parsedData);
+      });
+    }, 5000);
     mainWindow.show();
   });
 
   let notificationTimeout = null;
-  ipc.on('scrobble', (event, data) => {
+  ipcMain.on('scrobble', (event, data) => {
     clearTimeout(notificationTimeout);
     notificationWindow.show();
     notificationWindow.webContents.send('scrobble', data);
     notificationTimeout = setTimeout(() => {
       notificationWindow.hide();
-    }, 5000);
+    }, 10000);
   });
 });
