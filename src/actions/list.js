@@ -13,6 +13,7 @@ import {
   SYNC_LIST
 } from '../constants/actionTypes';
 import request from 'superagent';
+import moment from 'moment';
 import _ from 'lodash';
 
 import Syncer from '../syncers/Syncer';
@@ -205,7 +206,7 @@ export function updateItem(item) {
     // transitions correctly. New info can come in later after the user
     // has received a response to their action.
     dispatch(_updateItem(item));
-    if (item.status === 'currently airing') {
+    if (item.last_updated === undefined || moment().diff(item.last_updated, 'hours') > 24) {
       // E.g. if we are missing total episodes info etc
       return new Promise((resolve) => {
         request
@@ -224,6 +225,7 @@ export function updateItem(item) {
         });
       });
     }
+    return Promise.resolve();
   };
 }
 

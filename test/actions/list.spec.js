@@ -64,6 +64,8 @@ describe('list actions', () => {
           }
         }
       ]));
+
+      toshoStore.getList.restore();
       expect(store.getActions()).to.eql(expectedActions);
     });
   });
@@ -256,9 +258,9 @@ describe('list actions', () => {
     });
 
     // Redux-thunk support broekn
-    it('should fetch new series data if series is still airing', (done) => {
-      const getState = { currentList: [mockList.airing] };
-      const updatedListItem = _.assign({}, mockList.airing, { random_field: 'random' });
+    it('should fetch new series data if series was last updated more than 24 hours ago', (done) => {
+      const getState = { currentList: [mockList.outdated] };
+      const updatedListItem = _.assign({}, mockList.outdated, { random_field: 'random' });
       const expectedListItem = _.assign({}, updatedListItem, { title: 'Erased' });
       const requestResult = {
         title: 'Erased'
@@ -281,6 +283,21 @@ describe('list actions', () => {
       .dispatch(actions.updateItem(updatedListItem))
       .then(() => {
         assert.strictEqual(2, toshoStore.saveList.callCount);
+        expect(store.getActions()).to.eql(expectedActions);
+        done();
+      });
+    });
+
+    it('should NOT fetch new series data if it has been updated in the last 24 hours', (done) => {
+      const getState = { currentList: [mockList.upToDate] };
+      const updatedListItem = _.assign({}, mockList.upToDate, { random_field: 'random' });
+      const expectedActions = [{
+        type: actionTypes.UPDATE_LIST_ITEM,
+        currentList: [updatedListItem]
+      }];
+
+      const store = mockStore(getState);
+      store.dispatch(actions.updateItem(updatedListItem)).then(() => {
         expect(store.getActions()).to.eql(expectedActions);
         done();
       });

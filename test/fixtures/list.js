@@ -25,7 +25,7 @@ export default {
       item_rating: 5
     }
   },
-  airing: {
+  outdated: {
     _id: '562696cbfd1db921d7955710',
     title: 'Heavy Object',
     item: {
@@ -35,6 +35,18 @@ export default {
       item_rating: 5
     },
     mal_id: 123,
-    status: 'currently airing'
+    last_updated: new Date('January 1988')
+  },
+  upToDate: {
+    _id: '562696cbfd1db921d7955710',
+    title: 'Heavy Object',
+    item: {
+      item_status_text: 'Current',
+      item_status: 'current',
+      item_progress: 10,
+      item_rating: 5
+    },
+    mal_id: 123,
+    last_updated: new Date('2050')
   }
 };
