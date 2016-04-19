@@ -52,7 +52,7 @@ class Logo extends Component {
       return hbSyncer.getList('anime');
     })
     .then((animeList) => {
-      toshoStore.saveList('hummingbird', animeList);
+      this.props.syncList('hummingbird', animeList);
       this.props.switchList('hummingbird');
       this.props.switchSyncer(hbSyncer);
       pubsub.publishSync('HIDE_LOADING_MESSAGE');
@@ -79,7 +79,7 @@ class Logo extends Component {
       return malSyncer.getList('manga');
     })
     .then((mangaList) => {
-      toshoStore.saveList('myanimelist', completeList.concat(mangaList));
+      this.props.syncList('myanimelist', completeList.concat(mangaList));
       this.props.switchList('myanimelist');
       this.props.switchSyncer(malSyncer);
       pubsub.publishSync('HIDE_LOADING_MESSAGE');
@@ -185,7 +185,8 @@ Logo.propTypes = {
 
   // Actions
   switchSyncer: PropTypes.func.isRequired,
-  switchList: PropTypes.func.isRequired
+  switchList: PropTypes.func.isRequired,
+  syncList: PropTypes.func.isRequired
 };
 
 export default new ReactOutsideEvent(Logo, ['mouseup']);
