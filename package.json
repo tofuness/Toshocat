@@ -12,7 +12,7 @@
     "build": "cross-env NODE_ENV=production webpack -p",
     "lint": "eslint -c .eslintrc src/**/*.js"
   },
-  "author": "Dennis Jin <desuvader@gmail.com>",
+  "author": "Dennis Jin <dennis@tofuness.com>",
   "license": "MIT",
   "dependencies": {
     "babel-core": "^6.7.6",
