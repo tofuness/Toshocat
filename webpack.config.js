@@ -1,7 +1,8 @@
 const webpack = require('webpack');
-console.log(`Running build in ${process.env.NODE_ENV}`);
+
 const env = process.env.NODE_ENV;
 const definePlugin = new webpack.DefinePlugin({
+  __DEV__: JSON.stringify(JSON.parse(process.env.BUILD_DEV || 'true')),
   'process.env.NODE_ENV': JSON.stringify(env),
   'process.env.APP_ENV': JSON.stringify('browser')
 });

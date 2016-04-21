@@ -37,7 +37,7 @@ class App extends Component {
           {this.props.children}
         </div>
         <SeriesContainer />
-        { process.env.NODE_ENV === 'production' ? null : <DevTools /> }
+        { __DEV__ ? null : <DevTools /> }
       </div>
     );
   }

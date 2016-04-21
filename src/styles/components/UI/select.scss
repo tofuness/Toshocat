@@ -49,8 +49,8 @@
 		box-shadow: 0 2px 8px transparentize(#000, 0.7);
 		&.active {
 			animation-name: slideDownIn;
-			animation-duration: 240ms;
-			animation-timing-function: cubic-bezier(0.19, 1, 0.22, 1);
+			animation-duration: 220ms;
+			animation-timing-function: cubic-bezier(0, .33, .2, 1);
 		}
 		&:after {
 			bottom: 100%;
@@ -94,8 +94,8 @@
 		box-shadow: 0 1px 3px $boxshadow;
 		&.active {
 			animation-name: slideDownIn;
-			animation-duration: 240ms;
-			animation-timing-function: cubic-bezier(0.19, 1, 0.22, 1);
+			animation-duration: 220ms;
+			animation-timing-function: cubic-bezier(0, .33, .2, 1);
 		}
 		&:after {
 			bottom: 100%;

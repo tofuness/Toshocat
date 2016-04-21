@@ -66,11 +66,11 @@
 	background: #fff;
 	z-index: 2;
 	border-radius: 4px;
-	box-shadow: 0 2px 8px transparentize(#000, 0.8);
+	box-shadow: 0 4px 16px transparentize(#000, 0.8);
 	&.active {
 		animation-name: slideLeftIn;
-		animation-duration: 240ms;
-		animation-timing-function: cubic-bezier(0.19, 1, 0.22, 1);
+		animation-duration: 220ms;
+		animation-timing-function: cubic-bezier(0, .33, .2, 1);
 	}
 	&:before, &:after {
 		left: 100%;

@@ -18,7 +18,7 @@
 	user-select: text;
 }
 .ts {
-	transition: all 220ms cubic-bezier(0.075, 0.82, 0.165, 1);
+	transition: all 220ms cubic-bezier(0, .33, .2, 1);
 }
 .ts-slow {
 	transition: all 800ms cubic-bezier(0.075, 0.82, 0.165, 1);
