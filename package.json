@@ -9,7 +9,7 @@
     "dev": "cross-env NODE_ENV=development webpack-dev-server --inline --hot",
     "test": "mocha --compilers js:babel-core/register --recursive --timeout 2000",
     "test:watch": "npm run test --watch",
-    "build": "cross-env NODE_ENV=production webpack -p",
+    "build": "cross-env NODE_ENV=production BUILD_ENV=1 webpack -p",
     "lint": "eslint -c .eslintrc src/**/*.js"
   },
   "author": "Dennis Jin <dennis@tofuness.com>",
@@ -61,7 +61,8 @@
     "electron-prebuilt": "^0.37.6",
     "eslint": "^2.8.0",
     "eslint-config-airbnb": "^7.0.0",
-    "eslint-plugin-react": "^5.0.1",
+    "eslint-plugin-jsx-a11y": "^0.6.2",
+    "eslint-plugin-react": "^4.3.0",
     "file-loader": "^0.8.5",
     "json-loader": "^0.5.4",
     "mocha": "^2.4.5",
