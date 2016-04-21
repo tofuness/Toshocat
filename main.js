@@ -78,7 +78,7 @@ app.on('ready', () => {
     resizeable: false,
     show: false
   });
-  notificationWindow.loadURL(path.normalize(path.join(__dirname, 'notification.html')));
+  notificationWindow.loadURL(`file://${path.resolve(__dirname, './notification.html')}`);
   notificationWindowPositioner = new Positioner(notificationWindow);
   notificationWindowPositioner.move('bottomRight');
   notificationWindow.on('closed', () => {
@@ -104,7 +104,7 @@ app.on('ready', () => {
     detach: true
   });
 
-  appIcon = new Tray(path.join(__dirname, 'tray.png'));
+  appIcon = new Tray(path.resolve(__dirname, './tray.png'));
   appIcon.on('click', restoreMainWindow);
   appIcon.setContextMenu(Menu.buildFromTemplate([
     { label: 'Open Toshocat', click: restoreMainWindow },
@@ -113,7 +113,7 @@ app.on('ready', () => {
   appIcon.setToolTip('Toshocat');
 
   mainWindow.setMenuBarVisibility(false);
-  mainWindow.loadURL(path.normalize(path.join(__dirname, 'index.html')));
+  mainWindow.loadURL(`file://${path.resolve(__dirname, './index.html')}`);
   mainWindow.on('closed', () => {
     mainWindow = null;
     app.quit();

@@ -6,7 +6,7 @@ const execa = require('execa');
 
 module.exports = {
   parse: (filenames, callback) => {
-    if (filenames !== undefined) {
+    if (filenames !== undefined && filenames !== null && filenames.length) {
       const args = ['--name'];
       if (!_.isArray(filenames)) {
         args.push(filenames);
@@ -23,7 +23,9 @@ module.exports = {
       .then((result) => {
         callback(JSON.parse(result.stdout));
       })
-      .catch(() => callback(false));
+      .catch((err) => callback(new Error(err)));
+    } else {
+      callback(false);
     }
   }
 };
