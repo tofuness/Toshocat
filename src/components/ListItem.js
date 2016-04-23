@@ -30,7 +30,7 @@ class ListItem extends Component {
     return false;
   }
   toggleExpansion(e) {
-    if (e.target.className === 'list-item-title') {
+    if (e.target.className !== 'list-item-link') {
       this.setState({
         expanded: !this.state.expanded
       });
