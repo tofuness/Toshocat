@@ -40,6 +40,9 @@ describe('explore actions', () => {
       .then(() => {
         expect(store.getActions()).to.eql(expectedActions);
         done();
+      })
+      .catch((err) => {
+        done(err);
       });
     });
   });

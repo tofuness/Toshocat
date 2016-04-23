@@ -1,7 +1,7 @@
 import {
-  SHOW_CALENDAR_REQUEST,
-  SHOW_CALENDAR_FAILURE,
-  SHOW_CALENDAR_SUCCESS
+  LOAD_CALENDAR_REQUEST,
+  LOAD_CALENDAR_FAILURE,
+  LOAD_CALENDAR_SUCCESS
 } from '../constants/actionTypes';
 
 import request from 'superagent';
@@ -14,18 +14,18 @@ import settings from '../utils/settings';
 export function loadCalendar() {
   return (dispatch) => {
     dispatch({
-      type: SHOW_CALENDAR_REQUEST,
+      type: LOAD_CALENDAR_REQUEST,
     });
     request
     .get(`${settings.get('APIBase')}/schedule`)
     .end((err, res) => {
       if (err) {
         dispatch({
-          type: SHOW_CALENDAR_FAILURE
+          type: LOAD_CALENDAR_FAILURE
         });
       } else {
         dispatch({
-          type: SHOW_CALENDAR_SUCCESS,
+          type: LOAD_CALENDAR_SUCCESS,
           calendar: res.body
         });
       }

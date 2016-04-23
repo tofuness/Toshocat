@@ -282,6 +282,9 @@ describe('list actions', () => {
         assert.strictEqual(2, toshoStore.saveList.callCount);
         expect(store.getActions()).to.eql(expectedActions);
         done();
+      })
+      .catch((err) => {
+        done(err);
       });
     });
 

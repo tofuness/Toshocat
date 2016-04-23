@@ -12,6 +12,7 @@ import CalendarContainer from './CalendarContainer';
 import SettingsContainer from './SettingsContainer';
 import ExploreCollections from '../components/ExploreCollections';
 import RSSFeedContainer from './RSSFeedContainer';
+import ChartContainer from './ChartContainer';
 
 class Root extends Component {
   componentDidMount() {
@@ -30,6 +31,7 @@ class Root extends Component {
             <Route path="/mangalist" component={ListContainer} />
             <Route path="/search" component={SearchContainer} />
             <Route path="/calendar" component={CalendarContainer} />
+            <Route path="/chart" component={ChartContainer} />
             <Route path="/explore" component={ExploreContainer}>
               <Route path="collections" component={ExploreCollections} />
             </Route>

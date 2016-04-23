@@ -36,6 +36,7 @@ class CalendarDay extends Component {
               if (
                 [
                   'Mayoiga',
+                  'Flying Witch',
                   'Kuma Miko: Girl Meets Bear',
                   'JoJo no Kimyou na Bouken: Diamond wa Kudakenai',
                   'Ansatsu Kyoushitsu (TV) 2nd Season',

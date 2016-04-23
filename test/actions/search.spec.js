@@ -45,9 +45,12 @@ describe('search actions', () => {
       .then(() => {
         expect(store.getActions()).to.eql(expectedActions);
         done();
+      })
+      .catch((err) => {
+        done(err);
       });
     });
-    
+
     it('should fail search for series', (done) => {
       const getState = {
         searchResults: [],

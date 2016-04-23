@@ -37,7 +37,7 @@ class App extends Component {
           {this.props.children}
         </div>
         <SeriesContainer />
-        { __DEV__ ? null : <DevTools /> }
+        { __DEV__ ? <DevTools /> : null }
       </div>
     );
   }

@@ -9,6 +9,7 @@ import * as exploreReducers from './explore';
 import * as calendarReducers from './calendar';
 import * as scrobbleReducers from './scrobble';
 import * as rssReducers from './rss';
+import * as chartReducers from './chart';
 
 // Assign, you smaht.
 export default combineReducers(
@@ -20,6 +21,7 @@ export default combineReducers(
     calendarReducers,
     scrobbleReducers,
     rssReducers,
+    chartReducers,
     {
       routing: routerReducer
     }

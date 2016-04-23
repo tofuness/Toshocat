@@ -27,6 +27,11 @@ const SideBarNavigation = () => {
         </Link>
       </div>
       <div className="sidebar-navigation-link">
+        <Link to="/chart" activeClassName="active">
+          <span className="icon-map"></span>Season Charts
+        </Link>
+      </div>
+      <div className="sidebar-navigation-link">
         <Link to="/rss" activeClassName="active">
           <span className="icon-rss"></span>RSS Feed
         </Link>

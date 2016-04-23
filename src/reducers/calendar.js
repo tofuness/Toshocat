@@ -1,5 +1,5 @@
 import {
-  SHOW_CALENDAR_SUCCESS
+  LOAD_CALENDAR_SUCCESS
 } from '../constants/actionTypes';
 
 const initialState = {
@@ -8,7 +8,7 @@ const initialState = {
 
 export function currentCalendar(state = initialState.calendar, action = {}) {
   switch (action.type) {
-    case SHOW_CALENDAR_SUCCESS:
+    case LOAD_CALENDAR_SUCCESS:
       return action.calendar;
     default:
       return state;
