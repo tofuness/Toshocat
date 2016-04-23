@@ -1,8 +1,7 @@
 * {
 	box-sizing: border-box;
 	-webkit-font-smoothing: antialiased;
-	text-rendering: optimizeLegibility;
-	//backface-visibility: hidden;
+	font-feature-settings: "kern", "liga" 0, "calt" 0;
 
 	::-webkit-scrollbar {
 		position: absolute;
@@ -57,7 +56,7 @@ html, body, #mount {
 body {
 	opacity: 0;
 	will-change: opacity;
-	transition: opacity 1s cubic-bezier(.33,0,.2,1) .25s;
+	transition: opacity cubic-bezier(.33, 0, .2, 1) .25s;
 	&.visible {
 		opacity: 1!important;
 	}

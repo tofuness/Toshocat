@@ -22,7 +22,7 @@ class LoadingMessage extends Component {
     if (!this.state.visible) {
       $(this.refs.message).velocity({
         opacity: [1, 0],
-        translateY: [0, 50]
+        translateY: [0, 30]
       }, {
         duration: 600,
         easing: 'easeOutExpo'
@@ -36,7 +36,7 @@ class LoadingMessage extends Component {
   hide = () => {
     $(this.refs.message).velocity({
       opacity: [0, 1],
-      translateY: [80, 0]
+      translateY: [30, 0],
     }, {
       duration: 220,
       easing: 'easeInCubic',

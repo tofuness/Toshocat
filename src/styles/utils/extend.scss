@@ -1,4 +1,4 @@
-@import url(https://fonts.googleapis.com/css?family=Roboto:400,700,900,300);
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,700,900,300,500);
 @import url(https://fonts.googleapis.com/css?family=Playfair+Display);
 @import url(https://fonts.googleapis.com/css?family=Roboto+Condensed:700,300);
 @import url(https://fonts.googleapis.com/css?family=Vollkorn);
@@ -69,11 +69,11 @@
 	cursor: pointer;
 	padding: 5px 15px;
 	border-radius: 40px;
-	font-weight: 700;
 	font-size: ms(0);
+	font-weight: 500;
 	text-transform: uppercase;
-	letter-spacing: 0.6px;
-	border: 2px solid $lapis-blue;
+	letter-spacing: 0.65px;
+	border: 1px solid $lapis-blue;
 	&:not(.added) {
 		color: #fff;
 		background: $lapis-blue;
