@@ -34,7 +34,7 @@ class ListHeaders extends Component {
                 <div
                   className={cx({
                     'list-header-icon': true,
-                    'icon-chevron-thin-down': true,
+                    'icon-chevron-small-down': true,
                     asc: this.props.listSortOrder === 'asc',
                     hidden: this.props.listSortBy !== header.property
                   })}

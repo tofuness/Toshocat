@@ -55,12 +55,13 @@
 .list-header-icon {
 	@extend .ts;
 	float: left;
-	margin-left: 5px;
-	font-size: 9px;
-	transform: translateY(3px);
-	transform-origin: center center;
+	margin-left: 2px;
+	height: 10px;
+	font-size: 18px;
+	transform: translateY(-2px);
+	transform-origin: center 9px;
 	&.asc {
-		transform: rotateX(180deg) translateY(-2px);
+		transform: rotateX(180deg) translateY(1px);
 	}
 }
 .list-tab-count {

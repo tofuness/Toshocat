@@ -10,12 +10,12 @@ class SideBarNavigation extends Component {
         </div>
         <div className="sidebar-navigation-link">
           <Link to="/animelist" activeClassName="active">
-            <span className="icon-list"></span>Anime list
+            <span className="icon-list-unordered"></span>Anime list
           </Link>
         </div>
         <div className="sidebar-navigation-link">
           <Link to="/mangalist" activeClassName="active">
-            <span className="icon-list"></span>Manga list
+            <span className="icon-list-unordered"></span>Manga list
           </Link>
         </div>
         <div className="sidebar-navigation-spacer"></div>
