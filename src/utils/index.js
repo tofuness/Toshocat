@@ -15,7 +15,10 @@ export default {
    * @return {Boolean}     True if anime, false if not
    */
   isAnime: (type) => {
-    return ['tv', 'movie', 'ova', 'special', 'ona', 'music'].indexOf(type) > -1;
+    return (
+      ['tv', 'movie', 'ova', 'special', 'ona', 'music']
+      .indexOf(type ? type.toLowerCase() : '') > -1
+    );
   },
   /**
    * Validate a url
@@ -23,6 +26,6 @@ export default {
    * @return {Boolean}        True if string is a valid url
    */
   isUrl(string) {
-    return /^(?:\w+:)?\/\/([^\s\.]+\.\S{2}|localhost[\:?\d]*)\S*$/.test(string);
+    return /^(?:\w+:)?\/\/([^\s\.]+\.\S{2}|localhost[:?\d]*)\S*$/.test(string);
   }
 };
