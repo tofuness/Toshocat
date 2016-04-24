@@ -14,7 +14,7 @@ describe('anitomy', () => {
         }
       );
     });
-    it('should parse multiple filenames', (done) => {
+    it('should parse multiple filenames', function(done) {
       if (os.platform() !== 'win32') this.skip();
       anitomy.parse([
         '[HorribleSubs] Kono Subarashii Sekai ni Shukufuku wo! - 04 [1080p].mkv',
@@ -27,21 +27,21 @@ describe('anitomy', () => {
       });
     });
     describe('should not parse anything when', () => {
-      if (os.platform() !== 'win32') this.skip();
-      it('filename is undefined', (done) => {
+      it('filename is undefined', function(done) {
+        if (os.platform() !== 'win32') this.skip();
         anitomy.parse(undefined, (parsedData) => {
           expect(parsedData).to.equal(false);
           done();
         });
       });
-      it('filename is null', (done) => {
+      it('filename is null', function(done) {
         if (os.platform() !== 'win32') this.skip();
         anitomy.parse(null, (parsedData) => {
           expect(parsedData).to.equal(false);
           done();
         });
       });
-      it('filename is empty array', (done) => {
+      it('filename is empty array', function(done) {
         if (os.platform() !== 'win32') this.skip();
         anitomy.parse([], (parsedData) => {
           expect(parsedData).to.equal(false);
