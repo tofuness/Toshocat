@@ -44,8 +44,8 @@
 		border-bottom: 2px solid transparent;
 	}
 	::selection {
-		color: mix(black, $lapis-blue, 70%);
-		background: $lapis-blue;
+		color: mix(white, $hoverable-blue-hover, 90%);
+		background: $hoverable-blue-hover;
 	}
 }
 html, body, #mount {

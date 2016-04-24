@@ -8,23 +8,17 @@ import utils from '../utils';
 class Series extends Component {
   componentDidUpdate = () => {
     if (this.props.visible && !this.props.loading) {
-      $(this.refs.series).velocity({
-        opacity: [1, 0]
-      }, {
-        duration: 0
-      });
-
       $(this.refs.seriesContent).velocity({
         opacity: [1, 0]
       }, {
-        easing: 'easeOutCirc',
+        easing: [0, 0.33, 0.2, 1],
         duration: 400
       });
 
       $(this.refs.seriesOverlay).velocity({
         opacity: [1, 0]
       }, {
-        easing: 'easeOutExpo',
+        easing: [0, 0.33, 0.2, 1],
         duration: 300
       });
     }
@@ -75,26 +69,6 @@ class Series extends Component {
               </div>
               <div className="series-table-row">
                 <div className="series-table-row-key">
-                  Start date
-                </div>
-                <div className="series-table-row-value">
-                  {moment(new Date(this.props.series.start_date)).format('MMMM D, YYYY')}
-                </div>
-              </div>
-              <div className="series-table-row">
-                <div className="series-table-row-key">
-                  End date
-                </div>
-                <div className="series-table-row-value">
-                  {
-                    this.props.series.end_date ?
-                      moment(new Date(this.props.series.end_date)).format('MMMM D, YYYY')
-                    : 'Unknown'
-                  }
-                </div>
-              </div>
-              <div className="series-table-row">
-                <div className="series-table-row-key">
                   Synonymous title(s)
                 </div>
                 <div className="series-table-row-value">
@@ -132,6 +106,26 @@ class Series extends Component {
                         return <div key={`SeriesTitle_${title}`}>{title}</div>;
                       })
                     : 'None'
+                  }
+                </div>
+              </div>
+              <div className="series-table-row">
+                <div className="series-table-row-key">
+                  Start date
+                </div>
+                <div className="series-table-row-value">
+                  {moment(new Date(this.props.series.start_date)).format('MMMM D, YYYY')}
+                </div>
+              </div>
+              <div className="series-table-row">
+                <div className="series-table-row-key">
+                  End date
+                </div>
+                <div className="series-table-row-value">
+                  {
+                    this.props.series.end_date ?
+                      moment(new Date(this.props.series.end_date)).format('MMMM D, YYYY')
+                    : 'Unknown'
                   }
                 </div>
               </div>

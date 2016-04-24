@@ -118,10 +118,9 @@ class ListItem extends Component {
           'list-item': true,
           expanded: this.state.expanded
         })}
-        onClick={this.toggleExpansion}
         onMouseDown={this.handleMountExpansion.bind(null, true)}
       >
-        <div className="list-item-content">
+        <div className="list-item-content" onClick={this.toggleExpansion}>
           <div className="list-item-title">
             <div
               className="list-item-link"
