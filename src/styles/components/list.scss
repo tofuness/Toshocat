@@ -95,6 +95,9 @@
 	&:hover:not(.expanded) {
 		background: $dover-gray;
 	}
+	&:last-child {
+		margin-bottom: 20px;
+	}
 }
 .list-item-title {
 	float: left;
