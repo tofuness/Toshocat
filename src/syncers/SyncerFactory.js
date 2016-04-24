@@ -9,9 +9,8 @@ class SyncerFactory {
       case 'MyAnimeList':
         return new MyAnimeListSyncer(credentials, 'https://atarashii.toshocat.com/2');
       default:
-        break;
+        throw new Error('No valid serivce name was provided');
     }
-    return false;
   }
 }
 

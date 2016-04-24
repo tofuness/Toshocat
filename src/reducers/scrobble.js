@@ -1,13 +1,13 @@
 import {
-  SET_SCROBBLE_WAIT,
-  SET_SCROBBLE_SUCCESS
+  SCROBBLE_REQUEST,
+  SCROBBLE_SUCCESS
 } from '../constants/actionTypes';
 
-export function latestScrobble(state = {}, action = {}) {
+export function currentScrobble(state = {}, action = {}) {
   switch (action.type) {
-    case SET_SCROBBLE_SUCCESS:
-      return action.newScrobble;
-    case SET_SCROBBLE_WAIT:
+    case SCROBBLE_SUCCESS:
+      return action.scrobble;
+    case SCROBBLE_REQUEST:
       return state;
     default:
       return state;
