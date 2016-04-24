@@ -71,7 +71,7 @@ export function syncList(listName, newList) {
       });
 
       if (unsyncedEntry) {
-        return _.merge({}, unsyncedEntry, entry);
+        return _.merge({}, entry, unsyncedEntry);
       }
       return entry;
     });

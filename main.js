@@ -96,6 +96,7 @@ app.on('ready', () => {
     title: 'toshocat',
     frame: false,
     transparent: false,
+    backgroundColor: '#000',
     show: false
   });
   mainWindowPositioner = new Positioner(mainWindow);

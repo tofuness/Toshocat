@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import TextareaAutosize from 'react-autosize-textarea';
 import Collapse from 'react-collapse';
+import moment from 'moment';
 import _ from 'lodash';
 
 import PickerButton from './PickerButton';
@@ -67,9 +68,23 @@ class ListItemExpansion extends Component {
             </div>
           </div>
           <div className="expansion-right">
-            <PickerButton
-              {...this.props}
-            />
+            <div className="expansion-button">
+              <PickerButton
+                {...this.props}
+              />
+            </div>
+            <div
+              className="expansion-lastupdated"
+              data-tip={
+                this.props.series.item.last_updated ?
+                moment(this.props.series.item.last_updated).format('hh:mm A - MMMM D YYYY') : null
+              }
+            >
+            Last update: {
+                this.props.series.item.last_updated ?
+                moment(this.props.series.item.last_updated).fromNow() : 'Unknown'
+              }
+            </div>
           </div>
         </div>
       </Collapse>

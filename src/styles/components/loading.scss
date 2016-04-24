@@ -1,8 +1,8 @@
 .loading {
   visibility: hidden;
   position: absolute;
-  z-index: 5;
-  left: 40px;
+  z-index: -100;
+  right: 60px;
   bottom: 40px;
   opacity: 0;
   padding: 10px 20px 10px 37px;
@@ -11,6 +11,7 @@
   border-radius: 4px;
   box-shadow: 0 4px 16px transparentize($lapis-blue, 0.6);
   &.visible {
+    z-index: 5;
     visibility: visible;
   }
 }
