@@ -21,7 +21,7 @@ class ListHeaders extends Component {
           }].map((header) => {
             return (
               <div
-                key={`list_header_${header.name}`}
+                key={`list-header-${header.name}`}
                 className={cx({
                   'list-header': true,
                   active: this.props.listSortBy === header.property

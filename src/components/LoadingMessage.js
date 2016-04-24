@@ -36,7 +36,7 @@ class LoadingMessage extends Component {
   hide = () => {
     $(this.refs.message).velocity({
       opacity: [0, 1],
-      translateY: [30, 0],
+      translateY: [10, 0],
     }, {
       duration: 220,
       easing: 'easeInCubic',

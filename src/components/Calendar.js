@@ -16,7 +16,7 @@ class Calendar extends Component {
               return (
                 <CalendarDay
                   day={day}
-                  key={`calendar_day_${index}`}
+                  key={`calendar-day-${index}`}
                   showSeries={this.props.showSeries}
                 />
               );

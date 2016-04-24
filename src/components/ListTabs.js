@@ -37,7 +37,7 @@ class ListTabs extends Component {
                   active: this.props.listStatusFilter === status
                 })}
                 onMouseDown={this.onClick.bind(null, status)}
-                key={`ListTabs_${status}`}
+                key={`list-tab-${status}`}
               >
                   {statusStr}
                 <div className="list-tab-count">

@@ -75,7 +75,7 @@ class Series extends Component {
                   {
                     this.props.series.title_synonyms ?
                       _.map(this.props.series.title_synonyms, (title) => {
-                        return <div key={`SeriesTitle_${title}`}>{title}</div>;
+                        return <div key={`series-title-${title}`}>{title}</div>;
                       })
                     : 'None'
                   }
@@ -89,7 +89,7 @@ class Series extends Component {
                   {
                     this.props.series.title_english ?
                       _.map(this.props.series.title_english, (title) => {
-                        return <div key={`SeriesTitle_${title}`}>{title}</div>;
+                        return <div key={`series-title-${title}`}>{title}</div>;
                       })
                     : 'None'
                   }
@@ -103,7 +103,7 @@ class Series extends Component {
                   {
                     this.props.series.title_japanese ?
                       _.map(this.props.series.title_japanese, (title) => {
-                        return <div key={`SeriesTitle_${title}`}>{title}</div>;
+                        return <div key={`series-title-${title}`}>{title}</div>;
                       })
                     : 'None'
                   }

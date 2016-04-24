@@ -46,7 +46,7 @@ class List extends Component {
   gotoSearch = () => {
     this.context.router.replace('/search');
   }
-  itemRenderer = (index, key) => {
+  itemRenderer = (index) => {
     // IMPORTANT: We are currently using the series _id instead
     // of provided key from react-list to prevent re-renders on list length change.
     return (

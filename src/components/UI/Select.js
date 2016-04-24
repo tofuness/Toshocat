@@ -95,7 +95,7 @@ const Select = React.createClass({
             this.props.options.map((option, index) => {
               return (
                 <div
-                  key={`select_option_${index}`}
+                  key={`select-option-${index}`}
                   className="ui-select-option"
                   onClick={this.handleSelect}
                   data-status={option.value}

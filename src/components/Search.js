@@ -54,7 +54,7 @@ class Search extends Component {
             this.props.searchResults.map((result) => {
               return (
                 <SearchResult
-                  key={`SearchResult_${result._id}`}
+                  key={`search-result-${result._id}`}
                   series={result}
                   seriesType={this.props.searchType}
                   showSeries={this.props.showSeries}

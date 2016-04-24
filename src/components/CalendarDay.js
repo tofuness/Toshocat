@@ -38,6 +38,7 @@ class CalendarDay extends Component {
                   'Mayoiga',
                   'Flying Witch',
                   'Kuma Miko: Girl Meets Bear',
+                  'Uchuu Patrol Luluco',
                   'JoJo no Kimyou na Bouken: Diamond wa Kudakenai',
                   'Ansatsu Kyoushitsu (TV) 2nd Season',
                   'Boku no Hero Academia',
@@ -50,7 +51,7 @@ class CalendarDay extends Component {
                   <CalendarFeaturedSeries
                     series={series}
                     showSeries={this.props.showSeries}
-                    key={`calendar_series_${series.id}`}
+                    key={`calendar-series-${series.id}`}
                   />
                 );
               }
