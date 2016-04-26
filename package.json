@@ -14,7 +14,7 @@
     "test:watch": "npm run test --watch",
     "coverage": "nyc --require babel-core/register mocha ./test --recursive --compilers js:babel-core/register --timeout 2000 --require mock-local-storage",
     "coveralls": "nyc report --reporter=text-lcov | coveralls",
-    "build": "cross-env NODE_ENV=production BUILD_ENV=0 webpack -p",
+    "build": "cross-env NODE_ENV=production webpack -p",
     "lint": "eslint -c .eslintrc src/**/*.js"
   },
   "author": "Dennis Jin <dennis@tofuness.com>",

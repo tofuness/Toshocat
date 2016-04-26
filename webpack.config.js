@@ -2,7 +2,7 @@ const webpack = require('webpack');
 
 const env = process.env.NODE_ENV;
 const definePlugin = new webpack.DefinePlugin({
-  __DEV__: JSON.stringify(JSON.parse(process.env.BUILD_DEV || 'true')),
+  __DEV__: env !== 'production',
   'process.env.NODE_ENV': JSON.stringify(env),
   'process.env.APP_ENV': JSON.stringify('browser')
 });
