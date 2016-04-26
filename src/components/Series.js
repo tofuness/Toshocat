@@ -6,35 +6,6 @@ import _ from 'lodash';
 import utils from '../utils';
 
 class Series extends Component {
-  componentDidUpdate = () => {
-    if (this.props.visible && !this.props.loading) {
-      $(this.refs.seriesContent).velocity({
-        opacity: [1, 0]
-      }, {
-        easing: [0, 0.33, 0.2, 1],
-        duration: 400
-      });
-
-      $(this.refs.seriesOverlay).velocity({
-        opacity: [1, 0]
-      }, {
-        easing: [0, 0.33, 0.2, 1],
-        duration: 300
-      });
-    }
-  }
-  componentDidMount() {
-    $(this.refs.seriesContent).velocity({
-      opacity: [0, 0]
-    }, {
-      duration: 1
-    });
-    $(this.refs.seriesOverlay).velocity({
-      opacity: [0, 0]
-    }, {
-      duration: 1
-    });
-  }
   onClick = () => {
     if (this.props.visible) {
       this.props.hideSeries();
@@ -42,8 +13,20 @@ class Series extends Component {
   }
   render() {
     return (
-      <div className={cx({ series: true, hidden: !this.props.visible })} ref="series">
-        <div className="series-content" ref="seriesContent">
+      <div
+        className={cx({
+          series: true,
+          visible: this.props.visible
+        })}
+        ref="series"
+      >
+        <div
+          className={cx({
+            'series-content': true,
+            visible: this.props.visible
+          })}
+          ref="seriesContent"
+        >
           <div className="series-left">
             <div
               className="series-image"
@@ -144,7 +127,14 @@ class Series extends Component {
             </div>
           </div>
         </div>
-        <div className="series-overlay" onClick={this.onClick} ref="seriesOverlay">
+        <div
+          className={cx({
+            'series-overlay': true,
+            visible: this.props.visible
+          })}
+          onClick={this.onClick}
+          ref="seriesOverlay"
+        >
         </div>
       </div>
     );
