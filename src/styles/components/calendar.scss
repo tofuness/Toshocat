@@ -49,13 +49,6 @@
 	@extend .cf;
 	padding-top: 10px;
 }
-.calendar-series-left {
-	display: none;
-}
-.calendar-series-right {
-	float: left;
-	width: calc(100%);
-}
 .calendar-series-airtime {
 	width: 40px;
 	color: $byline;
@@ -72,7 +65,7 @@
 		box-shadow: 0 1px 0 $winter-black;
 	}
 }
-.calendar-series-episode {
+.calendar-series-meta {
 	padding-top: 2px;
 	color: $byline;
 	font-size: ms(0);

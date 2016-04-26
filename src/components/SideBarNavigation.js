@@ -38,8 +38,8 @@ const SideBarNavigation = () => {
       </div>
       <div className="sidebar-navigation-link">
         <Link to="/search" activeClassName="active">
-          <span className="icon-magnifying-glass"></span>Search
-      </Link>
+          <span className="icon-search"></span>Search
+        </Link>
       </div>
       <div className="sidebar-navigation-spacer"></div>
       <div className="sidebar-navigation-label">

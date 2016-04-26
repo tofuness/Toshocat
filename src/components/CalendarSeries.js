@@ -11,8 +11,11 @@ class CalendarSeries extends Component {
     if (!this.props.series) return null;
     return (
       <div className="calendar-series">
-        <div className="calendar-series-left">
-          <div
+        <div className="calendar-series-title" onClick={this.onClick}>
+          {this.props.series.anime.romaji_title}
+        </div>
+        <div className="calendar-series-meta">
+          <span
             className={cx({
               'calendar-series-airtime': true,
               isNow: moment(this.props.series.airdate)
@@ -22,19 +25,10 @@ class CalendarSeries extends Component {
                       )
             })}
           >
-            {moment(this.props.series.airdate).format('hA')}
-          </div>
-        </div>
-        <div className="calendar-series-right">
-          <div className="calendar-series-title" onClick={this.onClick}>
-            {this.props.series.anime.romaji_title}
-          </div>
-          <div className="calendar-series-episode">
-            {
-              `Episode ${this.props.series.number || 1} —
-              ${_.upperCase(this.props.series.anime.anime_type)}`
-            }
-          </div>
+            {moment(this.props.series.airdate).format('hh:mm A')}
+          </span>
+          {` | Episode ${this.props.series.number || 1}`}
+          {` (${_.upperCase(this.props.series.anime.anime_type)})`}
         </div>
       </div>
     );

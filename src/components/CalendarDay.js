@@ -33,20 +33,18 @@ class CalendarDay extends Component {
         <div className="day-series">
           {
             this.props.day.map((series) => {
-              if (
-                [
-                  'Mayoiga',
-                  'Flying Witch',
-                  'Kuma Miko: Girl Meets Bear',
-                  'Uchuu Patrol Luluco',
-                  'JoJo no Kimyou na Bouken: Diamond wa Kudakenai',
-                  'Ansatsu Kyoushitsu (TV) 2nd Season',
-                  'Boku no Hero Academia',
-                  'Macross Δ',
-                  'Re:Zero kara Hajimeru Isekai Seikatsu',
-                  'Osomatsu-san'
-                ].indexOf(series.anime.romaji_title) > -1
-              ) {
+              if ([
+                'Mayoiga',
+                'Flying Witch',
+                'Kuma Miko: Girl Meets Bear',
+                'Uchuu Patrol Luluco',
+                'JoJo no Kimyou na Bouken: Diamond wa Kudakenai',
+                'Ansatsu Kyoushitsu (TV) 2nd Season',
+                'Boku no Hero Academia',
+                'Macross Δ',
+                'Re:Zero kara Hajimeru Isekai Seikatsu',
+                'Osomatsu-san'
+              ].indexOf(series.anime.romaji_title) > -1) {
                 return (
                   <CalendarFeaturedSeries
                     series={series}

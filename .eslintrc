@@ -13,10 +13,10 @@
   "rules": {
     "max-len": 1,
     "no-nested-ternary": 1,
+    "no-underscore-dangle": 0,
     "arrow-body-style": 0,
     "comma-dangle": 0,
     "no-console": 0,
-    "vars-on-top": 0,
     "new-cap": 0
   },
   "globals": {

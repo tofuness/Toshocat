@@ -23,6 +23,18 @@ class Series extends Component {
       });
     }
   }
+  componentDidMount() {
+    $(this.refs.seriesContent).velocity({
+      opacity: [0, 0]
+    }, {
+      duration: 1
+    });
+    $(this.refs.seriesOverlay).velocity({
+      opacity: [0, 0]
+    }, {
+      duration: 1
+    });
+  }
   onClick = () => {
     if (this.props.visible) {
       this.props.hideSeries();
