@@ -129,17 +129,15 @@ class PickerButton extends Component {
           })}
           ref="pickerContent"
         >
-           {
-             this.state.visible ?
-              <Picker
-                series={this.state.series || this.props.series}
-                visible={this.state.visible}
-                onSave={this.handleSave}
-                onRemove={this.handleRemove}
-                onClose={this.handleClose}
-              />
-              : null
-            }
+        {this.state.visible ?
+          <Picker
+            series={this.state.series || this.props.series}
+            visible={this.state.visible}
+            onSave={this.handleSave}
+            onRemove={this.handleRemove}
+            onClose={this.handleClose}
+          />
+          : null}
         </div>
       </div>
     );

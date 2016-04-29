@@ -53,7 +53,7 @@ class LoadingMessage extends Component {
         })}
       >
         <Spinner />
-        { this.state.message }
+        {this.state.message}
       </div>
     );
   }

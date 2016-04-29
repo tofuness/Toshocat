@@ -48,7 +48,8 @@ class Search extends Component {
         <div className="search-results">
           {
             this.props.searchResults.length === 0 && this.props.searchQuery === '' ?
-            <div className="search-empty-state" /> : null
+              <div className="search-empty-state" />
+            : null
           }
           {
             this.props.searchResults.map((result) => {

@@ -1,8 +1,6 @@
 import {
   createSelector,
-  createStructuredSelector,
-  createSelectorCreator,
-  defaultMemoize
+  createStructuredSelector
 } from 'reselect';
 import _ from 'lodash';
 
@@ -23,8 +21,6 @@ export const currentListName = (state) => state.currentListName;
 export const listStatusFilter = (state) => state.listStatusFilter;
 export const listTypeFilter = (state) => state.listTypeFilter;
 export const listSearchQuery = (state) => state.listSearchQuery;
-
-const createMemoizedSelector = createSelectorCreator(defaultMemoize, (a, b) => a === b);
 
 export const visibleList = createSelector(
   [currentList, listStatusFilter, currentTypeFilter, listSortBy, listSortOrder, listSearchQuery],

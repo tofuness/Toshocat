@@ -1,7 +1,6 @@
 import React, { PropTypes, Component } from 'react';
 import _ from 'lodash';
 import cx from 'classnames';
-import mapReplace from 'mapreplace';
 import hotkey from 'react-hotkey';
 
 import Select from './Select';

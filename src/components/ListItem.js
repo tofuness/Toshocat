@@ -161,16 +161,16 @@ class ListItem extends Component {
         </div>
         {
           this.state.expanded || this.state.expansionMounted ?
-          <ListItemExpansion
-            expanded={this.state.expanded}
-            id={this.props.series._id}
-            series={this.props.series}
-            currentList={this.props.currentList}
-            addItem={this.props.addItem}
-            removeItem={this.handleRemoveItem}
-            updateItem={this.handleUpdateItem}
-            upsertItem={this.handleUpdateItem}
-          />
+            <ListItemExpansion
+              expanded={this.state.expanded}
+              id={this.props.series._id}
+              series={this.props.series}
+              currentList={this.props.currentList}
+              addItem={this.props.addItem}
+              removeItem={this.handleRemoveItem}
+              updateItem={this.handleUpdateItem}
+              upsertItem={this.handleUpdateItem}
+            />
           : null
         }
       </div>
