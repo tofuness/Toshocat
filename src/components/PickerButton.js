@@ -19,12 +19,15 @@ class PickerButton extends Component {
   componentDidMount() {
     this.getSeriesInfo();
   }
+  componentWillReceiveProps(nextProps) {
+    this.getSeriesInfo(nextProps);
+  }
   onOutsideEvent() {
     this.handleClose();
   }
-  getSeriesInfo() {
-    const listItem = _.find(this.props.currentList, (item) => {
-      return this.props.series._id === item._id;
+  getSeriesInfo(props = this.props) {
+    const listItem = _.find(props.currentList, (item) => {
+      return props.series._id === item._id;
     });
     this.setState({
       added: !!listItem,

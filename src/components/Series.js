@@ -4,6 +4,7 @@ import cx from 'classnames';
 import _ from 'lodash';
 
 import utils from '../utils';
+import PickerContainer from '../containers/PickerContainer';
 
 class Series extends Component {
   onClick = () => {
@@ -27,7 +28,7 @@ class Series extends Component {
           })}
           ref="seriesContent"
         >
-          <div className="series-left">
+          <div className="series-side">
             <div
               className="series-image"
               style={{
@@ -35,9 +36,13 @@ class Series extends Component {
                   `url(${this.props.series.image_url})`
                   : 'none'
               }}
-            />
+            >
+            </div>
+            <div className="series-picker">
+              <PickerContainer series={this.props.series} />
+            </div>
           </div>
-          <div className="series-right">
+          <div className="series-main">
             <div className="series-right-top">
               <div className="series-meta">
                 {`${_.upperCase(this.props.series.type)} with
@@ -142,9 +147,14 @@ class Series extends Component {
 }
 
 Series.propTypes = {
-  loading: PropTypes.bool.isRequired,
+  // Actions
+  loadEpisodes: PropTypes.func.isRequired,
   hideSeries: PropTypes.func.isRequired,
+
+  // Props
   series: PropTypes.object,
+  episodes: PropTypes.array,
+  loading: PropTypes.bool.isRequired,
   visible: PropTypes.bool.isRequired
 };
 

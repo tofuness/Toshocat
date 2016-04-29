@@ -57,6 +57,9 @@ describe('series actions', () => {
       const store = mockStore(getState);
       store
       .dispatch(actions.showSeries(123))
+      .then(() => {
+        done(new Error('This promise is supposed to be rejected'));
+      })
       .catch(() => {
         expect(store.getActions()).to.eql(expectedActions);
         done();
@@ -75,6 +78,132 @@ describe('series actions', () => {
       const store = mockStore(getState);
       store.dispatch(actions.showSeries(123, 'manga', { title: 'One Piece' }));
       expect(store.getActions()).to.eql(expectedActions);
+    });
+  });
+
+  describe('loadEpisodes', () => {
+    afterEach(() => {
+      nock.cleanAll();
+    });
+
+    it('should load episode data for current series', (done) => {
+      const expectedEpisodesResponse = [{
+        episode_number: 3,
+        episode_title: 'The One Who Upholds Tradition',
+        image_url: 'https://google.com'
+      }];
+
+      nock(settings.get('APIBase'))
+      .get('/tvdb/episodes/Kuma%20Miko')
+      .reply(200, expectedEpisodesResponse);
+
+      const getState = {
+        seriesVisible: true,
+        currentSeries: {
+          title: 'Kuma Miko',
+          type: 'tv'
+        }
+      };
+      const expectedActions = [{
+        type: actionTypes.LOAD_SERIES_EPISODES_REQUEST
+      }, {
+        type: actionTypes.LOAD_SERIES_EPISODES_SUCCESS,
+        episodes: expectedEpisodesResponse
+      }];
+      const store = mockStore(getState);
+      store
+      .dispatch(actions.loadEpisodes())
+      .then(() => {
+        expect(store.getActions()).to.eql(expectedActions);
+        done();
+      })
+      .catch((err) => {
+        done(err);
+      });
+    });
+    it('should not load data if series is visible', () => {
+      const getState = {
+        seriesVisible: false,
+        currentSeries: {
+          title: 'Kuma Miko'
+        }
+      };
+      const expectedActions = [{
+        type: actionTypes.LOAD_SERIES_EPISODES_FAILURE
+      }];
+      const store = mockStore(getState);
+      store.dispatch(actions.loadEpisodes());
+      expect(store.getActions()).to.eql(expectedActions);
+    });
+    it('should not load data if series is not of type \'tv\'', () => {
+      const getState = {
+        seriesVisible: true,
+        currentSeries: {
+          title: 'Kuma Miko'
+        }
+      };
+      const expectedActions = [{
+        type: actionTypes.LOAD_SERIES_EPISODES_FAILURE
+      }];
+      const store = mockStore(getState);
+      store.dispatch(actions.loadEpisodes());
+      expect(store.getActions()).to.eql(expectedActions);
+    });
+    it('should dispatch failure if no episodes were found', (done) => {
+      nock(settings.get('APIBase'))
+      .get('/tvdb/episodes/Kuma%20Miko')
+      .reply(200, []);
+
+      const getState = {
+        seriesVisible: true,
+        currentSeries: {
+          title: 'Kuma Miko',
+          type: 'tv'
+        }
+      };
+      const expectedActions = [{
+        type: actionTypes.LOAD_SERIES_EPISODES_REQUEST
+      }, {
+        type: actionTypes.LOAD_SERIES_EPISODES_FAILURE
+      }];
+      const store = mockStore(getState);
+      store
+      .dispatch(actions.loadEpisodes())
+      .then(() => {
+        expect(store.getActions()).to.eql(expectedActions);
+        done();
+      })
+      .catch((err) => {
+        done(err);
+      });
+    });
+    it('should dispatch failure if an error occured', (done) => {
+      nock(settings.get('APIBase'))
+      .get('/tvdb/episodes/Kuma%20Miko')
+      .reply(500, []);
+
+      const getState = {
+        seriesVisible: true,
+        currentSeries: {
+          title: 'Kuma Miko',
+          type: 'tv'
+        }
+      };
+      const expectedActions = [{
+        type: actionTypes.LOAD_SERIES_EPISODES_REQUEST
+      }, {
+        type: actionTypes.LOAD_SERIES_EPISODES_FAILURE
+      }];
+      const store = mockStore(getState);
+      store
+      .dispatch(actions.loadEpisodes())
+      .then(() => {
+        done(new Error('This promise is supposed to be rejected'));
+      })
+      .catch(() => {
+        expect(store.getActions()).to.eql(expectedActions);
+        done();
+      });
     });
   });
 

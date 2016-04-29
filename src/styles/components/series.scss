@@ -19,7 +19,7 @@
 	top: 40px;
 	left: 50%;
 	bottom: 0;
-	margin-left: calc(-250px + 170px / 2);
+	margin-left: calc(-250px - 170px / 2);
 	width: 500px;
 	background: #fff;
 	transform: scale(0.95);
@@ -46,11 +46,11 @@
 		opacity: 1;
 	}
 }
-.series-left {
-	margin-left: -170px;
-	float: left;
+.series-side {
+	margin-right: -170px;
+	float: right;
 }
-.series-right {
+.series-main {
 	cursor: auto;
 	float: left;
 	width: 100%;
@@ -89,6 +89,10 @@
 	background-size: cover;
 	background-repeat: no-repeat;
 	border-radius: 4px;
+}
+.series-picker {
+	@extend .ns;
+	padding-top: 10px;
 }
 .series-table-row {
 	@extend .cf;

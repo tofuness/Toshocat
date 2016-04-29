@@ -59,6 +59,35 @@ describe('series reducers', () => {
     });
   });
 
+  describe('currentSeriesEpisodes', () => {
+    it('should clear episodes on request', () => {
+      expect(reducers.currentSeriesEpisodes([{
+        episode_title: 'Random title'
+      }], {
+        type: actionTypes.LOAD_SERIES_EPISODES_REQUEST
+      })).to.eql([]);
+    });
+    it('should clear episodes on failure', () => {
+      expect(reducers.currentSeriesEpisodes([{
+        episode_title: 'Random title'
+      }], {
+        type: actionTypes.LOAD_SERIES_EPISODES_FAILURE
+      })).to.eql([]);
+    });
+    it('should return new episodes on success', () => {
+      expect(reducers.currentSeriesEpisodes([], {
+        type: actionTypes.LOAD_SERIES_EPISODES_SUCCESS,
+        episodes: [{ episode_title: 'new title' }]
+      })).to.eql([{ episode_title: 'new title' }]);
+    });
+    it('should return state by default', () => {
+      expect(reducers.currentSeriesEpisodes([], {
+        type: 'INVALID_ACTION_TYPE',
+        episodes: [{ episode_title: 'no empty' }]
+      })).to.eql([]);
+    });
+  });
+
   describe('seriesVisible', () => {
     it('should not be visible by default', () => {
       expect(reducers.seriesVisible(undefined, {
@@ -72,7 +101,7 @@ describe('series reducers', () => {
       })).to.equal(false);
     });
 
-    it('should be able to hide', () => {
+    it('should return false on hide', () => {
       expect(reducers.seriesVisible(true, {
         type: actionTypes.HIDE_SERIES
       })).to.equal(false);

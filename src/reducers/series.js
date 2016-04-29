@@ -2,7 +2,10 @@ import {
   SHOW_SERIES_SUCCESS,
   SHOW_SERIES_FAILURE,
   SHOW_SERIES_REQUEST,
-  HIDE_SERIES
+  HIDE_SERIES,
+  LOAD_SERIES_EPISODES_FAILURE,
+  LOAD_SERIES_EPISODES_REQUEST,
+  LOAD_SERIES_EPISODES_SUCCESS
 } from '../constants/actionTypes';
 
 export function currentSeries(state = {}, action = {}) {
@@ -11,6 +14,19 @@ export function currentSeries(state = {}, action = {}) {
       return {};
     case SHOW_SERIES_SUCCESS:
       return action.series;
+    default:
+      return state;
+  }
+}
+
+export function currentSeriesEpisodes(state = [], action = {}) {
+  switch (action.type) {
+    case LOAD_SERIES_EPISODES_FAILURE:
+      return [];
+    case LOAD_SERIES_EPISODES_REQUEST:
+      return [];
+    case LOAD_SERIES_EPISODES_SUCCESS:
+      return action.episodes;
     default:
       return state;
   }

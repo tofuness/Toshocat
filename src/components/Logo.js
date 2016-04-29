@@ -46,7 +46,7 @@ class Logo extends Component {
       password: toshoStore.get('hummingbird.password')
     }, 'Hummingbird');
 
-    pubsub.publishSync('SHOW_LOADING_MESSAGE', 'Syncing with Hummingbird...');
+    pubsub.publishSync('SHOW_LOADING_MESSAGE', 'Switching to Hummingbird...');
     hbSyncer.authenticate()
     .then(() => {
       return hbSyncer.getList('anime');
@@ -67,7 +67,7 @@ class Logo extends Component {
       password: toshoStore.get('myanimelist.password')
     }, 'MyAnimeList');
 
-    pubsub.publishSync('SHOW_LOADING_MESSAGE', 'Syncing with MyAnimeList...');
+    pubsub.publishSync('SHOW_LOADING_MESSAGE', 'Switching to MyAnimeList...');
 
     let completeList = [];
     malSyncer.authenticate()
