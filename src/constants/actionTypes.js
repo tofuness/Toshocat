@@ -59,3 +59,8 @@ export const SHOW_RSS_FAILURE = 'SHOW_RSS_FAILURE';
 export const SHOW_RSS_SUCCESS = 'SHOW_RSS_SUCCESS';
 export const SWITCH_RSS_URL = 'SWITCH_RSS_URL';
 export const INVALID_RSS_URL = 'INVALID_RSS_URL';
+
+// Toast
+export const CREATE_TOAST = 'CREATE_TOAST';
+export const DESTROY_TOAST = 'DESTROY_TOAST';
+export const UPDATE_TOAST = 'UPDATE_TOAST';

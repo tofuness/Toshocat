@@ -2,6 +2,7 @@ import React, { PropTypes, Component } from 'react';
 import ReactOutsideEvent from 'react-outside-event';
 import pubsub from 'pubsub-js';
 import cx from 'classnames';
+import _ from 'lodash';
 
 import SyncerFactory from '../syncers/SyncerFactory';
 import toshoStore from '../utils/store';
@@ -39,6 +40,12 @@ class Logo extends Component {
     this.setState({
       visible: !this.state.visible
     });
+    if (__DEV__) {
+      this.props.createToast({
+        type: _.sample(['info', 'loading']),
+        message: `Random ${Math.random() * 10000000}`,
+      });
+    }
   }
   switchToHummingbird = () => {
     const hbSyncer = new SyncerFactory({
@@ -46,7 +53,11 @@ class Logo extends Component {
       password: toshoStore.get('hummingbird.password')
     }, 'Hummingbird');
 
-    pubsub.publishSync('SHOW_LOADING_MESSAGE', 'Switching to Hummingbird...');
+    this.props.createToast({
+      id: 'hbswitch',
+      type: 'loading',
+      message: 'Switching to Hummingbird...',
+    });
     hbSyncer.authenticate()
     .then(() => {
       return hbSyncer.getList('anime');
@@ -55,7 +66,20 @@ class Logo extends Component {
       this.props.syncList('hummingbird', animeList);
       this.props.switchList('hummingbird');
       this.props.switchSyncer(hbSyncer);
-      pubsub.publishSync('HIDE_LOADING_MESSAGE');
+      this.props.updateToast({
+        id: 'hbswitch',
+        type: 'success',
+        message: 'You list has been fetched from Hummingbird',
+        timer: 3000
+      });
+    })
+    .catch(() => {
+      this.props.updateToast({
+        id: 'hbswitch',
+        type: 'failure',
+        message: 'Toshocat servers are currently having technical issues. Brb!',
+        timer: 3000
+      });
     });
     this.setState({
       visible: false
@@ -67,8 +91,11 @@ class Logo extends Component {
       password: toshoStore.get('myanimelist.password')
     }, 'MyAnimeList');
 
-    pubsub.publishSync('SHOW_LOADING_MESSAGE', 'Switching to MyAnimeList...');
-
+    this.props.createToast({
+      id: 'malswitch',
+      type: 'loading',
+      message: 'Switching to MyAnimeList...',
+    });
     let completeList = [];
     malSyncer.authenticate()
     .then(() => {
@@ -82,7 +109,20 @@ class Logo extends Component {
       this.props.syncList('myanimelist', completeList.concat(mangaList));
       this.props.switchList('myanimelist');
       this.props.switchSyncer(malSyncer);
-      pubsub.publishSync('HIDE_LOADING_MESSAGE');
+      this.props.updateToast({
+        id: 'malswitch',
+        type: 'success',
+        message: 'You lists has been fetched from MyAnimeList',
+        timer: 3000
+      });
+    })
+    .catch(() => {
+      this.props.updateToast({
+        id: 'malswitch',
+        type: 'failure',
+        message: 'Toshocat servers are currently having technical issues. Brb!',
+        timer: 3000
+      });
     });
     this.setState({
       visible: false
@@ -186,7 +226,9 @@ Logo.propTypes = {
   // Actions
   switchSyncer: PropTypes.func.isRequired,
   switchList: PropTypes.func.isRequired,
-  syncList: PropTypes.func.isRequired
+  syncList: PropTypes.func.isRequired,
+  createToast: PropTypes.func.isRequired,
+  updateToast: PropTypes.func.isRequired
 };
 
 export default new ReactOutsideEvent(Logo, ['mouseup']);

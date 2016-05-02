@@ -15,7 +15,9 @@ class HummingbirdSyncer extends Syncer {
         password: this.credentials.password
       })
       .end((err, res) => {
-        if (res.status === 201) {
+        if (err) {
+          reject(err);
+        } else if (res.status === 201) {
           store.set('hummingbird.token', res.body);
           this.authenticated = true;
           resolve();
@@ -27,11 +29,15 @@ class HummingbirdSyncer extends Syncer {
     });
   }
   getList(type) {
+    if (!type) return Promise.reject('no type was provided');
+    if (!this.authenticated) return Promise.reject('not authenticated');
     return new Promise((resolve, reject) => {
       request
       .get(`${this.APIBase}/list/${type}/${this.credentials.username}`)
       .end((err, res) => {
-        if (res.status === 200) {
+        if (err) {
+          reject(err);
+        } else if (res.status === 200) {
           resolve(res.body);
         } else {
           reject(new Error(`Could not find list for ${this.credentials.username}`));
@@ -40,19 +46,24 @@ class HummingbirdSyncer extends Syncer {
     });
   }
   addListItem(series) {
-    request
-    .get(`https://hummingbird.me/api/v2/anime/myanimelist:${series.mal_id}`)
-    .set('X-Client-Id', '8ffb362312794d6218b0')
-    .end((err, res) => {
-      if (!err) {
-        this.updateListItem(_.set(series, 'hb_id', JSON.parse(res.text).anime.id));
-      }
+    if (!this.authenticated) return Promise.reject('not authenticated');
+    return new Promise((resolve, reject) => {
+      request
+      .get(`https://hummingbird.me/api/v2/anime/myanimelist:${series.mal_id}`)
+      .set('X-Client-Id', '8ffb362312794d6218b0')
+      .end((err, res) => {
+        if (err) {
+          reject(err);
+        } else {
+          this.updateListItem(_.set(series, 'hb_id', JSON.parse(res.text).anime.id));
+          resolve();
+        }
+      });
     });
   }
   updateListItem(series) {
     const { item } = series;
-    if (!this.authenticated) return Promise.reject();
-
+    if (!this.authenticated) return Promise.reject('not authenticated');
     return new Promise((resolve, reject) => {
       request
       .post(`http://hummingbird.me/api/v1/libraries/${series.hb_id}`)
@@ -68,7 +79,9 @@ class HummingbirdSyncer extends Syncer {
         })
       })
       .end((err, res) => {
-        if ([200, 201].indexOf(res.status) > -1) {
+        if (err) {
+          reject(err);
+        } else if ([200, 201].indexOf(res.status) > -1) {
           resolve();
         } else {
           reject(new Error('Could not update Hummingbird entry'));
@@ -77,6 +90,7 @@ class HummingbirdSyncer extends Syncer {
     });
   }
   removeListItem(series) {
+    if (!this.authenticated) return Promise.reject('not authenticated');
     return new Promise((resolve, reject) => {
       request
       .post(`http://hummingbird.me/api/v1/libraries/${series.hb_id}/remove`)

@@ -2,8 +2,8 @@ import React, { Component, PropTypes } from 'react';
 import ReactTooltip from 'react-tooltip';
 
 import DevTools from '../containers/DevTools';
-import LoadingMessage from './LoadingMessage';
 import SeriesContainer from '../containers/SeriesContainer';
+import ToastQueueContainer from '../containers/ToastQueueContainer';
 import TitleBar from './TitleBar';
 import SideBar from './SideBar';
 
@@ -23,7 +23,7 @@ class App extends Component {
   render() {
     return (
       <div id="app" ref="app">
-        <LoadingMessage />
+        <ToastQueueContainer />
         <ReactTooltip
           multiline
           type="dark"
