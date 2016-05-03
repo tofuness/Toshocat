@@ -4,31 +4,26 @@ import cx from 'classnames';
 import Spinner from './UI/Spinner';
 
 class Toast extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      visible: false
-    };
-  }
-  componentDidMount() {
-    setTimeout(() => {
-      this.setState({
-        visible: true,
-      });
-    });
-  }
   render() {
     return (
       <div
         className={cx({
           toast: true,
-          visible: this.state.visible,
           info: this.props.type === 'info',
           success: this.props.type === 'success',
           failure: this.props.type === 'failure',
           loading: this.props.type === 'loading'
         })}
       >
+        {this.props.type !== 'loading' ?
+          <div
+            className={cx({
+              'toast-icon': true,
+              'icon-megaphone': this.props.type === 'info',
+              'icon-check': this.props.type === 'success',
+              'icon-close': this.props.type === 'failure',
+            })}
+          /> : null}
         {this.props.type === 'loading' ? <Spinner /> : null}
         {this.props.message}
       </div>

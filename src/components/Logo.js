@@ -40,12 +40,6 @@ class Logo extends Component {
     this.setState({
       visible: !this.state.visible
     });
-    if (__DEV__) {
-      this.props.createToast({
-        type: _.sample(['info', 'loading']),
-        message: `Random ${Math.random() * 10000000}`,
-      });
-    }
   }
   switchToHummingbird = () => {
     const hbSyncer = new SyncerFactory({
@@ -69,7 +63,7 @@ class Logo extends Component {
       this.props.updateToast({
         id: 'hbswitch',
         type: 'success',
-        message: 'You list has been fetched from Hummingbird',
+        message: 'Switched to Hummingbird',
         timer: 3000
       });
     })
@@ -112,7 +106,7 @@ class Logo extends Component {
       this.props.updateToast({
         id: 'malswitch',
         type: 'success',
-        message: 'You lists has been fetched from MyAnimeList',
+        message: 'Switched to MyAnimeList',
         timer: 3000
       });
     })
@@ -131,6 +125,12 @@ class Logo extends Component {
   switchToToshocat = () => {
     this.props.switchSyncer(null);
     this.props.switchList('toshocat');
+    this.props.createToast({
+      id: 'toshoswitch',
+      type: 'success',
+      message: 'Switched to Toshocat (offline mode)',
+      timer: 3000
+    });
     this.setState({
       visible: false
     });

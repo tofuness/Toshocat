@@ -1,52 +1,52 @@
 .toast-queue {
-  position: absolute;
-  right: 60px;
-  bottom: 40px;
-  z-index: 10;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
+	position: absolute;
+	right: 60px;
+	bottom: 40px;
+	z-index: 10;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-end;
+}
+.toast-icon {
+	position: absolute;
+	top: 10px;
+	left: 10px;
+	font-size: 14px;
+	font-weight: normal;
 }
 .toast {
-  @extend .ts;
-  overflow: hidden;
-  position: relative;
-  display: table;
-  margin-top: 10px;
-  padding: 10px 20px;
-  opacity: 0;
-  border-radius: 4px;
-  transform: scale(0.5);
-  text-align: center;
-  &.info {
-    color: #fff;
-    background: $lapis-blue;
-    box-shadow: 0 4px 12px transparentize($winter-black, 0.8);
-  }
-  &.success {
-    color: #fff;
-    background: $slime-green;
-    box-shadow: 0 4px 16px transparentize($slime-green, 0.6);
-  }
-  &.failure {
-    color: #fff;
-    background: $cran-red;
-    box-shadow: 0 4px 16px transparentize($cran-red, 0.6);
-  }
-  &.loading {
-    color: #fff;
-    padding: 10px 20px 10px 37px;
-    background: $lapis-blue;
-    box-shadow: 0 4px 16px transparentize($lapis-blue, 0.6);
-    text-align: left;
-  }
-  &.visible {
-    opacity: 1;
-    transform: scale(1);
-  }
-  & .ui-spinner {
-    position: absolute;
-    top: 17px;
-    left: 18px;
-  }
+	overflow: hidden;
+	position: relative;
+	margin-top: 10px;
+	padding: 10px 20px 10px 37px;
+	border-radius: 4px;
+	text-align: center;
+  transform-origin: center center;
+	&.info {
+		color: #fff;
+		background: $lapis-blue;
+		box-shadow: 0 4px 12px transparentize($lapis-blue, 0.6);
+	}
+	&.success {
+		color: #fff;
+		background: $slime-green;
+		box-shadow: 0 4px 16px transparentize($slime-green, 0.6);
+	}
+	&.failure {
+		color: #fff;
+		background: $cran-red;
+		box-shadow: 0 4px 16px transparentize($cran-red, 0.6);
+	}
+	&.loading {
+		color: #fff;
+		padding: 10px 20px 10px 37px;
+		background: $lapis-blue;
+		box-shadow: 0 4px 16px transparentize($lapis-blue, 0.6);
+		text-align: left;
+	}
+	& .ui-spinner {
+		position: absolute;
+		top: 17px;
+		left: 18px;
+	}
 }

@@ -28,3 +28,33 @@
 		transform: translateY(0);
 	}
 }
+.toast-enter {
+	opacity: 0.01;
+  height: 0;
+  margin-top: 0!important;
+  padding-top: 0!important;
+  padding-bottom: 0!important;
+}
+.toast-enter.toast-enter-active {
+  @extend .ts;
+	opacity: 1;
+  height: 35px;
+  margin-top: 10px!important;
+  padding-top: 10px!important;
+  padding-bottom: 10px!important;
+}
+.toast-leave {
+	opacity: 1;
+  height: 35px;
+  margin-top: 10px!important;
+  padding-top: 10px!important;
+  padding-bottom: 10px!important;
+}
+.toast-leave.toast-leave-active {
+  @extend .ts;
+  opacity: 0.01;
+  height: 0;
+  margin-top: 0!important;
+  padding-top: 0!important;
+  padding-bottom: 0!important;
+}
