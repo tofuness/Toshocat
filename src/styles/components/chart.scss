@@ -1,0 +1,56 @@
+.chart {
+	@extend .cf;
+	overflow: hidden;
+	height: 100%;
+}
+.chart-items {
+	@extend .cf;
+	float: left;
+	overflow-y: scroll;
+	padding-top: 10px;
+	width: calc(100% - 180px);
+	height: 100%;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: flex-end;
+}
+.chart-item {
+	@extend .mask;
+	position: relative;
+	margin: 0 0 10px 10px;
+	width: 150px;
+	height: 215px;
+	padding: 10px;
+	border-radius: 4px;
+	background-size: cover;
+	background-position: center center;
+}
+.chart-item-scrim {
+	@extend .st;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	height: 100px;
+	background: -webkit-linear-gradient(bottom,  rgba(0,0,0,0.65) 0%,rgba(0,0,0,0) 82%,rgba(0,0,0,0) 94%); /* Chrome10-25,Safari5.1-6 */
+}
+.chart-item-title {
+	position: absolute;
+	bottom: 0;
+	padding: 10px;
+	color: #fff;
+}
+.chart-menu {
+	float: left;
+	padding-top: 20px;
+	padding-left: 20px;
+	width: 180px;
+	overflow-y: scroll;
+	height: 100%;
+	background: $border-on-white;
+}
+.chart-menu-item {
+	padding-bottom: 20px;
+	text-transform: capitalize;
+}

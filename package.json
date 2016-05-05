@@ -37,6 +37,7 @@
     "moment-timezone": "^0.5.3",
     "node-uuid": "^1.4.7",
     "react": "^15.0.1",
+    "react-addons-css-transition-group": "^15.0.2",
     "react-autosize-textarea": "^0.3.0",
     "react-collapse": "^2.2.0",
     "react-dom": "^15.0.1",

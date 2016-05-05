@@ -26,12 +26,12 @@ const SideBarNavigation = () => {
           <span className="icon-calendar"></span>Calendar
         </Link>
       </div>
-      <div className="sidebar-navigation-link">
+      <div className="sidebar-navigation-link hide">
         <Link to="/chart" activeClassName="active">
           <span className="icon-map"></span>Season Charts
         </Link>
       </div>
-      <div className="sidebar-navigation-link">
+      <div className="sidebar-navigation-link hide">
         <Link to="/rss" activeClassName="active">
           <span className="icon-rss"></span>RSS Feed
         </Link>
@@ -42,10 +42,10 @@ const SideBarNavigation = () => {
         </Link>
       </div>
       <div className="sidebar-navigation-spacer"></div>
-      <div className="sidebar-navigation-label">
+      <div className="sidebar-navigation-label hide">
         System
       </div>
-      <div className="sidebar-navigation-link">
+      <div className="sidebar-navigation-link hide">
         <Link to="/settings" activeClassName="active">
           <span className="icon-gear"></span>Settings
         </Link>

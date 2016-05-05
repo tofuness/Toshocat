@@ -1,10 +1,12 @@
 import {
   LOAD_CALENDAR_SUCCESS
 } from '../constants/actionTypes';
+import Immutable from 'seamless-immutable';
 
-const initialState = {
+let initialState = {
   calendar: []
 };
+initialState = Immutable(initialState);
 
 export function currentCalendar(state = initialState.calendar, action = {}) {
   switch (action.type) {

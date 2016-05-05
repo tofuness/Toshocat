@@ -41,8 +41,10 @@
 	*zoom: 1;
 }
 .hidden {
-	display: none;
 	visibility: hidden;
+}
+.hide {
+	display: none!important;
 }
 .opensans {
 	font-family: 'Open Sans', sans-serif;

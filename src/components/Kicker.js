@@ -1,34 +1,36 @@
 import React, { Component, PropTypes } from 'react';
 import cx from 'classnames';
+import _ from 'lodash';
 
 class Kicker extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      seriesTitle: '',
-      seriesEpisode: '',
       visible: false
     };
   }
   componentDidMount = () => {
     ipcRenderer.removeAllListeners('media-detected');
     ipcRenderer.removeAllListeners('media-lost');
-    ipcRenderer.on('media-detected', (event, data) => {
-      console.log('Did I unmount?');
-      if (data[0].animeTitle !== this.state.seriesTitle) {
+    ipcRenderer.on('media-detected', (event, detectedMedia) => {
+      if (
+        detectedMedia.fileName &&
+        detectedMedia.fileName !== this.props.currentScrobble.fileName
+      ) {
+        this.props.requestScrobble(detectedMedia);
         this.setState({
-          seriesTitle: data[0].animeTitle,
-          seriesEpisode: parseInt(data[0].episodeNumber, 10) || 1,
           visible: true
         });
-        this.props.requestScrobble(data[0]);
       }
     });
 
     ipcRenderer.on('media-lost', () => {
-      this.setState({
-        visible: false
-      });
+      if (!_.isEmpty(this.props.currentScrobble)) {
+        this.setState({
+          visible: false
+        });
+        this.props.clearScrobble();
+      }
     });
   }
   componentWillUnmount() {
@@ -45,12 +47,12 @@ class Kicker extends Component {
           })
         }
       >
-        <div className="kicker-topic">
-          { this.state.seriesTitle }
-        </div>
-        <div className="kicker-pipe">|</div>
         <div className="kicker-description">
-          { `Currently Viewing Episode ${this.state.seriesEpisode}` }
+          {`Now playing · Episode ${parseFloat(this.props.currentScrobble.episodeNumber) || '1'}`}
+        </div>
+        <div className="kicker-pipe"></div>
+        <div className="kicker-topic">
+          {_.get(this.props.currentScrobble, 'series.title')}
         </div>
       </div>
     );
@@ -58,10 +60,11 @@ class Kicker extends Component {
 }
 
 Kicker.propTypes = {
-  latestScrobble: PropTypes.object.isRequired,
+  currentScrobble: PropTypes.object.isRequired,
 
   // Actions
-  requestScrobble: PropTypes.func.isRequired
+  requestScrobble: PropTypes.func.isRequired,
+  clearScrobble: PropTypes.func.isRequired
 };
 
 export default Kicker;

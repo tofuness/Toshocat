@@ -6,7 +6,7 @@ import Kicker from '../components/Kicker';
 import * as scrobbleActions from '../actions/scrobble';
 
 function mapStateToProps(state) {
-  return { latestScrobble: state.latestScrobble };
+  return { currentScrobble: state.currentScrobble };
 }
 
 function mapDispatchToProps(dispatch) {

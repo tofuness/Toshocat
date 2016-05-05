@@ -10,15 +10,15 @@ describe('scrobble reducer', () => {
         scrobble: 'SOMETHING_BAD'
       })).to.eql({ title: 'Gosick' });
     });
-    it('should return new scrobble on success', () => {
+    it('should return new scrobble on request', () => {
       expect(reducers.currentScrobble({}, {
-        type: actionTypes.SCROBBLE_SUCCESS,
+        type: actionTypes.SCROBBLE_REQUEST,
         scrobble: { title: 'Dimension W' }
       })).to.eql({ title: 'Dimension W' });
     });
-    it('should return current scrobble on request', () => {
+    it('should return current scrobble on sucess', () => {
       expect(reducers.currentScrobble({ title: 'Kill la Kill' }, {
-        type: actionTypes.SCROBBLE_REQUEST,
+        type: actionTypes.SCROBBLE_SUCCESS,
         scrobble: 'SOMETHING_BAD'
       })).to.eql({ title: 'Kill la Kill' });
     });

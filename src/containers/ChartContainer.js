@@ -7,6 +7,7 @@ import * as chartActions from '../actions/chart';
 
 function mapStateToProps(state) {
   return {
+    currentSeason: state.currentSeason,
     currentChart: state.currentChart
   };
 }

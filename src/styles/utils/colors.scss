@@ -16,6 +16,9 @@ $hoverable-blue: $lapis-blue;
 $hoverable-blue-hover: mix(white, $lapis-blue, 10%);
 $hoverable-blue-active: mix(black, $lapis-blue, 5%);
 
+$hoverable-white-hover: mix(white, $dover-gray, 50%);
+$hoverable-white-active: mix(white, $dover-gray, 80%);
+
 $hoverable-gray-hover: mix(black, $dover-gray, 5%);
 $hoverable-gray-active: mix(black, $dover-gray, 10%);
 

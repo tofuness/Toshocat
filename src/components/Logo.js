@@ -71,7 +71,7 @@ class Logo extends Component {
       this.props.updateToast({
         id: 'hbswitch',
         type: 'failure',
-        message: 'Toshocat servers are currently having technical issues. Brb!',
+        message: 'Invalid credentials!',
         timer: 3000
       });
     });
@@ -114,7 +114,7 @@ class Logo extends Component {
       this.props.updateToast({
         id: 'malswitch',
         type: 'failure',
-        message: 'Toshocat servers are currently having technical issues. Brb!',
+        message: 'Invalid credentials!',
         timer: 3000
       });
     });

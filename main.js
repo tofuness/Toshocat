@@ -1,17 +1,14 @@
-'use strict';
+const electron = require('electron');
 
-require('crash-reporter').start({
-  companyName: 'toshocat',
-  submitURL: 'https://toshocat.com'
-});
-
-const app = require('app');
+const _ = require('lodash');
 const path = require('path');
-const BrowserWindow = require('browser-window');
 const Positioner = require('electron-positioner');
-const Tray = require('tray');
-const Menu = require('menu');
-const ipcMain = require('electron').ipcMain;
+
+const app = electron.app;
+const Tray = electron.Tray;
+const Menu = electron.Menu;
+const ipcMain = electron.ipcMain;
+const BrowserWindow = electron.BrowserWindow;
 
 let appIcon = null;
 let mainWindow = null;
@@ -37,23 +34,18 @@ function closeMainWindow() {
   mainWindow.close();
 }
 
-const anitomy = require('./src/utils/anitomy');
 const execa = require('execa');
-const os = require('os');
+const anitomy = require('./src/utils/anitomy');
 
-function scrobble(callback) {
-  execa.shell('tasklist /V /NH /fo CSV | findstr ".mkv .mp4 .avi"')
+function detectMedia(callback) {
+  execa.shell('powershell -NoProfile -ExecutionPolicy Bypass ./bin/detect-media.ps1')
   .then((result) => {
-    const data = result.stdout;
-    if (data !== '') {
-      const instances = data.trim().split(os.EOL).map((instance) => {
-        return instance
-          .substr(1, instance.length - 2)
-          .split('","')[8]
-          .replace(/ \- VLC(.*)+/g, '');
-      });
-      anitomy.parse(instances[0], (parsedData) => {
-        callback(parsedData);
+    let detectedMedia = JSON.parse(result.stdout);
+    if (!_.isArray(detectedMedia)) detectedMedia = [detectedMedia];
+    if (detectedMedia !== '' && detectedMedia) {
+      anitomy.parse(_.chain(detectedMedia).get('0.MainWindowTitle')
+      .replace(/ \- VLC(.*)+/g, '').value(), (parsedData) => {
+        callback(_.assign({}, parsedData[0], detectedMedia[0]));
       });
     } else {
       callback(false);
@@ -69,13 +61,14 @@ app.on('ready', () => {
   notificationWindow = new BrowserWindow({
     width: 400,
     height: 150,
-    'min-width': 300,
-    'min-height': 150,
+    minWidth: 300,
+    minHeight: 150,
     frame: false,
     alwaysOnTop: true,
     skipTaskbar: true,
+    closable: false,
     transparent: true,
-    resizeable: false,
+    resizable: false,
     show: false
   });
   notificationWindow.loadURL(`file://${path.resolve(__dirname, './notification.html')}`);
@@ -89,8 +82,8 @@ app.on('ready', () => {
   });
 
   mainWindow = new BrowserWindow({
-    'min-width': 200,
-    'min-height': 200,
+    minWidth: 500,
+    minHeight: 500,
     width: 1180,
     height: 800,
     title: 'toshocat',
@@ -123,26 +116,35 @@ app.on('ready', () => {
     e.preventDefault();
   });
 
-  let scrobbleInterval;
+  let detectionTimeout = null;
+  let lastParsedData = {};
+  function detect() {
+    detectMedia((parsedData) => {
+      if (!_.isEqual(lastParsedData, parsedData)) {
+        mainWindow.webContents.send(parsedData ? 'media-detected' : 'media-lost', parsedData);
+      }
+      lastParsedData = parsedData;
+      detectionTimeout = setTimeout(() => {
+        detect();
+      }, 2000);
+    });
+  }
   // 'did-finish-load' runs everytime you press f5.
   // Need to clear interval to avoid this from hogging memory
   mainWindow.webContents.on('did-finish-load', () => {
-    clearInterval(scrobbleInterval);
-    scrobbleInterval = setInterval(() => {
-      scrobble((parsedData) => {
-        mainWindow.webContents.send(parsedData ? 'media-detected' : 'media-lost', parsedData);
-      });
-    }, 8000);
+    lastParsedData = {};
+    clearTimeout(detectionTimeout);
+    detect();
     mainWindow.show();
   });
 
   let notificationTimeout = null;
-  ipcMain.on('scrobble', (event, data) => {
+  ipcMain.on('scrobble-request', (event, data) => {
     clearTimeout(notificationTimeout);
     notificationWindow.show();
-    notificationWindow.webContents.send('scrobble', data);
+    notificationWindow.webContents.send('scrobble-request', data);
     notificationTimeout = setTimeout(() => {
       notificationWindow.hide();
-    }, 10000);
+    }, 11000);
   });
 });

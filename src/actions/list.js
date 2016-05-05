@@ -180,7 +180,7 @@ function _updateItem(item) {
   return (dispatch, getState) => {
     const { currentList, currentListName } = getState();
     const updatedList = currentList.map((listItem) => {
-      return listItem._id === item._id ? item : listItem;
+      return listItem._id === item._id ? _.merge({}, listItem, item) : listItem;
     });
     toshoStore.saveList(currentListName, updatedList);
     dispatch({
@@ -212,9 +212,7 @@ export function updateItem(item) {
         request
         .get(`${settings.get('APIBase')}/anime/${item.mal_id}`)
         .end((err, res) => {
-          if (err) {
-            dispatch(_updateItem(item));
-          } else {
+          if (!err && res.body) {
             dispatch(
               _updateItem(
                 _.merge({}, item, res.body)

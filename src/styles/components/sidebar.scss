@@ -1,6 +1,8 @@
 .sidebar {
+	position: relative;
 	float: left;
 	width: 180px;
+	height: calc(100% - 41px);
 }
 .sidebar-navigation-spacer {
 	height: 20px;
@@ -28,8 +30,8 @@
 .sidebar-navigation-link a {
 	@extend .opensans;
 	cursor: pointer;
-	margin-left: 5px;
-	padding: 7px 20px 7px 15px;
+	margin-left: 0;
+	padding: 7px 20px;
 	display: inline-block;
 	color: $onblack-byline;
 	background: transparent;
@@ -42,6 +44,13 @@
 	}
 	&.active {
 		color: mix($onblack-byline, #fff, 30%);
-		box-shadow: -5px 0 0 $lapis-blue;
 	}
+}
+.sidebar-bottom {
+	position: absolute;
+	bottom: 0;
+	padding: 20px;
+	color: $onblack-byline;
+	font-size: 10px;
+	text-align: center;
 }

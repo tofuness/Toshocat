@@ -8,6 +8,9 @@ const SideBar = () => {
     <div className="sidebar">
       <LogoContainer />
       <SideBarNavigation />
+      <div className="sidebar-bottom">
+        IN DEVELOPMENT. ANYTHING CAN BREAK.
+      </div>
     </div>
   );
 };

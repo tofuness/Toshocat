@@ -13,6 +13,7 @@
 	will-change: transform;
 }
 .day {
+	position: relative;
 	overflow: hidden;
 	width: calc(100% / 5);
 	border-top: 1px solid $border-on-white;
@@ -89,13 +90,18 @@
 	background-size: cover;
 	background-position: center center;
 }
+.calendar-featured-series-airtime {
+	&.isNow {
+		color: mix($lapis-blue, white, 50%);
+	}
+}
 .calendar-featured-scrim {
 	position: absolute;
 	bottom: 0;
 	left: 0;
 	right: 0;
 	height: 50px;
-	background: -webkit-linear-gradient(bottom,  rgba(0,0,0,0.65) 0%,rgba(0,0,0,0) 82%,rgba(0,0,0,0) 94%); /* Chrome10-25,Safari5.1-6 */
+	background: -webkit-linear-gradient(bottom, rgba(0, 0, 0, 0.6) 0%, rgba(0,0,0,0) 100%);
 }
 .calendar-featured-info {
 	position: relative;
@@ -111,8 +117,8 @@
 		box-shadow: 0 1px 0 #fff;
 	}
 }
-.calendar-featured-episode {
+.calendar-featured-meta {
 	padding-top: 2px;
-	color: transparentize(#fff, 0.3);
+	color: transparentize(#fff, 0.1);
 	font-size: ms(0);
 }

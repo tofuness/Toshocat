@@ -3,7 +3,7 @@
 }
 .picker-btn-text {
 	@extend .button;
-	min-width: 104px;
+	min-width: 120px;
 	text-align: center;
 	&.added {
 		color: #fff;
@@ -62,7 +62,7 @@
 .picker-btn-content {
 	position: absolute;
 	top: -70px;
-	left: -225px;
+	left: -230px;
 	background: #fff;
 	z-index: 2;
 	border-radius: 4px;

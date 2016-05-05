@@ -1,6 +1,7 @@
 import {
-  SET_SCROBBLE_WAIT,
-  SET_SCROBBLE_SUCCESS
+  SCROBBLE_REQUEST,
+  SCROBBLE_SUCCESS,
+  SCROBBLE_CLEAR
 } from '../constants/actionTypes';
 import settings from '../utils/settings';
 
@@ -40,38 +41,46 @@ function _scoreItems(items, title) {
  */
 export function requestScrobble(data) {
   return (dispatch, getState) => {
-    const { latestScrobble, currentList } = getState();
-    if (!_.isEqual(latestScrobble, data)) {
+    const { currentScrobble, currentList } = getState();
+    if (!_.isEqual(currentScrobble, data)) {
       request
       .get(`${settings.get('APIBase')}/anime/search/${data.animeTitle}`)
       .end((err, res) => {
+        const matchesFromList = _scoreItems(currentList, data.animeTitle);
         if (!err && res.body.length) {
-          const matchesFromList = _scoreItems(currentList, data.animeTitle);
           const matchestFromSearch = _scoreItems(res.body, data.animeTitle);
-          if (matchesFromList.length && matchestFromSearch[0]._id === matchesFromList[0]._id) {
-            console.log(matchestFromSearch[0].title + ' is a match');
-            ipcRenderer.send('scrobble', {
-              seriesTitle: matchestFromSearch[0].title,
-              seriesEpisode: parseInt(data.episodeNumber, 10) || 1
-            });
-          } else {
-            console.log(matchestFromSearch);
-            console.log(`might be ${matchestFromSearch[0].title} ${matchestFromSearch[0].mal_id}`);
-            ipcRenderer.send('scrobble', {
-              seriesTitle: matchestFromSearch[0].title,
-              seriesEpisode: parseInt(data.episodeNumber, 10) || 1
-            });
-          }
+          // If best scored series from list and server are equal, assume we have a match
+          dispatch({
+            type: SCROBBLE_REQUEST,
+            scrobble: {
+              series: matchestFromSearch[0],
+              ...data
+            }
+          });
+          ipcRenderer.send('scrobble-request', {
+            series: matchestFromSearch[0],
+            ...data
+          });
+        } else if (matchesFromList.length) {
+          dispatch({
+            type: SCROBBLE_REQUEST,
+            scrobble: {
+              series: matchesFromList[0],
+              ...data
+            }
+          });
+          ipcRenderer.send('scrobble-request', {
+            series: matchesFromList[0],
+            ...data
+          });
         }
       });
     }
   };
 }
 
-/*
-
-          ipc.send('scrobble', {
-            seriesName: _.get(parsedData, 'animeTitle'),
-            seriesEpisode: _.get(parsedData, 'episodeNumber')
-          });
- */
+export function clearScrobble() {
+  return {
+    type: SCROBBLE_CLEAR
+  };
+}
