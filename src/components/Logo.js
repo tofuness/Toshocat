@@ -1,8 +1,6 @@
 import React, { PropTypes, Component } from 'react';
 import ReactOutsideEvent from 'react-outside-event';
-import pubsub from 'pubsub-js';
 import cx from 'classnames';
-import _ from 'lodash';
 
 import SyncerFactory from '../syncers/SyncerFactory';
 import toshoStore from '../utils/store';
