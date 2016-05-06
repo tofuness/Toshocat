@@ -17,4 +17,4 @@
 </p>
 ---
 ### License
-GNU GPL V3. Will be something much more permissive once a statically linked library switches over to MPL 2.0.
+GNU GPL V3
