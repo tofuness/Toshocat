@@ -1,7 +1,15 @@
 language: node_js
 node_js:
-  - "5.10.0"
+  - "6.1.0"
 sudo: false
+addons:
+  apt:
+    sources:
+      - ubuntu-toolchain-r-test
+    packages:
+      - gcc-4.9
+      - g++-4.9
+env: CXX=g++-4.9 CC=gcc-4.9
 script:
   - npm run test
   - npm run build
