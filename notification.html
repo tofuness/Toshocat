@@ -13,10 +13,11 @@
   </script>
   <script type="text/javascript">
     var bundlePath = './build/notification.js';
+    console.log(`Toshocat running in ${process.env.NODE_ENV} mode`);
     if (typeof process !== 'undefined' && process.env.NODE_ENV === 'development') {
-      console.log('Running in development. Loading up dev server files...');
       var bundlePath = 'http://localhost:8080/build/notification.js';
     }
     $.getScript(bundlePath);
-  </script></body>
+  </script>
+</body>
 </html>
