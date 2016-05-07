@@ -57,5 +57,11 @@ describe('toast reducers', () => {
         toast: updatedToast
       })).to.eql([updatedToast]);
     });
+    it('should return state on default', () => {
+      expect(reducers.toastQueue([toast], {
+        type: 'INVALID_ACTION',
+        toast: {}
+      })).to.eql([toast]);
+    });
   });
 });

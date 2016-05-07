@@ -10,7 +10,10 @@ class MyAnimeListSyncer extends Syncer {
       .get(`${this.APIBase}/account/verify_credentials`)
       .auth(this.credentials.username, this.credentials.password)
       .end((err, res) => {
-        if (res.status === 200) {
+        if (err) {
+          this.authenticated = false;
+          reject(err);
+        } else if (res.status === 200) {
           this.authenticated = true;
           resolve();
         } else {
@@ -21,11 +24,15 @@ class MyAnimeListSyncer extends Syncer {
     });
   }
   getList(type) {
+    if (!type) return Promise.reject('no list type was provided');
+    if (!this.authenticated) return Promise.reject('not authenticated');
     return new Promise((resolve, reject) => {
       request
       .get(`https://dalian.toshocat.com/myanimelist/list/${type}/${this.credentials.username}`)
       .end((err, res) => {
-        if (res.status === 200) {
+        if (err) {
+          reject(err);
+        } else if (res.status === 200) {
           resolve(res.body);
         } else {
           reject(new Error(`Could not find list for ${this.credentials.username}`));

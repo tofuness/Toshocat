@@ -23,41 +23,33 @@ describe('HummingbirdSyncer', () => {
     nock.cleanAll();
   });
   it('should inherit from Syncer', () => {
-    expect(hbSyncer instanceof Syncer).to.equal(true);
+    expect(hbSyncer).to.be.instanceof(Syncer);
   });
   describe('authenticate', () => {
-    it('should authenticate', (done) => {
+    it('should authenticate', () => {
       nock('https://hummingbird.me/api/v1/users/')
       .post('/authenticate', {
         username: 'john',
         password: 'smith'
       })
       .reply(201, 'kappa123');
-      hbSyncer.authenticate()
+      return hbSyncer.authenticate()
       .then(() => {
         expect(store.set.callCount).to.equal(1);
         expect(hbSyncer.authenticated).to.equal(true);
-        done();
-      })
-      .catch(() => {
-        throw new Error('authentication failed for hb syncer');
       });
     });
-    it('should handle failed authentication', (done) => {
+    it('should handle failed authentication', () => {
       nock('https://hummingbird.me/api/v1/users/')
       .post('/authenticate', {
         username: 'john',
         password: 'smith'
       })
       .reply(401, { error: 'Invalid credentials' });
-      hbSyncer.authenticate()
-      .then(() => {
-        throw new Error('authentication should fail');
-      })
+      return hbSyncer.authenticate()
       .catch(() => {
         expect(store.set.callCount).to.equal(0);
         expect(hbSyncer.authenticated).to.equal(false);
-        done();
       });
     });
   });
@@ -80,7 +72,7 @@ describe('HummingbirdSyncer', () => {
         expect(resList).to.eql(mockList.list);
       });
     });
-    it('should handle err', () => {
+    it('should handle errors', () => {
       // Skip authentication
       hbSyncer.authenticated = true;
       nock('https://dalian.toshocat.com/hummingbird/list/anime')
@@ -107,7 +99,7 @@ describe('HummingbirdSyncer', () => {
     it('should not get list if no list type is provided', () => {
       return hbSyncer.getList()
       .catch((err) => {
-        expect(err).to.equal('no type was provided');
+        expect(err).to.equal('no list type was provided');
       });
     });
   });
@@ -149,6 +141,85 @@ describe('HummingbirdSyncer', () => {
       .reply(500, {});
 
       return hbSyncer.addListItem({ mal_id: 1, item: {} }).catch((err) => {
+        expect(err).to.be.an('error');
+      });
+    });
+  });
+
+  describe('updateListItem', () => {
+    it('should not update if not authenticated', () => {
+      return hbSyncer.updateListItem({})
+      .catch((err) => {
+        expect(err).to.equal('not authenticated');
+      });
+    });
+    it('should update online list', () => {
+      hbSyncer.authenticated = true;
+      const listItem = {
+        hb_id: 1,
+        item: {}
+      };
+
+      nock('http://hummingbird.me/api/v1/libraries/')
+      .post('/1')
+      .reply(200, {});
+
+      return hbSyncer.updateListItem(listItem)
+      .then((res) => {
+        expect(res).to.eql({});
+      });
+    });
+    it('should rekect if update did not succeed', () => {
+      hbSyncer.authenticated = true;
+      const listItem = {
+        hb_id: 1,
+        item: {}
+      };
+
+      nock('http://hummingbird.me/api/v1/libraries/')
+      .post('/1')
+      .reply(500, {});
+
+      return hbSyncer.updateListItem(listItem)
+      .catch((res) => {
+        expect(res).to.be.an('error');
+      });
+    });
+  });
+  describe('removeListItem', () => {
+    it('should not remove it not authenticated', () => {
+      return hbSyncer.removeListItem({})
+      .catch((err) => {
+        expect(err).to.equal('not authenticated');
+      });
+    });
+    it('should remove list item', () => {
+      hbSyncer.authenticated = true;
+      const listItem = {
+        hb_id: 123
+      };
+
+      nock('http://hummingbird.me/api/v1/libraries/')
+      .post('/123/remove')
+      .reply(200, {});
+
+      return hbSyncer.removeListItem(listItem)
+      .then((res) => {
+        expect(res).to.eql({});
+      });
+    });
+    it('should reject if removal did not succeed', () => {
+      hbSyncer.authenticated = true;
+      const listItem = {
+        hb_id: 123
+      };
+
+      nock('http://hummingbird.me/api/v1/libraries/')
+      .post('/123/remove')
+      .reply(500, {});
+
+      return hbSyncer.removeListItem(listItem)
+      .catch((err) => {
         expect(err).to.be.an('error');
       });
     });

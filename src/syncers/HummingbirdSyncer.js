@@ -29,7 +29,7 @@ class HummingbirdSyncer extends Syncer {
     });
   }
   getList(type) {
-    if (!type) return Promise.reject('no type was provided');
+    if (!type) return Promise.reject('no list type was provided');
     if (!this.authenticated) return Promise.reject('not authenticated');
     return new Promise((resolve, reject) => {
       request
@@ -62,8 +62,8 @@ class HummingbirdSyncer extends Syncer {
     });
   }
   updateListItem(series) {
-    const { item } = series;
     if (!this.authenticated) return Promise.reject('not authenticated');
+    const { item } = series;
     return new Promise((resolve, reject) => {
       request
       .post(`http://hummingbird.me/api/v1/libraries/${series.hb_id}`)
@@ -72,7 +72,7 @@ class HummingbirdSyncer extends Syncer {
         rating: item.item_rating / 2,
         notes: item.item_notes,
         episodes_watched: item.item_progress,
-        status: mapReplace(item.item_status, {
+        status: mapReplace(item.item_status || '', {
           current: 'currently-watching',
           planned: 'plan-to-watch',
           onhold: 'on-hold'
@@ -82,7 +82,7 @@ class HummingbirdSyncer extends Syncer {
         if (err) {
           reject(err);
         } else if ([200, 201].indexOf(res.status) > -1) {
-          resolve();
+          resolve(res.body);
         } else {
           reject(new Error('Could not update Hummingbird entry'));
         }
@@ -99,7 +99,7 @@ class HummingbirdSyncer extends Syncer {
       })
       .end((err, res) => {
         if ([200, 201].indexOf(res.status) > -1) {
-          resolve();
+          resolve(res.body);
         } else {
           reject(new Error('Could not remove Hummingbird entry'));
         }
