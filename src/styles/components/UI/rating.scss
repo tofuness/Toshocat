@@ -14,22 +14,35 @@
 	float: left;
 }
 .ui-rating-label {
+	@extend .ts-out;
 	float: left;
 	margin-left: 5px;
 	width: 33px;
 	color: $winter-black;
-	line-height: 26px;
+	line-height: 24px;
 	font-weight: 700;
 	text-align: center;
+	&.hover {
+		@extend .ts;
+		transform: translateY(-9px);
+	}
 }
 .ui-rating-over-label {
+	@extend .ts-out;
 	position: absolute;
 	margin-left: 5px;
 	width: 33px;
-	color: $winter-black;
-	line-height: 26px;
+	opacity: 0;
+	color: $byline;
+	line-height: 24px;
 	font-weight: 700;
 	text-align: center;
+	transform: translateY(0);
+	&.hover {
+		@extend .ts;
+		opacity: 1;
+		transform: translateY(9px);
+	}
 }
 .ui-rating-zero {
 	cursor: pointer;

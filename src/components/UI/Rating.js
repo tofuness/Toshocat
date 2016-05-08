@@ -1,8 +1,15 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import cx from 'classnames';
-import { Motion, spring } from 'react-motion';
+import _ from 'lodash';
 
 const Rating = React.createClass({
+  propTypes: {
+    onChange: PropTypes.func,
+    max: PropTypes.number,
+    defaultRating: PropTypes.number,
+    scaling: PropTypes.number,
+    showLabel: PropTypes.bool
+  },
   getDefaultProps() {
     return {
       max: 5, // Inclusive
@@ -60,10 +67,11 @@ const Rating = React.createClass({
     return this._roundToFraction(x / event.currentTarget.offsetWidth);
   },
   render() {
+    const ratingOverLabel = this.state.ratingOver !== null ?
+    this.state.ratingOver.toFixed(1) : '0.0';
+    console.log(this.state.ratingOver)
+
     const ratingIcons = [];
-    let ratingOverLabel = this.state.ratingOver === null
-      ? this.state.ratingOver
-      : this.state.ratingOver.toFixed(1);
     const ratingLabel = this.state.rating.toFixed(1);
     for (let i = 0; i < this.props.max; i++) {
       let hovering = false;
@@ -89,51 +97,45 @@ const Rating = React.createClass({
             'icon-heart-half': hovering && half
           })}
           onMouseMove={this.handleMouseMove.bind(this, i)}
-          onMouseDown={this.handleMouseDown.bind(this, i)} key={`heart-${i}`}>
+          onMouseDown={this.handleMouseDown.bind(this, i)}
+          key={`heart-${i}`}
+        >
 				</div>
       );
     }
 
     return (
-      <div className="ui-rating"
+      <div
+        className="ui-rating"
         onMouseLeave={this.handleMouseLeave}
-        onMouseOver={this.handleMouseOver}>
-        <div className="ui-rating-zero"
+        onMouseOver={this.handleMouseOver}
+      >
+        <div
+          className="ui-rating-zero"
           onMouseMove={this.showRating.bind(this, 0)}
-          onMouseDown={this.setRating.bind(this, 0)}>
+          onMouseDown={this.setRating.bind(this, 0)}
+        >
         </div>
-        { ratingIcons }
-        <Motion style={{
-          y: spring(this.state.ratingOver ? 9 : 0),
-          alpha: spring(this.state.ratingOver ? 1 : 0.2),
-        }}>
-          {({y, alpha}) =>
-            <div className="ui-rating-container">
-              <div
-                className={cx({
-                  hidden: !this.props.showLabel,
-                  'ui-rating-label': true
-                })}
-                style={{
-                  WebkitTransform: `translateY(-${y}px)`,
-                  transform: `translateY(-${y}px)`,
-                }}
-              >
-                {ratingLabel}
-              </div>
-              <div
-                className="ui-rating-over-label"
-                style={{
-                  WebkitTransform: `translateY(${y}px)`,
-                  transform: `translateY(${y}px)`,
-                  opacity: `${alpha}`
-                }}
-              >
-                {ratingOverLabel}
-              </div>
-            </div>
-          }
-        </Motion>
+        {ratingIcons}
+        <div className="ui-rating-container">
+          <div
+            className={cx({
+              hover: _.isNumber(this.state.ratingOver),
+              hidden: !this.props.showLabel,
+              'ui-rating-label': true
+            })}
+          >
+            {ratingLabel}
+          </div>
+          <div
+            className={cx({
+              'ui-rating-over-label': true,
+              hover: _.isNumber(this.state.ratingOver)
+            })}
+          >
+            {ratingOverLabel}
+          </div>
+        </div>
       </div>
     );
   }
