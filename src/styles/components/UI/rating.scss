@@ -23,7 +23,6 @@
 	font-weight: 700;
 	text-align: center;
 	&.hover {
-		@extend .ts;
 		transform: translateY(-9px);
 	}
 }
@@ -39,7 +38,6 @@
 	text-align: center;
 	transform: translateY(0);
 	&.hover {
-		@extend .ts;
 		opacity: 1;
 		transform: translateY(9px);
 	}
