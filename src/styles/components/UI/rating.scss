@@ -10,14 +10,37 @@
 	font-size: 26px;
 	line-height: 18px;
 }
+.ui-rating-container {
+	float: left;
+}
 .ui-rating-label {
+	@extend .ts;
 	float: left;
 	margin-left: 5px;
 	width: 33px;
 	color: $winter-black;
-	line-height: 26px;
+	line-height: 24px;
 	font-weight: 700;
 	text-align: center;
+	&.hover {
+		transform: translateY(-9px);
+	}
+}
+.ui-rating-over-label {
+	@extend .ts;
+	position: absolute;
+	margin-left: 5px;
+	width: 33px;
+	opacity: 0;
+	color: $byline;
+	line-height: 24px;
+	font-weight: 700;
+	text-align: center;
+	transform: translateY(0);
+	&.hover {
+		opacity: 1;
+		transform: translateY(9px);
+	}
 }
 .ui-rating-zero {
 	cursor: pointer;

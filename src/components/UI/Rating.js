@@ -1,7 +1,15 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import cx from 'classnames';
+import _ from 'lodash';
 
 const Rating = React.createClass({
+  propTypes: {
+    onChange: PropTypes.func,
+    max: PropTypes.number,
+    defaultRating: PropTypes.number,
+    scaling: PropTypes.number,
+    showLabel: PropTypes.bool
+  },
   getDefaultProps() {
     return {
       max: 5, // Inclusive
@@ -59,7 +67,12 @@ const Rating = React.createClass({
     return this._roundToFraction(x / event.currentTarget.offsetWidth);
   },
   render() {
+    const ratingOverLabel = this.state.ratingOver !== null ?
+    this.state.ratingOver.toFixed(1) : '0.0';
+    console.log(this.state.ratingOver)
+
     const ratingIcons = [];
+    const ratingLabel = this.state.rating.toFixed(1);
     for (let i = 0; i < this.props.max; i++) {
       let hovering = false;
       let half = false;
@@ -84,24 +97,44 @@ const Rating = React.createClass({
             'icon-heart-half': hovering && half
           })}
           onMouseMove={this.handleMouseMove.bind(this, i)}
-          onMouseDown={this.handleMouseDown.bind(this, i)} key={`heart-${i}`}>
+          onMouseDown={this.handleMouseDown.bind(this, i)}
+          key={`heart-${i}`}
+        >
 				</div>
       );
     }
+
     return (
-      <div className="ui-rating" onMouseLeave={this.handleMouseLeave}>
-        <div className="ui-rating-zero"
-          onMouseMove={this.showRating.bind(this, 0)}
-          onMouseDown={this.setRating.bind(this, 0)}>
-        </div>
-        { ratingIcons }
+      <div
+        className="ui-rating"
+        onMouseLeave={this.handleMouseLeave}
+        onMouseOver={this.handleMouseOver}
+      >
         <div
-          className={cx({
-            hidden: !this.props.showLabel,
-            'ui-rating-label': true
-          })}
+          className="ui-rating-zero"
+          onMouseMove={this.showRating.bind(this, 0)}
+          onMouseDown={this.setRating.bind(this, 0)}
         >
-          {this.state.rating.toFixed(1)}
+        </div>
+        {ratingIcons}
+        <div className="ui-rating-container">
+          <div
+            className={cx({
+              hover: _.isNumber(this.state.ratingOver),
+              hidden: !this.props.showLabel,
+              'ui-rating-label': true
+            })}
+          >
+            {ratingLabel}
+          </div>
+          <div
+            className={cx({
+              'ui-rating-over-label': true,
+              hover: _.isNumber(this.state.ratingOver)
+            })}
+          >
+            {ratingOverLabel}
+          </div>
         </div>
       </div>
     );
