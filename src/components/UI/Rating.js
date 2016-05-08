@@ -1,5 +1,6 @@
 import React from 'react';
 import cx from 'classnames';
+import { Motion, spring } from 'react-motion';
 
 const Rating = React.createClass({
   getDefaultProps() {
@@ -14,7 +15,8 @@ const Rating = React.createClass({
   getInitialState() {
     return {
       rating: 0,
-      ratingOver: null
+      ratingOver: null,
+      hover: false,
     };
   },
   componentDidMount() {
@@ -60,6 +62,10 @@ const Rating = React.createClass({
   },
   render() {
     const ratingIcons = [];
+    let ratingOverLabel = this.state.ratingOver === null
+      ? this.state.ratingOver
+      : this.state.ratingOver.toFixed(1);
+    const ratingLabel = this.state.rating.toFixed(1);
     for (let i = 0; i < this.props.max; i++) {
       let hovering = false;
       let half = false;
@@ -88,21 +94,47 @@ const Rating = React.createClass({
 				</div>
       );
     }
+
     return (
-      <div className="ui-rating" onMouseLeave={this.handleMouseLeave}>
+      <div className="ui-rating"
+        onMouseLeave={this.handleMouseLeave}
+        onMouseOver={this.handleMouseOver}>
         <div className="ui-rating-zero"
           onMouseMove={this.showRating.bind(this, 0)}
           onMouseDown={this.setRating.bind(this, 0)}>
         </div>
         { ratingIcons }
-        <div
-          className={cx({
-            hidden: !this.props.showLabel,
-            'ui-rating-label': true
-          })}
-        >
-          {this.state.rating.toFixed(1)}
-        </div>
+        <Motion style={{
+          y: spring(this.state.ratingOver ? 9 : 0),
+          alpha: spring(this.state.ratingOver ? 1 : 0.2),
+        }}>
+          {({y, alpha}) =>
+            <div className="ui-rating-container">
+              <div
+                className={cx({
+                  hidden: !this.props.showLabel,
+                  'ui-rating-label': true
+                })}
+                style={{
+                  WebkitTransform: `translateY(-${y}px)`,
+                  transform: `translateY(-${y}px)`,
+                }}
+              >
+                {ratingLabel}
+              </div>
+              <div
+                className="ui-rating-over-label"
+                style={{
+                  WebkitTransform: `translateY(${y}px)`,
+                  transform: `translateY(${y}px)`,
+                  opacity: `${alpha}`
+                }}
+              >
+                {ratingOverLabel}
+              </div>
+            </div>
+          }
+        </Motion>
       </div>
     );
   }
