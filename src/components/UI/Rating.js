@@ -15,8 +15,7 @@ const Rating = React.createClass({
   getInitialState() {
     return {
       rating: 0,
-      ratingOver: null,
-      hover: false,
+      ratingOver: null
     };
   },
   componentDidMount() {
