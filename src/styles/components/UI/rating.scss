@@ -14,7 +14,7 @@
 	float: left;
 }
 .ui-rating-label {
-	@extend .ts-out;
+	@extend .ts;
 	float: left;
 	margin-left: 5px;
 	width: 33px;
@@ -28,7 +28,7 @@
 	}
 }
 .ui-rating-over-label {
-	@extend .ts-out;
+	@extend .ts;
 	position: absolute;
 	margin-left: 5px;
 	width: 33px;
