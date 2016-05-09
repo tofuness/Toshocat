@@ -16,7 +16,7 @@
     "coveralls": "nyc report --reporter=text-lcov | coveralls",
     "build": "cross-env NODE_ENV=production webpack -p",
     "lint": "eslint -c .eslintrc src/**/*.js",
-    "rebuild": "./node_modules/.bin/electron-rebuild"
+    "rebuild": "./node_modules/.bin/electron-rebuild -w sqlite3 -p"
   },
   "author": "Dennis Jin <dennis@tofuness.com>",
   "license": "MIT",

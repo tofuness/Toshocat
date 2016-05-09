@@ -69,7 +69,6 @@ const Rating = React.createClass({
   render() {
     const ratingOverLabel = this.state.ratingOver !== null ?
     this.state.ratingOver.toFixed(1) : '0.0';
-    console.log(this.state.ratingOver)
 
     const ratingIcons = [];
     const ratingLabel = this.state.rating.toFixed(1);
