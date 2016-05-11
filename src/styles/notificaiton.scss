@@ -26,8 +26,8 @@ html, body {
 	color: #000;
 	margin: 20px 0 0 20px;
 	width: calc(100% - 60px);
-	background: transparentize($lapis-blue, 0.02);
-	transform: scale(0.7) translateY(150px);
+	background: transparentize(#8d9fb1, 0.02);
+	transform: scale(0.9) translateY(160px);
 	border-radius: 4px;
 	box-shadow: 0 6px 24px transparentize($winter-black, 0.6);
 	&.visible {
@@ -37,15 +37,14 @@ html, body {
 	}
 }
 .notification-image {
-	@extend .ts;
+	overflow: hidden;
 	position: absolute;
 	top: 0;
 	left: 0;
 	right: 0;
 	bottom: 33px;
 	opacity: 0.8;
-	background: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.6)), url(http://u.cubeupload.com/Horo/9WXuPr.jpg) center center;
-	background-size: cover;
+	background-size: cover!important;
 	border-top-left-radius: 4px;
 	border-top-right-radius: 4px;
 	z-index: -1;

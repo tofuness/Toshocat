@@ -139,6 +139,9 @@ app.on('ready', () => {
   });
 
   let notificationTimeout = null;
+  ipcMain.on('scrobble-confirm', (event, data) => {
+    mainWindow.webContents.send('scrobble-confirm', data);
+  });
   ipcMain.on('scrobble-request', (event, data) => {
     clearTimeout(notificationTimeout);
     notificationWindow.show();

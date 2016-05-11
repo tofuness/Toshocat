@@ -13,9 +13,10 @@ class Kicker extends Component {
     ipcRenderer.removeAllListeners('media-detected');
     ipcRenderer.removeAllListeners('media-lost');
     ipcRenderer.on('media-detected', (event, detectedMedia) => {
+      console.log(detectedMedia);
       if (
-        detectedMedia.fileName &&
-        detectedMedia.fileName !== this.props.currentScrobble.fileName
+        detectedMedia.file_name &&
+        detectedMedia.file_name !== this.props.currentScrobble.file_name
       ) {
         this.props.requestScrobble(detectedMedia);
         this.setState({
@@ -31,6 +32,10 @@ class Kicker extends Component {
         });
         this.props.clearScrobble();
       }
+    });
+
+    ipcRenderer.on('scrobble-confirm', (event, data) => {
+      this.props.confirmScrobble(data);
     });
   }
   componentWillUnmount() {
@@ -48,7 +53,7 @@ class Kicker extends Component {
         }
       >
         <div className="kicker-description">
-          {`Now playing · Episode ${parseFloat(this.props.currentScrobble.episodeNumber) || '1'}`}
+          {`Now playing · Episode ${parseFloat(this.props.currentScrobble.episode_number) || '1'}`}
         </div>
         <div className="kicker-pipe"></div>
         <div className="kicker-topic">
@@ -63,6 +68,7 @@ Kicker.propTypes = {
   currentScrobble: PropTypes.object.isRequired,
 
   // Actions
+  confirmScrobble: PropTypes.func.isRequired,
   requestScrobble: PropTypes.func.isRequired,
   clearScrobble: PropTypes.func.isRequired
 };

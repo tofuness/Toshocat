@@ -1,14 +1,16 @@
 import './styles/notificaiton.scss';
 
-import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
+import _ from 'lodash';
 import cx from 'classnames';
+import ReactDOM from 'react-dom';
+import React, { Component } from 'react';
 
 class Notification extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      visible: true
+      visible: false,
+      scrobble: {}
     };
   }
   componentDidMount = () => {
@@ -16,9 +18,10 @@ class Notification extends Component {
     ipcRenderer.on('scrobble-request', (event, data) => {
       setTimeout(() => {
         this.setState({
-          visible: true
+          visible: true,
+          scrobble: data
         });
-      }, 100);
+      }, 300);
       console.log(data);
       clearTimeout(this.fadeOutTimer);
       this.fadeOutTimer = setTimeout(() => {
@@ -29,6 +32,10 @@ class Notification extends Component {
     });
   }
   handleUpdate = () => {
+    ipcRenderer.send('scrobble-confirm', this.state.scrobble);
+    this.setState({
+      visible: false
+    });
   }
   handleCancel = () => {
     this.setState({
@@ -45,13 +52,18 @@ class Notification extends Component {
       >
         <div className="notification-content">
           <div className="notification-legend">
-            Now Playing · Episode 2
+            Now Playing · Episode {this.state.scrobble.episode_number}
           </div>
           <div className="notification-message">
-            Re:Zero kara Hajimeru Isekai Seikatsu
+            {_.get(this.state.scrobble, 'series.title')}
           </div>
         </div>
-        <div className="notification-image">
+        <div
+          className={cx({
+            'notification-image': true,
+            visible: this.state.visible
+          })}
+        >
         </div>
         <div className="notification-actions">
           <div className="notification-action notification-update" onClick={this.handleUpdate}>

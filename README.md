@@ -15,6 +15,25 @@
     <img src="https://david-dm.org/tofuness/Toshocat.svg" alt="Coverage Status" />
   </a>
 </p>
+
+### Installation
+```
+$ npm install
+// Make sure the native modules are built. Don't worry about other warnings/errors.
+$ npm run rebuild
+// Start up the dev server
+$ npm run dev
+$ npm run start
+```
+
+### Developing
+```
+$ npm run test
+// To build for production
+$ npm run build
+// Test application in production mode
+$ npm run start-prod
+```
 ---
 ### License
 GNU GPL V3

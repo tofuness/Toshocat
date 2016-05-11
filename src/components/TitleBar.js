@@ -4,8 +4,8 @@ import KickerContainer from '../containers/KickerContainer';
 import settings from '../utils/settings';
 
 class TitleBar extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       fullscreen: false
     };
