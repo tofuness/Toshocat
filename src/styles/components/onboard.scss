@@ -1,0 +1,67 @@
+.onboard, .onboard-step {
+  height: 100%;
+}
+.onboard-step {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+.onboard-step-header {
+  padding-bottom: 40px;
+  text-align: center;
+}
+.onboard-step-title {
+  font-size: ms(2);
+  font-weight: 700;
+}
+.onboard-step-mouseprint {
+  padding-top: 5px;
+  color: $byline;
+  font-size: ms(0);
+}
+.onboard-step-actions {
+  @extend .cf;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.onboard-step-action {
+  display: flex;
+  padding: 80px 40px;
+  flex-direction: column;
+  align-items: center;
+  border-right: 1px solid $border-on-white;
+  &:last-child {
+    border: 0;
+  }
+}
+.onboard-step-choice-image {
+  width: 64px;
+  height: 64px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  &.toshocat {
+    background-image: url(../../logo.png);
+  }
+  &.myanimelist {
+    background-image: url(../images/mallogo.jpg);
+    border-radius: 4px;
+  }
+  &.hummingbird {
+    background-image: url(../images/hblogo.png);
+  }
+}
+.onboard-step-choice {
+  @extend .button;
+  margin-top: 20px;
+  text-align: center;
+}
+.onboard-step-choice-desc {
+  padding-top: 10px;
+  max-width: 150px;
+  height: 50px;
+  color: $byline;
+  font-size: ms(0);
+  text-align: center;
+}
