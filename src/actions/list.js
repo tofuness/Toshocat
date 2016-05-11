@@ -242,12 +242,13 @@ export function upsertItem(item) {
     if (alreadyExists) {
       return dispatch(updateItem(item));
     }
-    return dispatch(addItem(_.assign({}, {
+    return dispatch(addItem(_.merge({}, {
       item: {
         item_status_text: 'Current',
         item_status: 'current',
         item_progress: 0,
-        item_rating: 0
+        item_rating: 0,
+        last_updated: new Date()
       }
     }, item)));
   };
