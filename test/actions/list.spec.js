@@ -215,7 +215,7 @@ describe('list actions', () => {
   describe('updateItem', () => {
     it('should update an item in current list', () => {
       const getState = { currentList: [mockList.item] };
-      const updatedListItem = _.assign({}, mockList.item, {
+      const updatedListItem = _.merge({}, mockList.item, {
         item: {
           item_status_text: 'NewStatus',
           item_status: 'newstatus',

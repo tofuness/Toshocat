@@ -22,7 +22,8 @@ export default {
       item_status_text: 'Current',
       item_status: 'current',
       item_progress: 10,
-      item_rating: 5
+      item_rating: 5,
+      last_updated: ''
     }
   },
   outdated: {
