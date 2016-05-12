@@ -22,7 +22,6 @@ class Notification extends Component {
           scrobble: data
         });
       }, 300);
-      console.log(data);
       clearTimeout(this.fadeOutTimer);
       this.fadeOutTimer = setTimeout(() => {
         this.setState({

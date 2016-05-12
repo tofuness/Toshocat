@@ -26,7 +26,7 @@
   justify-content: center;
 }
 .onboard-step-action {
-  display: flex;
+  display: flex!important;
   padding: 80px 40px;
   flex-direction: column;
   align-items: center;
@@ -42,14 +42,14 @@
   background-repeat: no-repeat;
   background-position: center center;
   &.toshocat {
-    background-image: url(../../logo.png);
+    background-image: url(../images/toshocat-logo-yellow.png);
   }
   &.myanimelist {
-    background-image: url(../images/mallogo.jpg);
+    background-image: url(../images/myanimelist-logo.jpg);
     border-radius: 4px;
   }
   &.hummingbird {
-    background-image: url(../images/hblogo.png);
+    background-image: url(../images/hummingbird-logo.png);
   }
 }
 .onboard-step-choice {

@@ -7,7 +7,7 @@
 	transition: 0.18s ease all;
 	width: 32px;
 	height: 32px;
-	background: url(../../logo.png) center center no-repeat;
+	background: url(../images/toshocat-logo-yellow.png) center center no-repeat;
 	background-size: contain;
 	border-radius: 32px;
 }
@@ -105,13 +105,13 @@
 	background-position: left center;
 	border-radius: 2px;
 	&.hummingbird {
-		background-image: url(../images/hblogo.png);
+		background-image: url(../images/hummingbird-logo.png);
 	}
 	&.myanimelist {
-		background-image: url(../images/mallogo.jpg);
+		background-image: url(../images/myanimelist-logo.jpg);
 	}
 	&.toshocat {
-		background-image: url(../images/toshocatlogo.png);
+		background-image: url(../images/toshocat-logo-blue.png);
 	}
 }
 .logo-menu-text {

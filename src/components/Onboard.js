@@ -1,6 +1,9 @@
 import React, { Component, PropTypes } from 'react';
 
 class Onboard extends Component {
+  componentDidMount() {
+
+  }
   render() {
     return (
       <div className="onboard">
@@ -25,16 +28,6 @@ class Onboard extends Component {
               </div>
             </div>
             <div className="onboard-step-action">
-              <div className="onboard-step-choice-image hummingbird">
-              </div>
-              <div className="onboard-step-choice">
-                Use Hummingbird
-              </div>
-              <div className="onboard-step-choice-desc">
-                Requires an existing account on Hummingbird.me.
-              </div>
-            </div>
-            <div className="onboard-step-action">
               <div className="onboard-step-choice-image myanimelist">
               </div>
               <div className="onboard-step-choice">
@@ -42,6 +35,16 @@ class Onboard extends Component {
               </div>
               <div className="onboard-step-choice-desc">
                 Requires an existing account on MyAnimeList.com.
+              </div>
+            </div>
+            <div className="onboard-step-action">
+              <div className="onboard-step-choice-image hummingbird">
+              </div>
+              <div className="onboard-step-choice">
+                Use Hummingbird
+              </div>
+              <div className="onboard-step-choice-desc">
+                Requires an existing account on Hummingbird.me.
               </div>
             </div>
           </div>

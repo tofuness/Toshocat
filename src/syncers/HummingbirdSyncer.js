@@ -2,7 +2,7 @@ import request from 'superagent';
 import _ from 'lodash';
 
 import Syncer from './Syncer';
-import store from '../utils/store';
+import toshoStore from '../utils/store';
 import mapReplace from 'mapreplace';
 
 class HummingbirdSyncer extends Syncer {
