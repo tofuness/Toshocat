@@ -18,7 +18,7 @@ class HummingbirdSyncer extends Syncer {
         if (err) {
           reject(err);
         } else if (res.status === 201) {
-          store.set('hummingbird.token', res.body);
+          toshoStore.set('hummingbird.token', res.body);
           this.authenticated = true;
           resolve();
         } else {
@@ -68,7 +68,7 @@ class HummingbirdSyncer extends Syncer {
       request
       .post(`http://hummingbird.me/api/v1/libraries/${series.hb_id}`)
       .send({
-        auth_token: store.get('hummingbird.token'),
+        auth_token: toshoStore.get('hummingbird.token'),
         rating: item.item_rating / 2,
         notes: item.item_notes,
         episodes_watched: item.item_progress,
@@ -95,7 +95,7 @@ class HummingbirdSyncer extends Syncer {
       request
       .post(`http://hummingbird.me/api/v1/libraries/${series.hb_id}/remove`)
       .send({
-        auth_token: store.get('hummingbird.token')
+        auth_token: toshoStore.get('hummingbird.token')
       })
       .end((err, res) => {
         if ([200, 201].indexOf(res.status) > -1) {

@@ -58,7 +58,7 @@ class ListItem extends Component {
       height: 0
     }, {
       easing: 'easeInOutQuint',
-      duration: 400,
+      duration: 500,
       complete: () => {
         this.props.removeItem(item);
       }
@@ -88,7 +88,7 @@ class ListItem extends Component {
         height: 0
       }, {
         easing: 'easeInOutQuint',
-        duration: 400,
+        duration: 500,
         complete: () => {
           this.props.upsertItem(item);
           $(this.refs.listItem).velocity({

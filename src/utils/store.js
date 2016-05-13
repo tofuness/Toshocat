@@ -14,7 +14,11 @@ export default {
     if (currentStore === null) {
       currentStore = {};
     } else {
-      currentStore = JSON.parse(currentStore);
+      try {
+        currentStore = JSON.parse(currentStore);
+      } catch (e) {
+        currentStore = '';
+      }
     }
     return currentStore;
   },

@@ -9,12 +9,12 @@ const SideBarNavigation = () => {
       </div>
       <div className="sidebar-navigation-link">
         <Link to="/animelist" activeClassName="active">
-          <span className="icon-list-unordered"></span>Anime list
+          <span className="icon-three-bars"></span>Anime list
         </Link>
       </div>
       <div className="sidebar-navigation-link">
         <Link to="/mangalist" activeClassName="active">
-          <span className="icon-list-unordered"></span>Manga list
+          <span className="icon-three-bars"></span>Manga list
         </Link>
       </div>
       <div className="sidebar-navigation-spacer"></div>
@@ -42,10 +42,10 @@ const SideBarNavigation = () => {
         </Link>
       </div>
       <div className="sidebar-navigation-spacer"></div>
-      <div className="sidebar-navigation-label hide">
+      <div className="sidebar-navigation-label">
         System
       </div>
-      <div className="sidebar-navigation-link hide">
+      <div className="sidebar-navigation-link">
         <Link to="/settings" activeClassName="active">
           <span className="icon-gear"></span>Settings
         </Link>
