@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import anitomy from '../../src/utils/anitomy';
+import anitomy from '../../bin/anitomy';
 
 describe('anitomy', () => {
   describe('parse', () => {

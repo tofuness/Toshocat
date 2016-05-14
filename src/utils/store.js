@@ -11,13 +11,11 @@ export default {
   },
   get(key) {
     let currentStore = localStorage.getItem(key);
-    if (currentStore === null) {
-      currentStore = {};
-    } else {
+    if (currentStore !== null) {
       try {
         currentStore = JSON.parse(currentStore);
       } catch (e) {
-        currentStore = {};
+        currentStore = null;
       }
     }
     return currentStore;
