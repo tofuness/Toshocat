@@ -1,7 +1,11 @@
 const Configstore = require('configstore');
 const _ = require('lodash');
 
-const settingsStore = new Configstore(process.env.NODE_ENV === 'development' ? 'toshocat-dev' : 'toshocat-prod');
+const settingsStore = new Configstore(
+  process.env.NODE_ENV === 'development' ?
+    'toshocat-dev'
+    : 'toshocat-prod'
+);
 const defaultSettings = {
   minimizeToTray: true,
   APIBase: 'https://dalian.toshocat.com',

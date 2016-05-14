@@ -6,7 +6,7 @@ import { expect } from 'chai';
 
 import * as actionTypes from '../../src/constants/actionTypes';
 import * as actions from '../../src/actions/series';
-import settings from '../../settings';
+import settings from '../../main/settings';
 const mockStore = configureStore([thunk]);
 
 describe('series actions', () => {

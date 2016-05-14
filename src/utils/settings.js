@@ -1,5 +1,5 @@
 export default (
   process.env.APP_ENV === 'browser' ?
-    remote.require('./settings.js')
-    : require('../../settings')
+    remote.require('../main/settings.js')
+    : require('../../main/settings')
 );
