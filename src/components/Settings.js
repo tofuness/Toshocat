@@ -72,9 +72,13 @@ class Settings extends Component {
           if (paths && paths.length > 0) {
             this.setState({
               value: _.merge({}, this.state.value, {
-                mediaFolders: _.uniq(_.concat(this.state.value.mediaFolders, paths).filter(path => _.isString(path)))
+                mediaFolders: _.uniq(
+                  _.concat(this.state.value.mediaFolders, paths)
+                  .filter(path => _.isString(path))
+                )
               })
             });
+            this.handleChange();
           }
         });
       };

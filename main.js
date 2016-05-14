@@ -3,6 +3,7 @@ const electron = require('electron');
 const _ = require('lodash');
 const path = require('path');
 const Positioner = require('electron-positioner');
+const settings = require('./settings');
 
 const app = electron.app;
 const Tray = electron.Tray;
@@ -38,13 +39,20 @@ const execa = require('execa');
 const anitomy = require('./src/utils/anitomy');
 
 function detectMedia(callback) {
+  if (!settings.get('mediaDetection')) return callback(false);
   execa.shell('powershell -NoProfile -ExecutionPolicy Bypass ./bin/detect-media.ps1')
   .then((result) => {
-    let detectedMedia = JSON.parse(result.stdout);
+    let detectedMedia;
+    try {
+      detectedMedia = JSON.parse(result.stdout);
+    } catch (e) {
+      detectedMedia = [];
+    }
     if (!_.isArray(detectedMedia)) detectedMedia = [detectedMedia];
-    if (detectedMedia !== '' && detectedMedia) {
+    if (detectedMedia && detectedMedia.length) {
       anitomy.parse(_.chain(detectedMedia).get('0.MainWindowTitle')
-      .replace(/ \- VLC(.*)+/g, '').value(), (parsedData) => {
+      .replace(/ \- VLC(.*)+/g, '')
+      .value(), (parsedData) => {
         callback(_.assign({}, parsedData[0], detectedMedia[0]));
       });
     } else {
