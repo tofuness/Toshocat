@@ -86,7 +86,7 @@ app.on('ready', () => {
   notificationWindow.on('closed', () => {
     notificationWindow = null;
   });
-  if (env !== 'production') {
+  if (env === 'development') {
     notificationWindow.webContents.openDevTools({
       detach: true
     });
@@ -105,7 +105,7 @@ app.on('ready', () => {
   });
   mainWindowPositioner = new Positioner(mainWindow);
   mainWindowPositioner.move('center');
-  if (env !== 'production') {
+  if (env === 'development') {
     mainWindow.webContents.openDevTools({
       detach: true
     });
