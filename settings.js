@@ -5,7 +5,7 @@ const settingsStore = new Configstore('toshocat-app');
 const defaultSettings = {
   minimizeToTray: true,
   APIBase: 'https://dalian.toshocat.com',
-  listName: 'default',
+  listName: 'toshocat',
   allowMetrics: true,
   mediaDetection: true,
   runOnStartup: true,
