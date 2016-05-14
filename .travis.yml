@@ -12,7 +12,7 @@ addons:
 env: CXX=g++-4.9 CC=gcc-4.9
 script:
   - npm run test
-  - npm run build
+  - npm run webpack:build
 after_success:
   - npm run coverage
   - npm run coveralls
