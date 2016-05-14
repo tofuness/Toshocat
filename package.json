@@ -16,10 +16,20 @@
     "coveralls": "nyc report --reporter=text-lcov | coveralls",
     "webpack:build": "cross-env NODE_ENV=production webpack -p",
     "lint": "eslint -c .eslintrc src/**/*.js",
-    "rebuild": "./node_modules/.bin/electron-rebuild.cmd"
+    "rebuild": "./node_modules/.bin/electron-rebuild.cmd",
+    "postinstall": "npm run webpack:build",
+    "pack": "build",
+    "dist": "build"
   },
   "author": "Dennis Jin <dennis@tofuness.com>",
   "license": "GPL-3.0",
+  "build": {
+    "asar": true,
+    "ignore": "src",
+    "win": {
+      "iconUrl": "https://raw.githubusercontent.com/tofuness/Toshocat/master/app-icon.ico"
+    }
+  },
   "dependencies": {
     "anitomy-js": "^1.0.5",
     "cartesian-product": "^2.1.2",

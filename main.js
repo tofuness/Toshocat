@@ -37,7 +37,7 @@ function closeMainWindow() {
 }
 
 const execa = require('execa');
-const anitomy = require('./src/utils/anitomy');
+const anitomy = require('./bin/anitomy');
 
 function detectMedia(callback) {
   if (!settings.get('mediaDetection')) return callback(false);
