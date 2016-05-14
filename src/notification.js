@@ -1,4 +1,4 @@
-import './styles/notificaiton.scss';
+import './styles/notification.scss';
 
 import _ from 'lodash';
 import cx from 'classnames';

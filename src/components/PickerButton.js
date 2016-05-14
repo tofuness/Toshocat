@@ -80,9 +80,11 @@ class PickerButton extends Component {
     this.animateRemove();
   }
   handleClose = () => {
-    this.setState({
-      visible: false
-    });
+    if (this.state.visible) {
+      this.setState({
+        visible: false
+      });
+    }
   }
   animateSuccess() {
     $(this.refs.successIcon).velocity({

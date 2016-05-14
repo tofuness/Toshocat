@@ -29,7 +29,7 @@ html, body {
 	background: transparentize(#8d9fb1, 0.02);
 	transform: scale(0.9) translateY(160px);
 	border-radius: 4px;
-	box-shadow: 0 6px 24px transparentize($winter-black, 0.6);
+	box-shadow: 0 6px 12px transparentize($winter-black, 0.8);
 	&.visible {
 		@extend .ts;
 		opacity: 1;

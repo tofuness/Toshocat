@@ -31,8 +31,6 @@ class Settings extends Component {
     const mediaSettings = this.refs.mediaForm.getValue();
     const newSettings = _.merge({}, generalSettings, mediaSettings);
 
-    console.log(newSettings);
-
     toshoStore.set('myanimelist.username', newSettings.myanimelistUsername);
     toshoStore.set('myanimelist.password', newSettings.myanimelistPassword);
     toshoStore.set('hummingbird.username', newSettings.hummingbirdUsername);
