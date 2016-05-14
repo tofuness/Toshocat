@@ -22,17 +22,17 @@ $ npm install
 // Make sure the native modules are built. Don't worry about other warnings/errors.
 $ npm run rebuild
 // Start up the dev server
-$ npm run dev
-$ npm run start
+$ npm run webpack:dev
+$ npm run start:dev
 ```
 
 ### Developing
 ```
 $ npm run test
 // To build for production
-$ npm run build
+$ npm run webpack:build
 // Test application in production mode
-$ npm run start-prod
+$ npm run start
 ```
 ---
 ### License
