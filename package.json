@@ -17,7 +17,6 @@
     "webpack:build": "cross-env NODE_ENV=production webpack -p",
     "lint": "eslint -c .eslintrc src/**/*.js",
     "rebuild": "./node_modules/.bin/electron-rebuild.cmd",
-    "postinstall": "install-app-deps",
     "pack": "build",
     "dist": "build"
   },
