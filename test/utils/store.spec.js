@@ -40,6 +40,12 @@ describe('toshoStore', () => {
       expect(localStorage.length).to.equal(1);
       expect(toshoStore.get('kappa')).to.equal('pride');
     });
+    it('should handle invalid JSON', () => {
+      expect(localStorage.length).to.equal(0);
+      localStorage.setItem('not_valid_json', '{"missing:"quote"}');
+      expect(localStorage.length).to.equal(1);
+      expect(toshoStore.get('not_valid_json')).to.eql({});
+    });
     it('should return empty object if key doesn not exist', () => {
       expect(localStorage.length).to.equal(0);
       expect(toshoStore.get('DOESNOTEXIST')).to.eql({});

@@ -48,5 +48,11 @@ describe('rss reducers', () => {
         RSS: []
       })).to.eql(dummyRSS);
     });
+
+    it('should return state by default', () => {
+      expect(reducers.RSS([1, 2], {
+        type: 'INVALID_ACTION_TYPE'
+      })).to.eql([1, 2]);
+    });
   });
 });

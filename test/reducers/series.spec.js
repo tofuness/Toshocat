@@ -101,6 +101,12 @@ describe('series reducers', () => {
       })).to.equal(false);
     });
 
+    it('should return true on success', () => {
+      expect(reducers.seriesVisible(false, {
+        type: actionTypes.SHOW_SERIES_SUCCESS
+      })).to.eql(true);
+    });
+
     it('should return false on hide', () => {
       expect(reducers.seriesVisible(true, {
         type: actionTypes.HIDE_SERIES

@@ -17,7 +17,7 @@ export default {
       try {
         currentStore = JSON.parse(currentStore);
       } catch (e) {
-        currentStore = '';
+        currentStore = {};
       }
     }
     return currentStore;

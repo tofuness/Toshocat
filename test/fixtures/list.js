@@ -18,6 +18,8 @@ export default {
   }],
   item: {
     _id: '562696cbfd1db921d7955710',
+    type: 'tv',
+    mal_id: 123,
     item: {
       item_status_text: 'Current',
       item_status: 'current',

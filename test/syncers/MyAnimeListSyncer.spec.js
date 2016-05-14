@@ -103,4 +103,40 @@ describe('MyAnimeListSyncer', () => {
       });
     });
   });
+  describe('addListItem', () => {
+    it('should not add if not authenticated', () => {
+      return malSyncer.addListItem({})
+      .catch((err) => {
+        expect(err).to.equal('not authenticated');
+      });
+    });
+    it('should note add if `item` prop does not exist', () => {
+      malSyncer.authenticated = true;
+      return malSyncer.addListItem()
+      .catch((err) => {
+        expect(err).to.equal('no item prop found');
+      });
+    });
+    it('should add to list', () => {
+      malSyncer.authenticated = true;
+      nock('https://atarashii.toshocat.com/2/animelist')
+      .post('/anime', {
+        manga_id: 123,
+        anime_id: 123,
+        status: 'watching',
+        episodes: 10,
+        score: 5
+      })
+      .basicAuth({
+        user: 'john',
+        pass: 'smith'
+      })
+      .reply(200, {});
+
+      return malSyncer.addListItem(mockList.item)
+      .then((res) => {
+        expect(res).to.eql({});
+      });
+    });
+  });
 });

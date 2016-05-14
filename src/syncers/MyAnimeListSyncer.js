@@ -2,6 +2,7 @@ import Syncer from './Syncer';
 import utils from '../utils';
 import mapReplace from 'mapreplace';
 import request from 'superagent';
+import _ from 'lodash';
 
 class MyAnimeListSyncer extends Syncer {
   authenticate() {
@@ -41,6 +42,8 @@ class MyAnimeListSyncer extends Syncer {
     });
   }
   addListItem(series) {
+    if (!this.authenticated) return Promise.reject('not authenticated');
+    if (!_.get(series, 'item')) return Promise.reject('no item prop found');
     const listType = utils.isAnime(series.type) ? 'anime' : 'manga';
     const { item } = series;
 
@@ -60,7 +63,7 @@ class MyAnimeListSyncer extends Syncer {
       })
       .end((err, res) => {
         if ([200, 201].indexOf(res.status) > -1) {
-          resolve();
+          resolve(res.body);
         } else {
           reject(new Error('Could not add MyAnimeList entry'));
         }
