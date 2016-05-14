@@ -4,6 +4,7 @@ const _ = require('lodash');
 const path = require('path');
 const Positioner = require('electron-positioner');
 const settings = require('./settings');
+const env = process.env.NODE_ENV;
 
 const app = electron.app;
 const Tray = electron.Tray;
@@ -85,9 +86,11 @@ app.on('ready', () => {
   notificationWindow.on('closed', () => {
     notificationWindow = null;
   });
-  notificationWindow.webContents.openDevTools({
-    detach: true
-  });
+  if (env !== 'production') {
+    notificationWindow.webContents.openDevTools({
+      detach: true
+    });
+  }
 
   mainWindow = new BrowserWindow({
     minWidth: 500,
@@ -102,11 +105,13 @@ app.on('ready', () => {
   });
   mainWindowPositioner = new Positioner(mainWindow);
   mainWindowPositioner.move('center');
-  mainWindow.webContents.openDevTools({
-    detach: true
-  });
+  if (env !== 'production') {
+    mainWindow.webContents.openDevTools({
+      detach: true
+    });
+  }
 
-  appIcon = new Tray(path.resolve(__dirname, './tray.png'));
+  appIcon = new Tray(path.resolve(__dirname, './app-icon.ico'));
   appIcon.on('click', restoreMainWindow);
   appIcon.setContextMenu(Menu.buildFromTemplate([
     { label: 'Open Toshocat', click: restoreMainWindow },
@@ -147,13 +152,28 @@ app.on('ready', () => {
   });
 
   let notificationTimeout = null;
+  function hideNotificationWindow() {
+    clearTimeout(notificationTimeout);
+    notificationTimeout = setTimeout(() => {
+      console.log('hide');
+      notificationWindow.hide();
+    }, 300);
+  }
+
   ipcMain.on('scrobble-confirm', (event, data) => {
     mainWindow.webContents.send('scrobble-confirm', data);
+    hideNotificationWindow();
   });
+
+  ipcMain.on('scrobble-cancel', () => {
+    hideNotificationWindow();
+  });
+
   ipcMain.on('scrobble-request', (event, data) => {
-    clearTimeout(notificationTimeout);
     notificationWindow.show();
     notificationWindow.webContents.send('scrobble-request', data);
+
+    clearTimeout(notificationTimeout);
     notificationTimeout = setTimeout(() => {
       notificationWindow.hide();
     }, 11000);

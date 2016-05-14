@@ -37,6 +37,7 @@ class Notification extends Component {
     });
   }
   handleCancel = () => {
+    ipcRenderer.send('scrobble-cancel');
     this.setState({
       visible: false
     });
