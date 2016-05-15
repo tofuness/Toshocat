@@ -63,9 +63,7 @@ class Settings extends Component {
         timer: 3000
       });
     });
-    this.setState({
-      visible: false
-    });
+    this.handleChange();
   }
   switchToMyAnimeList = () => {
     const malSyncer = new SyncerFactory({
@@ -106,9 +104,7 @@ class Settings extends Component {
         timer: 3000
       });
     });
-    this.setState({
-      visible: false
-    });
+    this.handleChange();
   }
   switchToToshocat = () => {
     this.props.switchSyncer(null);
@@ -119,9 +115,7 @@ class Settings extends Component {
       message: 'Switched to Toshocat (offline mode)',
       timer: 3000
     });
-    this.setState({
-      visible: false
-    });
+    this.handleChange();
   }
   handleChange = () => {
     const generalSettings = this.refs.generalForm.getValue();
