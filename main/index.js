@@ -4,9 +4,11 @@ const { app, ipcMain, Tray, Menu } = require('electron');
 
 const Main = require('./MainWindow');
 const Notification = require('./NotificationWindow');
-const settings = require('./settings');
-
 const Detector = require('./MediaDetector');
+const AppUpdater = require('./AppUpdater');
+
+const settings = require('./settings');
+const utils = require('./utils');
 
 if (require('electron-squirrel-startup')) {
   return;
@@ -15,6 +17,14 @@ if (require('electron-squirrel-startup')) {
 app.on('ready', () => {
   // Main application window
   const main = new Main();
+
+  // Prepare auto updater
+  if (utils.isDev) {
+    const appUpdater = new AppUpdater(main);
+    appUpdater.checkForUpdates();
+  }
+
+  // Tray icon
   const tray = new Tray(path.resolve(__dirname, './app-icon.ico'));
   tray.on('click', () => {
     main.restore();

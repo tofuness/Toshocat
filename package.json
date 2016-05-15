@@ -1,6 +1,6 @@
 {
   "name": "Toshocat",
-  "version": "v0.0.2-alpha",
+  "version": "v0.0.3-alpha",
   "description": "Anime and Manga tracking application for Desktop",
   "main": "./main/index.js",
   "engines": {
@@ -8,7 +8,7 @@
   },
   "scripts": {
     "start:dev": "cross-env NODE_ENV=development ./node_modules/.bin/electron ./main/index --enable-logging",
-    "start": "cross-env NODE_ENV=production ./node_modules/.bin/electron ./main/index.js",
+    "start": "cross-env NODE_ENV=production ./node_modules/.bin/electron ./main/index",
     "webpack:dev": "cross-env NODE_ENV=development webpack-dev-server --inline --hot",
     "test": "mocha --compilers js:babel-core/register --recursive --timeout 2000 --require mock-local-storage",
     "test:watch": "npm run test --watch",
