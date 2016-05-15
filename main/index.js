@@ -8,6 +8,10 @@ const settings = require('./settings');
 
 const Detector = require('./MediaDetector');
 
+if (require('electron-squirrel-startup')) {
+  return;
+}
+
 app.on('ready', () => {
   // Main application window
   const main = new Main();
