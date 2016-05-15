@@ -1,8 +1,8 @@
 {
   "name": "Toshocat",
-  "version": "0.0.1",
+  "version": "v0.0.2-alpha",
   "description": "Anime and Manga tracking application for Desktop",
-  "main": "main.js",
+  "main": "./main/index.js",
   "engines": {
     "node": "6.1.0"
   },
@@ -24,10 +24,9 @@
   "license": "GPL-3.0",
   "build": {
     "asar": true,
-    "ignore": "src",
     "msi": true,
     "productName": "Toshocat",
-    "compression": "store",
+    "compression": "maximum",
     "win": {
       "iconUrl": "https://raw.githubusercontent.com/tofuness/Toshocat/master/app-icon.ico"
     }

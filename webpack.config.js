@@ -13,7 +13,7 @@ module.exports = {
   },
   output: {
     path: './build',
-    publicPath: env === 'production' ? './build/' : 'http://localhost:8080/build/',
+    publicPath: env === 'production' ? '../build/' : 'http://localhost:8080/build/',
     filename: '[name].js'
   },
   module: {
