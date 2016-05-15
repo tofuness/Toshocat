@@ -126,7 +126,8 @@ class Settings extends Component {
   handleChange = () => {
     const generalSettings = this.refs.generalForm.getValue();
     const mediaSettings = this.refs.mediaForm.getValue();
-    const newSettings = _.merge({}, generalSettings, mediaSettings);
+    const serviceSettings = this.refs.serviceForm.getValue();
+    const newSettings = _.merge({}, generalSettings, mediaSettings, serviceSettings);
 
     toshoStore.set('myanimelist.username', newSettings.myanimelistUsername);
     toshoStore.set('myanimelist.password', newSettings.myanimelistPassword);
@@ -143,14 +144,18 @@ class Settings extends Component {
       mediaFolders: newSettings.mediaFolders,
       mediaDetection: newSettings.mediaDetection
     });
+
+    this.setState({
+      value: newSettings
+    });
   }
   render() {
     // Everything needs to eventually be refactored
     const formSchemaGeneral = t.struct({
-      minimizeToTray: t.Boolean,
-      runOnStartup: t.Boolean,
-      minimizedOnStartup: t.Boolean,
-      allowMetrics: t.Boolean
+      minimizeToTray: t.maybe(t.Boolean),
+      runOnStartup: t.maybe(t.Boolean),
+      minimizedOnStartup: t.maybe(t.Boolean),
+      allowMetrics: t.maybe(t.Boolean)
     });
     const formSchemaServices = t.struct({
       myanimelistUsername: t.maybe(t.String),
@@ -328,7 +333,7 @@ class Settings extends Component {
             Service credentials
           </div>
           <t.form.Form
-            ref="generalForm"
+            ref="serviceForm"
             type={formSchemaServices}
             options={formOptions}
             onChange={this.handleChange}
