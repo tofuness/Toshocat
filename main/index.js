@@ -17,7 +17,7 @@ if (require('electron-squirrel-startup')) {
 app.on('ready', () => {
   // Main application window
   const main = new Main();
-  main.window.on('close', () => {
+  main.window.on('closed', () => {
     app.quit();
   });
 
