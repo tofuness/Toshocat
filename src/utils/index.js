@@ -1,3 +1,4 @@
+const pjson = require('../../package.json');
 export default {
   /**
    * Modulo that supports negative numbers
@@ -27,5 +28,12 @@ export default {
    */
   isUrl(string) {
     return /^(?:\w+:)?\/\/([^\s\.]+\.\S{2}|localhost[:?\d]*)\S*$/.test(string);
+  },
+  /**
+   * Get app version
+   * @return {String}
+   */
+  version: () => {
+    return pjson.version;
   }
 };

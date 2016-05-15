@@ -1,6 +1,6 @@
 {
   "name": "Toshocat",
-  "version": "v0.0.4-alpha",
+  "version": "v0.0.5-alpha",
   "description": "Anime and Manga tracking application for Desktop",
   "main": "./main/index.js",
   "engines": {
@@ -38,7 +38,6 @@
     "configstore": "^2.0.0",
     "cross-env": "^1.0.7",
     "electron-positioner": "^3.0.0",
-    "electron-prebuilt": "^1.0.2",
     "electron-squirrel-startup": "git+https://github.com/tofuness/electron-squirrel-startup.git",
     "electron-window": "^0.8.1",
     "execa": "^0.4.0",
@@ -85,7 +84,7 @@
     "chai": "^3.5.0",
     "coveralls": "^2.11.9",
     "css-loader": "^0.23.1",
-    "electron-packager": "^7.0.1",
+    "electron-prebuilt": "^1.0.2",
     "eslint": "^2.9.0",
     "eslint-config-airbnb": "^9.0.1",
     "eslint-plugin-import": "^1.7.0",
