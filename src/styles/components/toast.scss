@@ -25,23 +25,23 @@
 	&.info {
 		color: #fff;
 		background: $lapis-blue;
-		box-shadow: 0 4px 12px transparentize($lapis-blue, 0.6);
+		box-shadow: 0 4px 12px transparentize($winter-black, 0.8);
 	}
 	&.success {
 		color: #fff;
 		background: $slime-green;
-		box-shadow: 0 4px 16px transparentize($slime-green, 0.6);
+		box-shadow: 0 4px 16px transparentize($winter-black, 0.8);
 	}
 	&.failure {
 		color: #fff;
 		background: $cran-red;
-		box-shadow: 0 4px 16px transparentize($cran-red, 0.6);
+		box-shadow: 0 4px 16px transparentize($winter-black, 0.8);
 	}
 	&.loading {
 		color: #fff;
 		padding: 10px 20px 10px 37px;
 		background: $lapis-blue;
-		box-shadow: 0 4px 16px transparentize($lapis-blue, 0.6);
+		box-shadow: 0 4px 16px transparentize($winter-black, 0.8);
 		text-align: left;
 	}
 	& .ui-spinner {

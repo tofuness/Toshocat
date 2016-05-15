@@ -8,22 +8,21 @@ const Detector = require('./MediaDetector');
 const AppUpdater = require('./AppUpdater');
 
 const settings = require('./settings');
+const __DEV__ = (process.env.NODE_ENV === 'development');
 
 if (require('electron-squirrel-startup')) {
   return;
 }
 
 app.on('ready', () => {
+  console.log(`Toshocat ${app.getVersion()}`);
+
   // Main application window
   const main = new Main();
-  main.window.on('closed', () => {
-    app.quit();
-  });
-
-  // Run auto updater
-  if (process.env.NODE_ENV !== 'development') {
-    const appUpdater = new AppUpdater(main);
-    appUpdater.init();
+  if (__DEV__) {
+    main.window.openDevTools({
+      detach: true
+    });
   }
 
   // Tray icon
@@ -43,14 +42,31 @@ app.on('ready', () => {
   ]));
   tray.setToolTip('Toshocat');
 
+  // After main window is closed
+  main.window.on('closed', () => {
+    tray.destroy();
+    app.quit();
+  });
+
+  // Run auto updater
+  if (!__DEV__) {
+    const appUpdater = new AppUpdater(main);
+    appUpdater.init();
+  }
+
   // Notification/scrobble window
   const notification = new Notification();
+  if (__DEV__) {
+    notification.window.openDevTools({
+      detach: true
+    });
+  }
 
   // Request scrobble
   let notificationTimeout;
   ipcMain.on('scrobble-request', (event, scrobbleData) => {
-    notification.window.webContents.send('scrobble-request', scrobbleData);
     notification.show();
+    notification.window.webContents.send('scrobble-request', scrobbleData);
     clearTimeout(notificationTimeout);
     notificationTimeout = setTimeout(() => {
       notification.hide();
@@ -68,7 +84,10 @@ app.on('ready', () => {
 
   // Cancelled scrobble
   ipcMain.on('scrobble-cancel', () => {
-    notification.hide();
+    clearTimeout(notificationTimeout);
+    notificationTimeout = setTimeout(() => {
+      notification.hide();
+    }, 400);
   });
 
   // Media detection
@@ -95,6 +114,12 @@ app.on('ready', () => {
           scrobble();
         }, 2000);
       });
+    } else {
+      main.window.webContents.send('media-lost');
+      prevMedia = {};
+      setTimeout(() => {
+        scrobble();
+      }, 2000);
     }
   };
   scrobble();

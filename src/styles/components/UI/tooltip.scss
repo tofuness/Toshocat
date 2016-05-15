@@ -6,6 +6,12 @@
   background: $lapis-blue!important;
   transition: none!important;
   line-height: 1;
+  &.black {
+    background: $winter-black!important;
+    &:after {
+      border-top-color: $winter-black!important;
+    }
+  }
   &:after {
     bottom: -5px!important;
     border-top-color: $lapis-blue!important;

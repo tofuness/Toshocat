@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import ReactTooltip from 'react-tooltip';
+import cx from 'classnames';
 
 import DevTools from '../containers/DevTools';
 import SeriesContainer from '../containers/SeriesContainer';
@@ -11,11 +12,19 @@ import SideBar from './SideBar';
  * The fade in animation can be polished. Using this for now.
  */
 class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      tooltipPosition: 'top',
+      tooltipColor: 'blue'
+    };
+  }
   componentDidMount() {
-    $(this.refs.app).on('mouseenter', ':not([data-added])[data-tip]', (e) => {
+    $(this.refs.app).on('mouseenter', '[data-tip]', (e) => {
       $(e.target).attr('data-added', true);
       this.setState({
-        tooltipPosition: $(e.target).data('tip-position') || 'top'
+        tooltipPosition: $(e.target).data('tip-position') || 'top',
+        tooltipColor: $(e.target).data('tip-color') || 'blue'
       });
       ReactTooltip.rebuild();
     });
@@ -28,7 +37,10 @@ class App extends Component {
           multiline
           type="dark"
           effect="solid"
-          class="tooltip"
+          class={cx({
+            tooltip: true,
+            black: this.state.tooltipColor === 'black'
+          })}
           offset={{ top: -15 }}
         />
         <TitleBar />

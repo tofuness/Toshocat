@@ -49,7 +49,7 @@ class CalendarDay extends Component {
                   <CalendarFeaturedSeries
                     series={series}
                     showSeries={this.props.showSeries}
-                    key={`calendar-series-${series.id}`}
+                    key={`calendar-featured-series-${series.id}`}
                   />
                 );
               }
@@ -57,7 +57,7 @@ class CalendarDay extends Component {
                 <CalendarSeries
                   series={series}
                   showSeries={this.props.showSeries}
-                  key={`calendar_series_${series.id}`}
+                  key={`calendar-series-${series.id}`}
                 />
               );
             })

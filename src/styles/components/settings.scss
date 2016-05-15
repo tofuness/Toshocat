@@ -1,91 +1,146 @@
 .settings {
-  @extend .cf;
-  height: 100%;
-  & .fieldset {
-    @extend .cf;
-    margin: 0;
-    border: 0;
-    padding: 0;
-  }
-  & .form-group {
-    padding: 10px 0;
-    &:first-child {
-      padding-top: 0;
-    }
-  }
-  & .alert-info {
-    padding-top: 5px;
-    color: $byline;
-    font-size: ms(0);
-  }
-  & .help-block {
-    color: $byline;
-    font-size: ms(0);
-  }
-  & .control-label {
-  }
-  & input[type="text"], input[type="password"] {
-    @extend .ts;
-    outline: none;
-    margin-top: 5px;
-    padding: 7px 10px;
-    width: 100%;
-    border: 2px solid $border-on-white;
-    border-radius: 2px;
-    &:focus {
-      border-color: $lapis-blue;
-    }
-  }
+	@extend .cf;
+	height: 100%;
+	& .fieldset {
+		@extend .cf;
+		margin: 0;
+		border: 0;
+		padding: 0;
+	}
+	& .form-group {
+		padding: 10px 0;
+		&:first-child {
+			padding-top: 0;
+		}
+		&:last-child {
+			padding-bottom: 0;
+		}
+	}
+	& .alert-info {
+		padding-top: 5px;
+		color: $byline;
+		font-size: ms(0);
+	}
+	& .help-block {
+		color: $byline;
+		font-size: ms(0);
+	}
+	& .control-label {
+	}
+	& input[type="text"], input[type="password"] {
+		@extend .ts;
+		outline: none;
+		margin-top: 5px;
+		padding: 7px 10px;
+		width: 100%;
+		border: 2px solid $border-on-white;
+		border-radius: 2px;
+		&:focus {
+			border-color: $lapis-blue;
+		}
+	}
 }
 .settings-mediafolder-add {
-  @extend .button;
-  outline: none;
-  margin-top: 10px;
-  float: right;
+	@extend .button;
+	outline: none;
+	margin-top: 10px;
+	float: right;
 }
 .mediafolder-input {
-  margin-top: 10px!important;
+	margin-top: 10px!important;
 }
 .mediafolder-action {
-  outline: none;
-  border: none;
-  margin: 0;
-  margin-right: 5px;
-  padding: 0;
-  float: right;
-  color: $byline;
-  font-size: ms(0);
-  background: none;
-  &:hover {
-    color: $lapis-blue;
-  }
+	outline: none;
+	border: none;
+	margin: 0;
+	margin-right: 5px;
+	padding: 0;
+	float: right;
+	color: $byline;
+	font-size: ms(0);
+	background: none;
+	&:hover {
+		color: $lapis-blue;
+	}
 }
 .mediafolders-empty {
-  margin-top: 10px;
-  padding: 20px 0;
-  color: $cran-red;
-  text-align: center;
+	margin-top: 10px;
+	padding: 20px 0;
+	color: $cran-red;
+	text-align: center;
 }
 .settings-title {
-  padding-bottom: 20px;
-  color: $byline;
+	padding-top: 40px;
+	padding-bottom: 20px;
+	color: $byline;
+	font-weight: 700;
+	text-transform: uppercase;
+	letter-spacing: 0.65px;
+	&:first-child {
+		padding-top: 0;
+	}
+}
+.settings-section {
+	overflow-y: scroll;
+	float: left;
+	padding: 20px;
+	width: 50%;
+	height: 100%;
+	border-left: 1px solid $border-on-white;
+	&:first-child {
+		border: 0;
+	}
+}
+
+.settings-services {
+}
+.settings-service-icon {
+	float: left;
+	width: 24px;
+	height: 24px;
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: left center;
+	border-radius: 2px;
+	&.hummingbird {
+		background-image: url(../images/hummingbird-logo.png);
+	}
+	&.myanimelist {
+		background-image: url(../images/myanimelist-logo.jpg);
+	}
+	&.toshocat {
+		background-image: url(../images/toshocat-logo-blue.png);
+	}
+}
+.settings-service {
+	@extend .cf;
+	@extend .ts-slow;
+	margin-bottom: 10px;
+	padding: 10px;
+	border-radius: 4px;
+	border: 1px solid $border-on-white;
+	&.current {
+		border-color: $lapis-blue;
+		& .settings-service-current {
+			display: inline-block;
+		}
+	}
+}
+.settings-service-current {
+	display: none;
+	padding-left: 10px;
+	color: $lapis-blue;
+	font-size: ms(0);
 	font-weight: 700;
 	text-transform: uppercase;
 	letter-spacing: 0.65px;
 }
-.settings-section {
-  overflow-y: scroll;
-  float: left;
-  padding: 20px;
-  width: 50%;
-  height: 100%;
-  border-left: 1px solid $border-on-white;
-  &:first-child {
-    border: 0;
-  }
+.settings-service-label {
+	float: left;
+	padding-left: 10px;
+	line-height: 24px;
 }
-
-.settings-submit {
-  @extend .button;
-  outline: none;
+.settings-service-button {
+	@extend .button;
+	float: right;
 }

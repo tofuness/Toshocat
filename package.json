@@ -1,6 +1,6 @@
 {
   "name": "Toshocat",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "Anime and Manga tracking application for Desktop",
   "main": "./main/index.js",
   "engines": {
