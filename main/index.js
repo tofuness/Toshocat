@@ -17,6 +17,9 @@ if (require('electron-squirrel-startup')) {
 app.on('ready', () => {
   // Main application window
   const main = new Main();
+  main.window.on('close', () => {
+    app.quit();
+  });
 
   // Prepare auto updater
   if (utils.isDev) {

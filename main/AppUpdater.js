@@ -1,5 +1,4 @@
 const { app, autoUpdater } = require('electron');
-const os = require('os');
 
 class AppUpdater {
   constructor(window) {
@@ -22,7 +21,7 @@ class AppUpdater {
     autoUpdater.addListener('update-not-available', () => {
       console.log('No update available');
     });
-    autoUpdater.setFeedURL(`https://download.toshocat.com/update/${os.platform()}_${os.arch()}/${version}`);
+    autoUpdater.setFeedURL(`https://download.toshocat.com/update/win32/${version}`);
     this.window.webContents.once('did-frame-finish-load', () => {
       autoUpdater.checkForUpdates();
     });
