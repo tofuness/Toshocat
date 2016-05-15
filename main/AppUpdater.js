@@ -4,8 +4,10 @@ class AppUpdater {
   constructor(window) {
     this.window = window.window;
   }
-  checkForUpdates() {
+  init() {
     const version = app.getVersion();
+    autoUpdater.setFeedURL(`https://download.toshocat.com/update/win32/${version}`);
+
     autoUpdater.addListener('update-available', () => {
       console.log('Update available');
     });
@@ -21,8 +23,8 @@ class AppUpdater {
     autoUpdater.addListener('update-not-available', () => {
       console.log('No update available');
     });
-    autoUpdater.setFeedURL(`https://download.toshocat.com/update/win32/${version}`);
     this.window.webContents.once('did-frame-finish-load', () => {
+      console.log('Trying to run checkForUpdates');
       autoUpdater.checkForUpdates();
     });
   }

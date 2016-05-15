@@ -8,7 +8,6 @@ const Detector = require('./MediaDetector');
 const AppUpdater = require('./AppUpdater');
 
 const settings = require('./settings');
-const utils = require('./utils');
 
 if (require('electron-squirrel-startup')) {
   return;
@@ -21,10 +20,10 @@ app.on('ready', () => {
     app.quit();
   });
 
-  // Prepare auto updater
-  if (utils.isDev) {
+  // Run auto updater
+  if (process.env.NODE_ENV !== 'development') {
     const appUpdater = new AppUpdater(main);
-    appUpdater.checkForUpdates();
+    appUpdater.init();
   }
 
   // Tray icon
