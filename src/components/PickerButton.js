@@ -23,7 +23,9 @@ class PickerButton extends Component {
     this.getSeriesInfo(nextProps);
   }
   onOutsideEvent() {
-    this.handleClose();
+    if (this.state.visible) {
+      this.handleClose();
+    }
   }
   getSeriesInfo(props = this.props) {
     const listItem = _.find(props.currentList, (item) => {

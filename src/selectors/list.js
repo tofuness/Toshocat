@@ -51,7 +51,8 @@ export const listStatusCount = createSelector(
     })
     .countBy((listItem) => {
       return listItem.item.item_status;
-    }).value();
+    })
+    .value();
   }
 );
 export const visibleListIsEmpty = createSelector(

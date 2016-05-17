@@ -1,13 +1,14 @@
 const path = require('path');
-const window = require('electron-window');
+const { BrowserWindow } = require('electron');
 const Positioner = require('electron-positioner');
 
 const ToshocatWindow = require('./ToshocatWindow');
+const settings = require('./settings');
 
 class MainWindow extends ToshocatWindow {
   constructor() {
     super();
-    this.window = window.createWindow({
+    this.window = new BrowserWindow({
       minWidth: 500,
       minHeight: 500,
       width: 1180,
@@ -18,7 +19,14 @@ class MainWindow extends ToshocatWindow {
       backgroundColor: '#24282a',
       show: false
     });
-    this.window.showUrl(`${path.resolve(__dirname, './main.html')}`);
+
+    this.window.webContents.on('did-finish-load', () => {
+      if (!settings.get('minimizedOnStartup')) {
+        this.window.show();
+      }
+    });
+
+    this.window.loadURL(`${path.resolve(__dirname, './main.html')}`);
 
     // Move window to center
     this.positioner = new Positioner(this.window);

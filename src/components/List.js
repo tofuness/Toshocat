@@ -89,7 +89,6 @@ class List extends Component {
         >
           <ReactList
             itemRenderer={this.itemRenderer}
-            itemsRenderer={this.itemsRenderer}
             length={this.props.visibleList.length}
             updateThisList={this.props.visibleList}
             type="simple"

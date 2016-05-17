@@ -161,7 +161,7 @@ class PickerContent extends Component {
                 <Counter
                   handleChange={this.handleProgressChange}
                   currentValue={this.state.item_progress}
-                  max={this.props.series.episodes_total || this.props.series.chapters || 999}
+                  max={this.props.series.episodes_total || this.props.series.chapters || 9999}
                 />
               </div>
               <div className="picker-counter-sep">/</div>

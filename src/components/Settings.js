@@ -302,7 +302,7 @@ class Settings extends Component {
         },
         allowMetrics: {
           label: 'Send stats (anonymously) to Toshocat. Used to improve the application.',
-          help: `We are only trying to determine things like "how often is this button clicked".
+          help: `We are only trying to determine things like "how often is this button clicked?".
           Your private information stays with you.`
         }
       }

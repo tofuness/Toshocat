@@ -28,9 +28,11 @@ const Select = React.createClass({
     this.handleControlProps(nextProps);
   },
   onOutsideEvent() {
-    this.setState({
-      visible: false
-    });
+    if (this.state.visible) {
+      this.setState({
+        visible: false
+      });
+    }
   },
   handleControlProps(nextProps) {
     // If the component is "controlled", we replace with new props

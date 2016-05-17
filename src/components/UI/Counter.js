@@ -79,7 +79,7 @@ Counter.propTypes = {
 };
 
 Counter.defaultProps = {
-  max: 999, // Inclusive
+  max: 9999, // Inclusive
   min: 0, // Exclusive
 };
 

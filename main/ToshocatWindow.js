@@ -1,5 +1,6 @@
 class ToshocatWindow {
   restore() {
+    this.window.show();
     this.window.restore();
     this.window.focus();
     this.window.setSkipTaskbar(false);

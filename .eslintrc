@@ -20,9 +20,8 @@
     "new-cap": 0
   },
   "globals": {
-    "remote": true,
     "$": true,
-    "React": true,
+    "remote": true,
     "ipcRenderer": true,
     "__DEV__": true
   }

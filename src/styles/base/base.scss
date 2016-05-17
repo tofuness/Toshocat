@@ -1,7 +1,8 @@
 * {
 	box-sizing: border-box;
 	-webkit-font-smoothing: antialiased;
-	font-feature-settings: "kern", "liga" 0, "calt" 0;
+	// Wut the fk is happening
+	//font-feature-settings: "kern", "liga" 0, "calt" 0;
 
 	::-webkit-scrollbar {
 		position: absolute;

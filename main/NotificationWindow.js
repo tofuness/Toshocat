@@ -1,5 +1,5 @@
 const path = require('path');
-const window = require('electron-window');
+const { BrowserWindow } = require('electron');
 const Positioner = require('electron-positioner');
 
 const ToshocatWindow = require('./ToshocatWindow');
@@ -7,7 +7,7 @@ const ToshocatWindow = require('./ToshocatWindow');
 class NotificationWindow extends ToshocatWindow {
   constructor() {
     super();
-    this.window = window.createWindow({
+    this.window = new BrowserWindow({
       width: 400,
       height: 150,
       minWidth: 300,
@@ -20,7 +20,12 @@ class NotificationWindow extends ToshocatWindow {
       resizable: false,
       show: false
     });
-    this.window.showUrl(`${path.resolve(__dirname, './notification.html')}`);
+
+    this.window.webContents.on('did-finish-load', () => {
+      // Finished loading
+    });
+
+    this.window.loadURL(`${path.resolve(__dirname, './notification.html')}`);
 
     // Move window to center
     this.positioner = new Positioner(this.window);

@@ -40,18 +40,20 @@ class SearchSettings extends Component {
   render() {
     return (
       <div className="search-settings">
-        Search for{' '}
-        <Select
-          options={typeOptions}
-          currentText={_.capitalize(this.props.searchType)}
-          handleChange={this.handleTypeChange}
-        />
-        {' '}sorted by{' '}
-        <Select
-          options={sortByOptions}
-          currentText={_.capitalize(this.props.searchSortBy)}
-          handleChange={this.handleSortChange}
-        />
+        <div className="search-settings-left">
+          Search for{' '}
+          <Select
+            options={typeOptions}
+            currentText={_.capitalize(this.props.searchType)}
+            handleChange={this.handleTypeChange}
+          />
+          {' '}sorted by{' '}
+          <Select
+            options={sortByOptions}
+            currentText={_.capitalize(this.props.searchSortBy)}
+            handleChange={this.handleSortChange}
+          />
+        </div>
         <div className="series-results-count">
           {this.props.searchResultsCount ? `${this.props.searchResultsCount} results found` : ''}
         </div>
