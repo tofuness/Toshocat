@@ -1,6 +1,6 @@
 {
   "name": "Toshocat",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "description": "Toshocat =^._.^=",
   "main": "./main/index.js",
   "engines": {
@@ -41,6 +41,7 @@
   },
   "dependencies": {
     "anitomy-js": "^1.0.5",
+    "auto-launch": "^2.0.1",
     "cartesian-product": "^2.1.2",
     "classnames": "^2.2.3",
     "configstore": "^2.0.0",

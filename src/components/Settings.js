@@ -8,6 +8,8 @@ import SyncerFactory from '../syncers/SyncerFactory';
 import settings from '../utils/settings';
 import toshoStore from '../utils/store';
 
+const AutoLaunch = remote.require('auto-launch');
+
 class Settings extends Component {
   constructor(props) {
     super(props);
@@ -21,13 +23,16 @@ class Settings extends Component {
         minimizeToTray: !!settings.get('minimizeToTray'),
         runOnStartup: !!settings.get('runOnStartup'),
         minimizedOnStartup: !!settings.get('minimizedOnStartup'),
-        allowMetrics: !!toshoStore.get('allowMetrics'),
+        allowMetrics: !!settings.get('allowMetrics'),
 
         // Media
         mediaFolders: settings.get('mediaFolders') || [],
         mediaDetection: !!settings.get('mediaDetection')
       }
     };
+    this.appLauncher = new AutoLaunch({
+      name: 'Toshocat'
+    });
   }
   switchToHummingbird = () => {
     const hbSyncer = new SyncerFactory({
@@ -142,6 +147,15 @@ class Settings extends Component {
     this.setState({
       value: newSettings
     });
+
+    // Run on startup
+    if (process.env.NODE_ENV !== 'development') {
+      if (newSettings.runOnStartup) {
+        this.appLauncher.enable();
+      } else {
+        this.appLauncher.disable();
+      }
+    }
   }
   render() {
     // Everything needs to eventually be refactored

@@ -33,7 +33,9 @@ app.on('ready', () => {
   tray.setContextMenu(Menu.buildFromTemplate([
     {
       label: 'Open Toshocat',
-      click: main.restore
+      click: () => {
+        main.restore();
+      }
     },
     {
       label: 'Quit Toshocat',
