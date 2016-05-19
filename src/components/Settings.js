@@ -3,8 +3,6 @@ import t from 'tcomb-form';
 import cx from 'classnames';
 import React, { Component, PropTypes } from 'react';
 
-import SyncerFactory from '../syncers/SyncerFactory';
-
 import settings from '../utils/settings';
 import toshoStore from '../utils/store';
 
@@ -35,91 +33,15 @@ class Settings extends Component {
     });
   }
   switchToHummingbird = () => {
-    const hbSyncer = new SyncerFactory({
-      username: toshoStore.get('hummingbird.username'),
-      password: toshoStore.get('hummingbird.password')
-    }, 'Hummingbird');
-
-    this.props.createToast({
-      id: 'hbswitch',
-      type: 'loading',
-      message: 'Switching to Hummingbird...',
-    });
-    hbSyncer.authenticate()
-    .then(() => {
-      return hbSyncer.getList('anime');
-    })
-    .then((animeList) => {
-      this.props.syncList('hummingbird', animeList);
-      this.props.switchList('hummingbird');
-      this.props.switchSyncer(hbSyncer);
-      this.props.updateToast({
-        id: 'hbswitch',
-        type: 'success',
-        message: 'Switched to Hummingbird',
-        timer: 3000
-      });
-    })
-    .catch(() => {
-      this.props.updateToast({
-        id: 'hbswitch',
-        type: 'failure',
-        message: 'Invalid credentials!',
-        timer: 3000
-      });
-    });
+    this.props.switchToHummingbird();
     this.handleChange();
   }
   switchToMyAnimeList = () => {
-    const malSyncer = new SyncerFactory({
-      username: toshoStore.get('myanimelist.username'),
-      password: toshoStore.get('myanimelist.password')
-    }, 'MyAnimeList');
-
-    this.props.createToast({
-      id: 'malswitch',
-      type: 'loading',
-      message: 'Switching to MyAnimeList...',
-    });
-    let completeList = [];
-    malSyncer.authenticate()
-    .then(() => {
-      return malSyncer.getList('anime');
-    })
-    .then((animeList) => {
-      completeList = completeList.concat(animeList);
-      return malSyncer.getList('manga');
-    })
-    .then((mangaList) => {
-      this.props.syncList('myanimelist', completeList.concat(mangaList));
-      this.props.switchList('myanimelist');
-      this.props.switchSyncer(malSyncer);
-      this.props.updateToast({
-        id: 'malswitch',
-        type: 'success',
-        message: 'Switched to MyAnimeList',
-        timer: 3000
-      });
-    })
-    .catch(() => {
-      this.props.updateToast({
-        id: 'malswitch',
-        type: 'failure',
-        message: 'Invalid credentials!',
-        timer: 3000
-      });
-    });
+    this.props.switchToMyAnimeList();
     this.handleChange();
   }
   switchToToshocat = () => {
-    this.props.switchSyncer(null);
-    this.props.switchList('toshocat');
-    this.props.createToast({
-      id: 'toshoswitch',
-      type: 'success',
-      message: 'Switched to Toshocat (offline mode)',
-      timer: 3000
-    });
+    this.props.switchToToshocat();
     this.handleChange();
   }
   handleChange = () => {
@@ -412,11 +334,9 @@ Settings.propTypes = {
   currentListName: PropTypes.string.isRequired,
 
   // Actions
-  createToast: PropTypes.func.isRequired,
-  updateToast: PropTypes.func.isRequired,
-  syncList: PropTypes.func.isRequired,
-  switchList: PropTypes.func.isRequired,
-  switchSyncer: PropTypes.func.isRequired
+  switchToToshocat: PropTypes.func.isRequired,
+  switchToMyAnimeList: PropTypes.func.isRequired,
+  switchToHummingbird: PropTypes.func.isRequired
 };
 
 export default Settings;

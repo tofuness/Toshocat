@@ -3,8 +3,7 @@ import { connect } from 'react-redux';
 import _ from 'lodash';
 
 import Settings from '../components/Settings';
-import * as toastActions from '../actions/toast';
-import * as listActions from '../actions/list';
+import * as syncerActions from '../actions/syncer';
 
 function mapStateToProps(state) {
   return {
@@ -13,7 +12,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators(_.assign({}, toastActions, listActions), dispatch);
+  return bindActionCreators(_.assign({}, syncerActions), dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Settings);
