@@ -23,6 +23,9 @@ export const currentCalendar = createSelector(
   }
 );
 
+export const calendarIsLoading = (state) => state.calendarIsLoading;
+
 export default createStructuredSelector({
-  currentCalendar
+  currentCalendar,
+  calendarIsLoading
 });
