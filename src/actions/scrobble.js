@@ -32,7 +32,8 @@ function _scoreItems(items, title) {
     return _.assign({}, series, { score: Math.max(...jwScores) });
   })
   .sortBy((series) => series.score)
-  .value().reverse();
+  .value()
+  .reverse();
 }
 
 /**

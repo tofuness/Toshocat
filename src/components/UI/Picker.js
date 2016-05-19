@@ -7,6 +7,8 @@ import Select from './Select';
 import Counter from './Counter';
 import Rating from './Rating';
 
+import settings from '../../utils/settings';
+
 class PickerContent extends Component {
   static propTypes() {
     return {
@@ -176,6 +178,7 @@ class PickerContent extends Component {
           <Rating
             onChange={this.handleRatingChange}
             defaultRating={this.state.item_rating}
+            multiplier={settings.get('tenRatingScale') ? 2 : 1}
           />
         </div>
         <div className="picker-bottom">

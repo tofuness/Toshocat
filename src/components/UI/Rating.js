@@ -8,7 +8,8 @@ const Rating = React.createClass({
     max: PropTypes.number,
     defaultRating: PropTypes.number,
     scaling: PropTypes.number,
-    showLabel: PropTypes.bool
+    showLabel: PropTypes.bool,
+    multiplier: PropTypes.number
   },
   getDefaultProps() {
     return {
@@ -16,6 +17,7 @@ const Rating = React.createClass({
       scaling: 2,
       defaultRating: 0,
       showLabel: true,
+      multiplier: 1,
       onChange: () => {}
     };
   },
@@ -67,11 +69,18 @@ const Rating = React.createClass({
     return this._roundToFraction(x / event.currentTarget.offsetWidth);
   },
   render() {
-    const ratingOverLabel = this.state.ratingOver !== null ?
-    this.state.ratingOver.toFixed(1) : '0.0';
-
     const ratingIcons = [];
-    const ratingLabel = this.state.rating.toFixed(1);
+
+    let ratingOverLabel = this.state.ratingOver !== null
+    ? this.state.ratingOver.toFixed(1)
+    : '0.0';
+    let ratingLabel = this.state.rating.toFixed(1);
+
+    if (this.props.multiplier > 1) {
+      ratingOverLabel = ratingOverLabel * this.props.multiplier;
+      ratingLabel = ratingLabel * this.props.multiplier;
+    }
+
     for (let i = 0; i < this.props.max; i++) {
       let hovering = false;
       let half = false;

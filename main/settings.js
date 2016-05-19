@@ -13,7 +13,8 @@ const defaultSettings = {
   allowMetrics: true,
   mediaDetection: true,
   runOnStartup: true,
-  minimizedOnStartup: false
+  minimizedOnStartup: false,
+  tenRatingScale: false
 };
 
 settingsStore.set(_.merge({}, defaultSettings, settingsStore.all));

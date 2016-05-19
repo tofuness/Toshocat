@@ -29,6 +29,7 @@
 }
 .sidebar-navigation-link a {
 	@extend .opensans;
+	outline: none;
 	cursor: pointer;
 	margin-top: 10px;
 	padding: 0 20px;

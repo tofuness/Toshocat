@@ -24,7 +24,7 @@ class Settings extends Component {
         runOnStartup: !!settings.get('runOnStartup'),
         minimizedOnStartup: !!settings.get('minimizedOnStartup'),
         allowMetrics: !!settings.get('allowMetrics'),
-
+        tenRatingScale: !!settings.get('tenRatingScale'),
         // Media
         mediaFolders: settings.get('mediaFolders') || [],
         mediaDetection: !!settings.get('mediaDetection')
@@ -138,6 +138,7 @@ class Settings extends Component {
       runOnStartup: newSettings.runOnStartup,
       minimizedOnStartup: newSettings.minimizedOnStartup,
       allowMetrics: newSettings.allowMetrics,
+      tenRatingScale: newSettings.tenRatingScale,
       // Returns "Struct" from tcomb (not what we want)
       // Hack around it and use state value instead
       mediaFolders: newSettings.mediaFolders,
@@ -163,7 +164,8 @@ class Settings extends Component {
       minimizeToTray: t.maybe(t.Boolean),
       runOnStartup: t.maybe(t.Boolean),
       minimizedOnStartup: t.maybe(t.Boolean),
-      allowMetrics: t.maybe(t.Boolean)
+      allowMetrics: t.maybe(t.Boolean),
+      tenRatingScale: t.maybe(t.Boolean)
     });
     const formSchemaServices = t.struct({
       myanimelistUsername: t.maybe(t.String),
@@ -286,6 +288,10 @@ class Settings extends Component {
         minimizedOnStartup: {
           label: 'Keep Toshocat minimized if run on startup',
           help: 'Toshocat will instead be launched in the tray on startup.'
+        },
+        tenRatingScale: {
+          label: 'Enable 1-10 rating scale',
+          help: 'Your choice!'
         },
         mediaDetection: {
           label: 'Enable media detection (scrobbling)',

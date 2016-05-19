@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import cx from 'classnames';
 import ListItemExpansion from './ListItemExpansion';
 
+import listUtils from '../utils/list';
 import _ from 'lodash';
 
 class ListItem extends Component {
@@ -149,11 +150,7 @@ class ListItem extends Component {
               })}
             >
             </div>
-            {
-              this.props.series.item.item_rating ?
-              (this.props.series.item.item_rating / 2).toFixed(1)
-              : '—'
-            }
+            {listUtils.formatRating(this.props.series.item.item_rating)}
           </div>
           <div className="list-item-type">
             {this.props.series.type}
