@@ -10,7 +10,6 @@ class Calendar extends Component {
     }
   }
   render() {
-    console.log(this.props.calendarIsLoading);
     return (
       <div className="calendar">
         <div className="days" ref="days">

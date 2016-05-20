@@ -34,6 +34,7 @@ class CalendarDay extends Component {
           {
             this.props.day.map((series) => {
               if ([
+                'Koutetsujou no Kabaneri',
                 'Mayoiga',
                 'Flying Witch',
                 'Kuma Miko: Girl Meets Bear',
