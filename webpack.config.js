@@ -27,7 +27,7 @@ module.exports = {
         }
       },
       { test: /\.json$/, loader: 'json-loader' },
-      { test: /\.(jpe?g|png|gif|svg)$/i, loader: 'file-loader' },
+      { test: /\.(jpe?g|png|gif|svg|ttf|woff|woff2|eot)$/i, loader: 'file-loader' },
       { test: /\.css/, loader: 'style-loader!css-loader' },
       { test: /\.scss/, loader: 'style-loader!css-loader!sass-loader' }
     ]

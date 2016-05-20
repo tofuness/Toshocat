@@ -1,8 +1,79 @@
-@import url(https://fonts.googleapis.com/css?family=Roboto:400,700,900,300,500);
-@import url(https://fonts.googleapis.com/css?family=Vollkorn);
+/* roboto-300 - latin */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 300;
+  src: local('Roboto Light'), local('Roboto-Light'),
+       url('./fonts/roboto-v15-latin-300.woff2') format('woff2'), /* Super Modern Browsers */
+       url('./fonts/roboto-v15-latin-300.woff') format('woff'); /* Modern Browsers */
+}
+/* roboto-regular - latin */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Roboto'), local('Roboto-Regular'),
+       url('./fonts/roboto-v15-latin-regular.woff2') format('woff2'), /* Super Modern Browsers */
+       url('./fonts/roboto-v15-latin-regular.woff') format('woff'); /* Modern Browsers */
+}
+/* roboto-500 - latin */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  src: local('Roboto Medium'), local('Roboto-Medium'),
+       url('./fonts/roboto-v15-latin-500.woff2') format('woff2'), /* Super Modern Browsers */
+       url('./fonts/roboto-v15-latin-500.woff') format('woff'); /* Modern Browsers */
+}
+/* roboto-700 - latin */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Roboto Bold'), local('Roboto-Bold'),
+       url('./fonts/roboto-v15-latin-700.woff2') format('woff2'), /* Super Modern Browsers */
+       url('./fonts/roboto-v15-latin-700.woff') format('woff'); /* Modern Browsers */
+}
+/* roboto-900 - latin */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 900;
+  src: local('Roboto Black'), local('Roboto-Black'),
+       url('./fonts/roboto-v15-latin-900.woff2') format('woff2'), /* Super Modern Browsers */
+       url('./fonts/roboto-v15-latin-900.woff') format('woff'); /* Modern Browsers */
+}
+
+/* vollkorn-regular - latin */
+@font-face {
+  font-family: 'Vollkorn';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Vollkorn Regular'), local('Vollkorn-Regular'),
+       url('./fonts/vollkorn-v6-latin-regular.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+       url('./fonts/vollkorn-v6-latin-regular.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+
+/* oswald-regular - latin */
+@font-face {
+  font-family: 'Oswald';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Oswald Regular'), local('Oswald-Regular'),
+       url('./fonts/oswald-v10-latin-regular.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+       url('./fonts/oswald-v10-latin-regular.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+
+/* open-sans-regular - latin */
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Open Sans'), local('OpenSans'),
+       url('./fonts/open-sans-v13-latin-regular.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+       url('./fonts/open-sans-v13-latin-regular.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
 @import url(https://file.myfontastic.com/E4KG3MY5eJGdB96mnocJZJ/icons.css);
-@import url(https://fonts.googleapis.com/css?family=Oswald);
-@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,700,800,300);
 
 .ns {
 	-webkit-user-select: none;
