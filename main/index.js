@@ -14,11 +14,25 @@ if (require('electron-squirrel-startup')) {
   return;
 }
 
+let main = null;
+const shouldQuit = app.makeSingleInstance(() => {
+  // If second instance, open the previous one
+  // shouldQuit will return true and close this instance
+  if (main) {
+    main.restore();
+  }
+});
+
+if (shouldQuit) {
+  app.quit();
+  return;
+}
+
 app.on('ready', () => {
   console.log(`Toshocat ${app.getVersion()}`);
 
   // Main application window
-  const main = new Main();
+  main = new Main();
   if (__DEV__) {
     main.window.openDevTools({
       detach: true
