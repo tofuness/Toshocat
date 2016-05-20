@@ -13,7 +13,6 @@ class Kicker extends Component {
     ipcRenderer.removeAllListeners('media-detected');
     ipcRenderer.removeAllListeners('media-lost');
     ipcRenderer.on('media-detected', (event, detectedMedia) => {
-      console.log(detectedMedia);
       if (
         detectedMedia.episode_number &&
         detectedMedia.file_name !== this.props.currentScrobble.file_name

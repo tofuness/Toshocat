@@ -7,35 +7,6 @@ import ListSearch from './ListSearch';
 import ListHeaders from './ListHeaders';
 import ListItem from './ListItem';
 
-/*
-
-        <ReactList
-          itemRenderer={this.renderItem}
-          length={this.props.visibleList.length}
-          updateThisList={this.props.visibleList}
-          type="simple"
-        />
- */
-/*
-        <div>
-          {this.props.visibleList.map((listEntry) => {
-            return (
-              <ListItem
-                key={listEntry._id}
-                currentList={this.props.currentList}
-                series={listEntry}
-                seriesType={this.props.currentListType}
-
-                showSeries={this.props.showSeries}
-                addItem={this.props.addItem}
-                removeItem={this.props.removeItem}
-                updateItem={this.props.updateItem}
-              />
-            );
-          })}
-        </div>
- */
-
 class List extends Component {
   constructor(props) {
     super(props);
