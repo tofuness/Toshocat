@@ -57,6 +57,31 @@ describe('list reducers', () => {
     });
   });
 
+  describe('headerOrder', () => {
+    let order = null;
+    beforeEach(() => {
+      order = [{
+        name: 'Title',
+        property: 'title'
+      }, {
+        name: 'Progress',
+        property: 'item.item_progress'
+      }];
+    });
+    it('should return current order by default', () => {
+      expect(reducers.headerOrder(order, {
+        type: 'INVALID_ACTION_TYPE',
+        order: []
+      })).to.eql(order);
+    });
+    it('should return new order on update', () => {
+      expect(reducers.headerOrder([], {
+        type: actionTypes.UPDATE_HEADER_ORDER,
+        order
+      })).to.eql(order);
+    });
+  });
+
   describe('currentSyncer', () => {
     let currentSyncer = null;
     beforeEach(() => {

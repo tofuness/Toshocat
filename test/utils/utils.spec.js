@@ -43,4 +43,10 @@ describe('utils', () => {
       assert.equal(false, utils.isAnime('NOTANIMELMAO'));
     });
   });
+
+  describe('version', () => {
+    it('should return app version', () => {
+      assert.equal('string', typeof utils.version());
+    });
+  });
 });
