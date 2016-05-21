@@ -1,9 +1,11 @@
 const _ = require('lodash');
 const path = require('path');
-const { app, ipcMain, Tray, Menu } = require('electron');
+const { app, ipcMain, Tray, Menu, autoUpdater, dialog } = require('electron');
 
 const Main = require('./MainWindow');
 const Notification = require('./NotificationWindow');
+const Updater = require('./UpdaterWindow');
+
 const Detector = require('./MediaDetector');
 const AppUpdater = require('./AppUpdater');
 
@@ -22,7 +24,6 @@ const shouldQuit = app.makeSingleInstance(() => {
     main.restore();
   }
 });
-
 if (shouldQuit) {
   app.quit();
   return;
@@ -39,6 +40,34 @@ app.on('ready', () => {
     });
   }
 
+  // Run auto updater
+  const appUpdater = new AppUpdater();
+  const updaterWindow = new Updater();
+  appUpdater.on('state-change', () => {
+    switch (appUpdater.state) {
+      case 'ERROR_STATE': {
+        updaterWindow.hide();
+        main.show();
+        break;
+      }
+      case 'DOWNLOADING_STATE': {
+        updaterWindow.show();
+        break;
+      }
+      case 'UPDATE_AVAILABLE_STATE': {
+        autoUpdater.quitAndInstall();
+        break;
+      }
+      case 'NO_UPDATE_AVAILABLE_STATE': {
+        main.show();
+        break;
+      }
+      default:
+        break;
+    }
+  });
+  appUpdater.check();
+
   // Tray icon
   const tray = new Tray(path.resolve(__dirname, './app-icon.ico'));
   tray.on('click', () => {
@@ -52,6 +81,25 @@ app.on('ready', () => {
       }
     },
     {
+      label: 'Check for updates',
+      click: () => {
+        if (
+          appUpdater.state !== 'DOWNLOADING_STATE'
+          && appUpdater.state !== 'CHECKING_STATE'
+        ) {
+          appUpdater.check();
+        } else {
+          dialog.showMessageBox({
+            message: 'Toshocat is already checking for new updates...',
+            buttons: []
+          });
+        }
+      }
+    },
+    {
+      type: 'separator'
+    },
+    {
       label: 'Quit Toshocat',
       click: app.quit
     }
@@ -63,12 +111,6 @@ app.on('ready', () => {
     tray.destroy();
     app.quit();
   });
-
-  // Run auto updater
-  if (!__DEV__) {
-    const appUpdater = new AppUpdater(main);
-    appUpdater.init();
-  }
 
   // Notification/scrobble window
   const notification = new Notification();
@@ -140,6 +182,7 @@ app.on('ready', () => {
   };
   scrobble();
 });
+
 app.on('window-all-closed', () => {
   app.quit();
 });

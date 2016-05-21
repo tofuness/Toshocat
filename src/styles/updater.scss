@@ -1,0 +1,61 @@
+@import './utils/reset';
+@import './utils/colors';
+@import './utils/extend';
+
+@keyframes hover {
+	0% {
+		transform: translateX(-12px) rotateZ(-10deg);
+	}
+	100% {
+		transform: translateX(12px) rotateZ(9deg);
+	}
+}
+body, html, #mount {
+	@extend .roboto;
+	width: 100%;
+	height: 100%;
+	background: #e3e6eb;
+	-webkit-app-region: drag;
+}
+.updater {
+	display: flex;
+	opacity: 0;
+	width: 100%;
+	height: 100%;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	transition: all 1000ms cubic-bezier(0, .33, .2, 1);
+	&.visible {
+		opacity: 1;
+	}
+}
+.updater-image {
+	width: 138px;
+	height: 117px;
+	background: url(../images/cat.png);
+	background-size: cover;
+	transform-origin: center center;
+	animation-name: hover;
+	animation-duration: 1000ms;
+	animation-delay: 200ms;
+	animation-iteration-count: infinite;
+	animation-direction: alternate;
+	animation-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+.updater-message {
+	padding-top: 20px;
+	color: $winter-black;
+	font-size: 16px;
+	font-family: 'Roboto';
+	font-weight: bold;
+	line-height: 1;
+}
+.updater-detail {
+	padding-top: 10px;
+	width: 200px;
+	color: $body;
+	font-size: 13px;
+	text-align: center;
+	line-height: 1.5;
+}

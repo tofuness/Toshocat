@@ -9,7 +9,8 @@ const definePlugin = new webpack.DefinePlugin({
 module.exports = {
   entry: {
     main: './src/main.js',
-    notification: './src/notification.js'
+    notification: './src/notification.js',
+    updater: './src/updater.js'
   },
   output: {
     path: './build',

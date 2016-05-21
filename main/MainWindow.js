@@ -20,17 +20,19 @@ class MainWindow extends ToshocatWindow {
       show: false
     });
 
-    this.window.webContents.on('did-finish-load', () => {
-      if (!settings.get('minimizedOnStartup')) {
-        this.window.show();
-      }
-    });
-
     this.window.loadURL(`${path.resolve(__dirname, './main.html')}`);
 
     // Move window to center
     this.positioner = new Positioner(this.window);
     this.positioner.move('center');
+  }
+  show() {
+    if (!settings.get('minimizedOnStartup')) {
+      setTimeout(() => {
+        this.window.focus();
+        this.window.show();
+      }, 500);
+    }
   }
 }
 

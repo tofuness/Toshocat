@@ -6,6 +6,7 @@ class ToshocatWindow {
     this.window.setSkipTaskbar(false);
   }
   show() {
+    this.window.focus();
     this.window.show();
   }
   hide() {
