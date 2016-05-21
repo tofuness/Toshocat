@@ -2,6 +2,8 @@ import React, { Component, PropTypes } from 'react';
 import cx from 'classnames';
 import _ from 'lodash';
 
+import settings from '../utils/settings';
+
 class Kicker extends Component {
   constructor(props) {
     super(props);
@@ -10,6 +12,19 @@ class Kicker extends Component {
     };
   }
   componentDidMount = () => {
+    switch (settings.get('listName')) {
+      case 'toshocat':
+        this.props.switchToToshocat();
+        break;
+      case 'hummingbird':
+        this.props.switchToHummingbird();
+        break;
+      case 'myanimelist':
+        this.props.switchToMyAnimeList();
+        break;
+      default:
+        break;
+    }
     ipcRenderer.removeAllListeners('media-detected');
     ipcRenderer.removeAllListeners('media-lost');
     ipcRenderer.on('media-detected', (event, detectedMedia) => {
@@ -69,7 +84,10 @@ Kicker.propTypes = {
   // Actions
   confirmScrobble: PropTypes.func.isRequired,
   requestScrobble: PropTypes.func.isRequired,
-  clearScrobble: PropTypes.func.isRequired
+  clearScrobble: PropTypes.func.isRequired,
+  switchToToshocat: PropTypes.func.isRequired,
+  switchToHummingbird: PropTypes.func.isRequired,
+  switchToMyAnimeList: PropTypes.func.isRequired
 };
 
 export default Kicker;

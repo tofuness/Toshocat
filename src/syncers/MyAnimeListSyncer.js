@@ -79,7 +79,7 @@ class MyAnimeListSyncer extends Syncer {
       .put(`${this.APIBase}/${listType}list/${listType}/${series.mal_id}`)
       .auth(this.credentials.username, this.credentials.password)
       .send({
-        status: mapReplace(item.item_status, {
+        status: mapReplace(item.item_status || '', {
           current: 'watching',
           planned: 'plantowatch'
         }),
