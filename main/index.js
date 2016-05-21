@@ -46,8 +46,6 @@ app.on('ready', () => {
   appUpdater.on('state-change', () => {
     switch (appUpdater.state) {
       case 'ERROR_STATE': {
-        updaterWindow.hide();
-        main.show();
         break;
       }
       case 'DOWNLOADING_STATE': {
@@ -59,7 +57,6 @@ app.on('ready', () => {
         break;
       }
       case 'NO_UPDATE_AVAILABLE_STATE': {
-        main.show();
         break;
       }
       default:
