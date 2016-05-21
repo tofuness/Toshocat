@@ -1,17 +1,19 @@
 import React, { Component, PropTypes } from 'react';
-import cx from 'classnames';
 
 import ListHeaderContainer from '../containers/ListHeaderContainer';
 import Sortable from 'react-sortablejs';
 
 class ListHeaders extends Component {
-  onChange = (order, sortable) => {
+  onChange = (order) => {
     this.props.updateHeaderOrder(order);
   }
   render() {
     return (
       <div className="list-headers">
         <Sortable
+          options={{
+            animation: 100
+          }}
           className="list-headers-sortable"
           onChange={this.onChange}
         >

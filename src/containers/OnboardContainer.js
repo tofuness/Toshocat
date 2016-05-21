@@ -2,7 +2,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import _ from 'lodash';
 
-import Onboard from '../components/onboard';
+import Onboard from '../components/Onboard';
 
 function mapStateToProps(state) {
   return {};

@@ -92,23 +92,13 @@ export function syncList(listName, newList) {
  * @return {Object}
  */
 export function updateHeaderOrder(headers) {
+  const newOrder = _.sortBy(settings.get('headerOrder'), (header) => {
+    return headers.indexOf(header.name);
+  });
+  settings.set('headerOrder', newOrder);
   return {
     type: UPDATE_HEADER_ORDER,
-    order: _.sortBy([{
-      name: 'Title',
-      property: 'title'
-    }, {
-      name: 'Progress',
-      property: 'item.item_progress'
-    }, {
-      name: 'Rating',
-      property: 'item.item_rating'
-    }, {
-      name: 'Type',
-      property: 'type'
-    }], (header) => {
-      return headers.indexOf(header.name);
-    })
+    order: newOrder
   };
 }
 

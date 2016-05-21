@@ -41,19 +41,7 @@ if (process.env.APP_ENV === 'browser') {
   });
 }
 
-const initialHeaderOrder = [{
-  name: 'Title',
-  property: 'title'
-}, {
-  name: 'Progress',
-  property: 'item.item_progress'
-}, {
-  name: 'Rating',
-  property: 'item.item_rating'
-}, {
-  name: 'Type',
-  property: 'type'
-}];
+const initialHeaderOrder = settings.get('headerOrder');
 
 initialState = Immutable(initialState);
 

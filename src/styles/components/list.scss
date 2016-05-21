@@ -33,6 +33,7 @@
 }
 .list-header {
 	@extend .cf;
+	@extend .ts;
 	cursor: pointer;
 	float: left;
 	padding: 11px 0 9px 11px;
@@ -43,6 +44,10 @@
 	&.active {
 		color: $lapis-blue;
 		//box-shadow: inset 0 -1px 0 $lapis-blue;
+	}
+	&.sortable-ghost {
+		color: #fff;
+		background: $border-on-white;
 	}
 }
 .list-header--title {
