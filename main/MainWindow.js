@@ -25,6 +25,10 @@ class MainWindow extends ToshocatWindow {
     // Move window to center
     this.positioner = new Positioner(this.window);
     this.positioner.move('center');
+
+    this.window.webContents.on('did-finish-load', () => {
+      this.show();
+    });
   }
   show() {
     if (!settings.get('minimizedOnStartup')) {
