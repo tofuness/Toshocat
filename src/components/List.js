@@ -32,6 +32,7 @@ class List extends Component {
         removeItem={this.props.removeItem}
         updateItem={this.props.updateItem}
         upsertItem={this.props.upsertItem}
+        headerOrder={this.props.headerOrder}
       />
     );
   }
@@ -51,6 +52,8 @@ class List extends Component {
           listSortOrder={this.props.listSortOrder}
           listSortBy={this.props.listSortBy}
           sortListBy={this.props.sortListBy}
+          headerOrder={this.props.headerOrder}
+          updateHeaderOrder={this.props.updateHeaderOrder}
         />
         <div
           className={cx({
@@ -99,6 +102,7 @@ List.propTypes = {
   upsertItem: PropTypes.func.isRequired,
   removeItem: PropTypes.func.isRequired,
   searchList: PropTypes.func.isRequired,
+  updateHeaderOrder: PropTypes.func.isRequired,
 
   // Selectors
   listSortOrder: PropTypes.string.isRequired,
@@ -106,6 +110,7 @@ List.propTypes = {
   visibleListIsEmpty: PropTypes.bool.isRequired,
   visibleList: PropTypes.array.isRequired,
   currentList: PropTypes.array.isRequired,
+  headerOrder: PropTypes.array.isRequired,
   listStatusFilter: PropTypes.string.isRequired,
   listStatusCount: PropTypes.object.isRequired,
   listSearchQuery: PropTypes.string.isRequired,

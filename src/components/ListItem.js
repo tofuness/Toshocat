@@ -25,7 +25,11 @@ class ListItem extends Component {
     }
   }
   shouldComponentUpdate = (nextProps, nextState) => {
-    if (nextProps.series !== this.props.series || this.state !== nextState) {
+    if (
+      nextProps.series !== this.props.series
+      || this.state !== nextState
+      || nextProps.headerOrder !== this.props.headerOrder
+    ) {
       return true;
     }
     return false;
@@ -122,39 +126,63 @@ class ListItem extends Component {
         onMouseDown={this.handleMountExpansion.bind(null, true)}
       >
         <div className="list-item-content" onClick={this.toggleExpansion}>
-          <div className="list-item-title">
-            <div
-              className="list-item-link"
-              onClick={this.handleShowSeries}
-            >
-              {this.props.series.title}
-            </div>
-            <span
-              className={cx({
-                'list-item-hasnotes': true,
-                visible: !!_.get(this.props.series, 'item.item_notes')
-              })}
-            >
-              Has note
-            </span>
-          </div>
-          <div className="list-item-progress">
-            {this.props.series.item.item_progress || '—'} / {this.props.series.episodes_total || '—'}
-          </div>
-          <div className="list-item-rating">
-            <div
-              className={cx({
-                'list-item-rating-icon': true,
-                'icon-heart-empty': this.props.series.item.item_rating === 0,
-                'icon-heart-full': this.props.series.item.item_rating > 0
-              })}
-            >
-            </div>
-            {listUtils.formatRating(this.props.series.item.item_rating)}
-          </div>
-          <div className="list-item-type">
-            {this.props.series.type}
-          </div>
+          {
+            this.props.headerOrder.map((header) => {
+              switch (header.name) {
+                case 'Title': {
+                  return (
+                    <div className="list-item-title">
+                      <div
+                        className="list-item-link"
+                        onClick={this.handleShowSeries}
+                      >
+                        {this.props.series.title}
+                      </div>
+                      <span
+                        className={cx({
+                          'list-item-hasnotes': true,
+                          visible: !!_.get(this.props.series, 'item.item_notes')
+                        })}
+                      >
+                        Has note
+                      </span>
+                    </div>
+                  );
+                }
+                case 'Progress': {
+                  return (
+                    <div className="list-item-progress">
+                      {this.props.series.item.item_progress || '—'} / {this.props.series.episodes_total || '—'}
+                    </div>
+                  );
+                }
+                case 'Rating': {
+                  return (
+                    <div className="list-item-rating">
+                      <div
+                        className={cx({
+                          'list-item-rating-icon': true,
+                          'icon-heart-empty': this.props.series.item.item_rating === 0,
+                          'icon-heart-full': this.props.series.item.item_rating > 0
+                        })}
+                      >
+                      </div>
+                      {listUtils.formatRating(this.props.series.item.item_rating)}
+                    </div>
+                  );
+                }
+                case 'Type': {
+                  return (
+                    <div className="list-item-type">
+                      {this.props.series.type}
+                    </div>
+                  );
+                }
+                default:
+                  return null;
+              }
+            })
+          }
         </div>
         {
           this.state.expanded || this.state.expansionMounted ?
@@ -180,6 +208,7 @@ ListItem.propTypes = {
   series: PropTypes.object.isRequired,
   seriesType: PropTypes.string.isRequired,
   currentList: PropTypes.arrayOf(PropTypes.object).isRequired,
+  headerOrder: PropTypes.arrayOf(PropTypes.object).isRequired,
 
   // Action
   showSeries: PropTypes.func.isRequired,

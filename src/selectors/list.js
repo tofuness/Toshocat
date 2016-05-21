@@ -21,6 +21,7 @@ export const currentListName = (state) => state.currentListName;
 export const listStatusFilter = (state) => state.listStatusFilter;
 export const listTypeFilter = (state) => state.listTypeFilter;
 export const listSearchQuery = (state) => state.listSearchQuery;
+export const headerOrder = (state) => state.headerOrder;
 
 export const visibleList = createSelector(
   [currentList, listStatusFilter, currentTypeFilter, listSortBy, listSortOrder, listSearchQuery],
@@ -75,5 +76,6 @@ export default createStructuredSelector({
   listTypeFilter,
   visibleList,
   listStatusCount,
-  listSearchQuery
+  listSearchQuery,
+  headerOrder
 });

@@ -7,7 +7,8 @@ import {
   REMOVE_LIST_ITEM,
   UPDATE_LIST_ITEM,
   SWITCH_SYNCER,
-  UPDATE_CURRENT_LIST_NAME
+  UPDATE_CURRENT_LIST_NAME,
+  UPDATE_HEADER_ORDER
 } from '../constants/actionTypes';
 
 import Immutable from 'seamless-immutable';
@@ -26,19 +27,33 @@ let initialState = {
   listSortBy: 'title',
   listSortOrder: 'asc',
   listStatusFilter: 'current',
-  currentSyncer: null
+  currentSyncer: null,
 };
 if (process.env.APP_ENV === 'browser') {
-  initialState = _.assign(initialState, {
+  initialState = _.merge(initialState, {
     currentListName: settings.get('listName'),
     currentList: toshoStore.getList(settings.get('listName'))
   });
 } else {
-  initialState = _.assign(initialState, {
+  initialState = _.merge(initialState, {
     currentListName: settings.get('listName'),
     currentList: []
   });
 }
+
+const initialHeaderOrder = [{
+  name: 'Title',
+  property: 'title'
+}, {
+  name: 'Progress',
+  property: 'item.item_progress'
+}, {
+  name: 'Rating',
+  property: 'item.item_rating'
+}, {
+  name: 'Type',
+  property: 'type'
+}];
 
 initialState = Immutable(initialState);
 
@@ -100,6 +115,15 @@ export function listStatusFilter(state = initialState.listStatusFilter, action =
   switch (action.type) {
     case FILTER_LIST_STATUS:
       return action.status;
+    default:
+      return state;
+  }
+}
+
+export function headerOrder(state = initialHeaderOrder, action = {}) {
+  switch (action.type) {
+    case UPDATE_HEADER_ORDER:
+      return action.order;
     default:
       return state;
   }

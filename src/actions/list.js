@@ -10,7 +10,8 @@ import {
   UPDATE_CURRENT_LIST_NAME,
   SWITCH_SYNCER,
   SWITCH_SYNCER_FAILURE,
-  SYNC_LIST
+  SYNC_LIST,
+  UPDATE_HEADER_ORDER
 } from '../constants/actionTypes';
 import request from 'superagent';
 import moment from 'moment';
@@ -82,6 +83,32 @@ export function syncList(listName, newList) {
       type: SYNC_LIST,
       syncedList
     });
+  };
+}
+
+/**
+ * Update the order of headers
+ * @param  {Array} headers
+ * @return {Object}
+ */
+export function updateHeaderOrder(headers) {
+  return {
+    type: UPDATE_HEADER_ORDER,
+    order: _.sortBy([{
+      name: 'Title',
+      property: 'title'
+    }, {
+      name: 'Progress',
+      property: 'item.item_progress'
+    }, {
+      name: 'Rating',
+      property: 'item.item_rating'
+    }, {
+      name: 'Type',
+      property: 'type'
+    }], (header) => {
+      return headers.indexOf(header.name);
+    })
   };
 }
 
