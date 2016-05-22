@@ -139,10 +139,28 @@
 	}
 }
 .list-item-progress {
+	@extend .cf;
 	float: left;
 	padding: 10px;
 	width: 12%;
 	font-weight: 700;
+}
+.list-item-increment {
+	@extend .ts;
+	margin-right: 10px;
+	padding: 2px 4px;
+	float: left;
+	color: $body;
+	font-size: 16px;
+	font-weight: 700;
+	line-height: 12px;
+	background: $border-on-white;
+	border-radius: 2px;
+	&:hover {
+		cursor: pointer;
+		color: #fff;
+		background: $lapis-blue;
+	}
 }
 .list-item-rating {
 	float: left;

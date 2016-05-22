@@ -50,6 +50,7 @@ export default {
       item_rating: 5
     },
     mal_id: 123,
+    episodes_total: 24,
     last_updated: new Date('2050')
   }
 };

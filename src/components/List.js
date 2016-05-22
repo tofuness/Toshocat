@@ -5,7 +5,7 @@ import cx from 'classnames';
 import ListTabs from './ListTabs';
 import ListSearch from './ListSearch';
 import ListHeaders from './ListHeaders';
-import ListItem from './ListItem';
+import ListItemContainer from '../containers/ListItemContainer';
 
 class List extends Component {
   constructor(props) {
@@ -21,18 +21,10 @@ class List extends Component {
     // IMPORTANT: We are currently using the series _id instead
     // of provided key from react-list to prevent re-renders on list length change.
     return (
-      <ListItem
-        listSortBy={this.props.listSortBy}
+      <ListItemContainer
         key={this.props.visibleList[index]._id || this.props.visibleList[index].mal_id}
-        currentList={this.props.currentList}
         series={this.props.visibleList[index]}
         seriesType={this.props.currentListType}
-        showSeries={this.props.showSeries}
-        addItem={this.props.addItem}
-        removeItem={this.props.removeItem}
-        updateItem={this.props.updateItem}
-        upsertItem={this.props.upsertItem}
-        headerOrder={this.props.headerOrder}
       />
     );
   }

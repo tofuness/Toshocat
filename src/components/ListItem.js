@@ -34,13 +34,6 @@ class ListItem extends Component {
     }
     return false;
   }
-  toggleExpansion(e) {
-    if (e.target.className !== 'list-item-link') {
-      this.setState({
-        expanded: !this.state.expanded
-      });
-    }
-  }
   handleMountExpansion(shouldMount) {
     if (!this.state.expanded) {
       this.setState({
@@ -71,8 +64,8 @@ class ListItem extends Component {
   }
   handleUpdateItem = (item) => {
     if (
-      _.get(item, this.props.listSortBy) === _.get(this.props.series, this.props.listSortBy) &&
-      _.get(item, 'item.item_status') === _.get(this.props.series, 'item.item_status')
+      _.get(item, this.props.listSortBy) === _.get(this.props.series, this.props.listSortBy)
+      && _.get(item, 'item.item_status') === _.get(this.props.series, 'item.item_status')
     ) {
       this.props.updateItem(item);
     } else {
@@ -115,6 +108,16 @@ class ListItem extends Component {
       });
     }
   }
+  onIncrement = () => {
+    this.props.incrementProgress(this.props.series, 1);
+  }
+  toggleExpansion(e) {
+    if (!['list-item-link', 'list-item-increment'].includes(e.target.className)) {
+      this.setState({
+        expanded: !this.state.expanded
+      });
+    }
+  }
   render() {
     return (
       <div
@@ -152,6 +155,13 @@ class ListItem extends Component {
                 case 'Progress': {
                   return (
                     <div className="list-item-progress">
+                      <div
+                        className={cx({
+                          'list-item-increment': true,
+                          hidden: this.props.series.item.item_status === 'completed'
+                        })}
+                        onClick={this.onIncrement}
+                      >+</div>
                       {this.props.series.item.item_progress || '—'} / {this.props.series.episodes_total || '—'}
                     </div>
                   );
@@ -212,6 +222,7 @@ ListItem.propTypes = {
 
   // Action
   showSeries: PropTypes.func.isRequired,
+  incrementProgress: PropTypes.func.isRequired,
   addItem: PropTypes.func.isRequired,
   updateItem: PropTypes.func.isRequired,
   removeItem: PropTypes.func.isRequired,

@@ -304,6 +304,72 @@ describe('list actions', () => {
     });
   });
 
+  describe('incrementProgress', () => {
+    it('should increment by one by default', () => {
+      const getState = {
+        currentList: [mockList.upToDate]
+      };
+      const expectedActions = [{
+        type: actionTypes.UPDATE_LIST_ITEM,
+        currentList: [_.merge({}, mockList.upToDate, { item: { item_progress: 11 } })]
+      }];
+      const store = mockStore(getState);
+      store.dispatch(actions.incrementProgress(mockList.upToDate));
+      expect(toshoStore.saveList.calledOnce).to.equal(true);
+      expect(store.getActions()).to.eql(expectedActions);
+    });
+    it('should handle negative increment', () => {
+      const getState = {
+        currentList: [mockList.upToDate]
+      };
+      const expectedActions = [{
+        type: actionTypes.UPDATE_LIST_ITEM,
+        currentList: [_.merge({}, mockList.upToDate, { item: { item_progress: 8 } })]
+      }];
+      const store = mockStore(getState);
+      store.dispatch(actions.incrementProgress(mockList.upToDate, -2));
+      expect(toshoStore.saveList.calledOnce).to.equal(true);
+      expect(store.getActions()).to.eql(expectedActions);
+    });
+    it('should set progress to 0 if negative increment is larger than current progress', () => {
+      const getState = {
+        currentList: [mockList.upToDate]
+      };
+      const expectedActions = [{
+        type: actionTypes.UPDATE_LIST_ITEM,
+        currentList: [_.merge({}, mockList.upToDate, { item: { item_progress: 0 } })]
+      }];
+      const store = mockStore(getState);
+      store.dispatch(actions.incrementProgress(mockList.upToDate, -100));
+      expect(toshoStore.saveList.calledOnce).to.equal(true);
+      expect(store.getActions()).to.eql(expectedActions);
+    });
+    it('should complete if increment makes progress equal or larger than total episodes', () => {
+      const getState = {
+        currentList: [mockList.upToDate]
+      };
+      const expectedActions = [{
+        type: actionTypes.UPDATE_LIST_ITEM,
+        currentList: [
+          _.merge({},
+            mockList.upToDate,
+            {
+              item: {
+                item_progress: 24,
+                item_status: 'completed',
+                item_status_text: 'Completed'
+              }
+            }
+          )
+        ]
+      }];
+      const store = mockStore(getState);
+      store.dispatch(actions.incrementProgress(mockList.upToDate, 100));
+      expect(toshoStore.saveList.calledOnce).to.equal(true);
+      expect(store.getActions()).to.eql(expectedActions);
+    });
+  });
+
   describe('upsertItem', () => {
     it('should add item if it does not exist', () => {
       const getState = { currentList: mockList.list };

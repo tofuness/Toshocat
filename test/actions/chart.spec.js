@@ -44,6 +44,28 @@ describe('chart actions', () => {
         done(err);
       });
     });
+
+    it('should handle error', () => {
+      const expectedActions = [{
+        type: actionTypes.LOAD_CHART_REQUEST,
+      }, {
+        type: actionTypes.LOAD_CHART_FAILURE
+      }];
+
+      const getState = {
+        currentSeason: 'winter-2015'
+      };
+
+      nock(settings.get('APIBase'))
+      .get('/chart/winter-2015')
+      .reply(500, {});
+
+      const store = mockStore(getState);
+      return store.dispatch(actions.loadChart())
+      .catch(() => {
+        expect(store.getActions()).to.eql(expectedActions);
+      });
+    });
   });
 
   describe('switchSeason', () => {

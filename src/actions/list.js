@@ -272,6 +272,31 @@ export function upsertItem(item) {
 }
 
 /**
+ * Increment or decrement (negative number) progress
+ * @param  {Object} entry     List entry
+ * @param  {Number} increment Positive or negative number
+ * @return {Function}
+ */
+export function incrementProgress(entry, increment) {
+  const { item } = entry;
+  const total = entry.episodes_total || entry.chapters || 0;
+  const incrementedProgress = Math.min(Math.max(item.item_progress + (increment || 1), 0), total);
+  return (dispatch) => {
+    return dispatch(
+      updateItem(
+        _.merge({}, entry, {
+          item: {
+            item_status_text: incrementedProgress === total ? 'Completed' : item.item_status_text,
+            item_status: incrementedProgress === total ? 'completed' : item.item_status,
+            item_progress: incrementedProgress === total ? total : incrementedProgress
+          }
+        })
+      )
+    );
+  };
+}
+
+/**
  * Removes list entries with matching _id
  * @param  {ObjectId} id ObjectId from MongoDB.
  * @return {Function}

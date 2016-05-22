@@ -4,11 +4,9 @@ import SyncerFactory from '../syncers/SyncerFactory';
 import * as toastActions from './toast';
 import * as listActions from './list';
 
-import settings from '../utils/settings';
-
 export function switchToToshocat() {
   return (dispatch) => {
-    dispatch(listActions.switchSyncer(null));
+    dispatch(listActions.removeSyncer());
     dispatch(listActions.switchList('toshocat'));
     dispatch(
       toastActions.createToast({

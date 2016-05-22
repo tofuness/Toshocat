@@ -39,7 +39,7 @@ ListHeader.propTypes = {
   sortListBy: PropTypes.func.isRequired,
 
   // Store
-  header: PropTypes.string.isRequired,
+  header: PropTypes.object.isRequired,
   listSortBy: PropTypes.string.isRequired,
   listSortOrder: PropTypes.string.isRequired
 };
