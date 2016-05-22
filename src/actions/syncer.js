@@ -4,6 +4,8 @@ import SyncerFactory from '../syncers/SyncerFactory';
 import * as toastActions from './toast';
 import * as listActions from './list';
 
+import settings from '../utils/settings';
+
 export function switchToToshocat() {
   return (dispatch) => {
     dispatch(listActions.switchSyncer(null));
@@ -20,7 +22,8 @@ export function switchToToshocat() {
 }
 
 export function switchToMyAnimeList() {
-  return (dispatch) => {
+  return (dispatch, getState) => {
+    const { currentListName } = getState();
     const malSyncer = new SyncerFactory({
       username: toshoStore.get('myanimelist.username'),
       password: toshoStore.get('myanimelist.password')
@@ -30,7 +33,9 @@ export function switchToMyAnimeList() {
       toastActions.createToast({
         id: 'malswitch',
         type: 'loading',
-        message: 'Switching to MyAnimeList...',
+        message: currentListName === 'myanimelist'
+        ? 'Syncing with MyAnimeList...'
+        : 'Switching to MyAnimeList...'
       })
     );
 
@@ -51,7 +56,7 @@ export function switchToMyAnimeList() {
         toastActions.updateToast({
           id: 'malswitch',
           type: 'success',
-          message: 'Switched to MyAnimeList',
+          message: 'Synced with MyAnimeList',
           timer: 3000
         })
       );
@@ -70,7 +75,8 @@ export function switchToMyAnimeList() {
 }
 
 export function switchToHummingbird() {
-  return (dispatch) => {
+  return (dispatch, getState) => {
+    const { currentListName } = getState();
     const hbSyncer = new SyncerFactory({
       username: toshoStore.get('hummingbird.username'),
       password: toshoStore.get('hummingbird.password')
@@ -80,7 +86,9 @@ export function switchToHummingbird() {
       toastActions.createToast({
         id: 'hbswitch',
         type: 'loading',
-        message: 'Switching to Hummingbird...',
+        message: currentListName === 'hummingbird'
+        ? 'Syncing with Hummingbird...'
+        : 'Switching to Hummingbird...',
       })
     );
 
@@ -96,7 +104,7 @@ export function switchToHummingbird() {
         toastActions.updateToast({
           id: 'hbswitch',
           type: 'success',
-          message: 'Switched to Hummingbird',
+          message: 'Synced with Hummingbird',
           timer: 3000
         })
       );

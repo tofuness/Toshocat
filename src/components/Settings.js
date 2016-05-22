@@ -317,7 +317,11 @@ class Settings extends Component {
                       data-tip={service.about}
                       data-tip-color="black"
                     >
-                      Switch to {service.displayName}
+                      {
+                        this.props.currentListName === service.name
+                        ? 'Re-sync with'
+                        : 'Switch to'
+                      } {service.displayName}
                     </div>
                   </div>
                 );
