@@ -1,6 +1,6 @@
 {
   "name": "Toshocat",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Toshocat =^._.^=",
   "main": "./main/index.js",
   "engines": {
@@ -18,7 +18,7 @@
     "lint": "eslint -c .eslintrc src/**/*.js",
     "rebuild": "electron-rebuild -w anitomy-js -p",
     "rebuild:anitomy": "rebuild.cmd",
-    "pack": "build",
+    "dist32": "build --arch ia32",
     "dist": "build"
   },
   "author": "Dennis Jin <dennis@tofuness.com>",

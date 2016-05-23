@@ -27,7 +27,7 @@
 }
 .list-headers-sortable {
 	@extend .cf;
-	padding-right: 9px;
+	padding-right: 10px;
 	width: 100%;
 	height: 35px;
 }
@@ -101,6 +101,15 @@
 	}
 	&.expanded {
 		box-shadow: 0 0 16px transparentize(#000, 0.9);
+	}
+	&.expanded .list-item-content>div {
+		@extend .ts;
+		border-right: 1px solid transparent;
+	}
+	&:not(.expanded) .list-item-content>div {
+		@extend .ts;
+		height: 35px;
+		border-right: 1px solid $border-on-white;
 	}
 	&:last-child {
 		margin-bottom: 20px;
