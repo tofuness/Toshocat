@@ -1,4 +1,4 @@
-const { app, autoUpdater } = require('electron');
+const { app, autoUpdater, dialog } = require('electron');
 const { EventEmitter } = require('events');
 
 const IDLE_STATE = 'IDLE_STATE';
@@ -44,9 +44,18 @@ class AppUpdater extends EventEmitter {
       this.emit('state-change', newState);
     }
   }
-  check() {
-    console.log('Trying to run checkForUpdates');
-    autoUpdater.checkForUpdates();
+  check(showMessage = false) {
+    if (
+      this.state !== DOWNLOADING_STATE
+      && this.state !== CHECKING_STATE
+    ) {
+      autoUpdater.checkForUpdates();
+    } else if (showMessage) {
+      dialog.showMessageBox({
+        message: 'Toshocat is already checking for new updates...',
+        buttons: []
+      });
+    }
   }
 }
 

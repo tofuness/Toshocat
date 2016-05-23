@@ -1,6 +1,6 @@
 const _ = require('lodash');
 const path = require('path');
-const { app, ipcMain, Tray, Menu, autoUpdater, dialog } = require('electron');
+const { app, ipcMain, Tray, Menu, autoUpdater } = require('electron');
 
 const Main = require('./MainWindow');
 const Notification = require('./NotificationWindow');
@@ -64,6 +64,9 @@ app.on('ready', () => {
     }
   });
   appUpdater.check();
+  setInterval(() => {
+    appUpdater.check();
+  }, 1000 * 3600);
 
   // Tray icon
   const tray = new Tray(path.resolve(__dirname, './app-icon.ico'));
@@ -80,17 +83,7 @@ app.on('ready', () => {
     {
       label: 'Check for updates',
       click: () => {
-        if (
-          appUpdater.state !== 'DOWNLOADING_STATE'
-          && appUpdater.state !== 'CHECKING_STATE'
-        ) {
-          appUpdater.check();
-        } else {
-          dialog.showMessageBox({
-            message: 'Toshocat is already checking for new updates...',
-            buttons: []
-          });
-        }
+        appUpdater.check(false);
       }
     },
     {
