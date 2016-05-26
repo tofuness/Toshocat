@@ -41,6 +41,9 @@
 	color: $byline;
 	background: #fff;
 	border-right: 1px solid $border-on-white;
+	&:last-child {
+		border-right: 1px solid transparent;
+	}
 	&.active {
 		color: $lapis-blue;
 		//box-shadow: inset 0 -1px 0 $lapis-blue;
@@ -91,6 +94,9 @@
 }
 .list-item-content {
 	@extend .cf;
+	&>div {
+		height: 35px;
+	}
 }
 .list-item {
 	@extend .cf;
@@ -108,8 +114,10 @@
 	}
 	&:not(.expanded) .list-item-content>div {
 		@extend .ts;
-		height: 35px;
 		border-right: 1px solid $border-on-white;
+		&:last-child {
+			border-right: 1px solid transparent;
+		}
 	}
 	&:last-child {
 		margin-bottom: 20px;

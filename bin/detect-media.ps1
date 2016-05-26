@@ -109,7 +109,12 @@ $ProcessNames = @(
                   # Ace Player
                   'ace_player.exe',
                   # MPV
-                  'mpv.exe'
+                  'mpv.exe',
+                  # PotPlayer
+                  'PotPlayer.exe',
+                  'PotPlayer64.exe',
+                  'PotPlayerMini.exe',
+                  'PotPlayerMini64.exe'
                 );
 
 $WindowTitles = @();

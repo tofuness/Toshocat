@@ -58,7 +58,7 @@
     "react": "^15.0.2",
     "react-addons-css-transition-group": "^15.0.2",
     "react-autosize-textarea": "^0.3.0",
-    "react-collapse": "^2.2.0",
+    "react-collapse": "^2.2.3",
     "react-dom": "^15.0.2",
     "react-height": "^2.1.0",
     "react-hotkey": "git+https://github.com/tofuness/react-hotkey.git",
