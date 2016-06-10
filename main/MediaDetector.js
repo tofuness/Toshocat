@@ -13,7 +13,7 @@ class MediaDetector {
       } else {
         // Copied to a different location with `extraResources` field in package.json
         // in production. Can't execute files in asar archive
-        scriptPath = path.resolve(__dirname, '../../../bin/detect-media.ps1');
+        scriptPath = path.resolve(__dirname, '../../bin/detect-media.ps1');
       }
       child_process.execFile(
         'powershell',

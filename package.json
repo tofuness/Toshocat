@@ -1,6 +1,6 @@
 {
   "name": "Toshocat",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "description": "Toshocat =^._.^=",
   "main": "./main/index.js",
   "engines": {
@@ -24,8 +24,7 @@
   "author": "Dennis Jin <dennis@tofuness.com>",
   "license": "GPL-3.0",
   "directories": {
-    "test": "test",
-    "buildResources": "buildResources"
+    "test": "test"
   },
   "build": {
     "asar": true,
@@ -35,7 +34,7 @@
       "src"
     ],
     "extraResources": [
-      "bin/"
+      "bin"
     ],
     "productName": "Toshocat",
     "compression": "store",
