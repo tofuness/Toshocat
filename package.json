@@ -23,13 +23,16 @@
   },
   "author": "Dennis Jin <dennis@tofuness.com>",
   "license": "GPL-3.0",
+  "directories": {
+    "test": "test",
+    "buildResources": "buildResources"
+  },
   "build": {
     "asar": true,
     "msi": true,
     "ignore": [
       "test",
-      "src",
-      "bin/*.exe"
+      "src"
     ],
     "extraResources": [
       "bin/"

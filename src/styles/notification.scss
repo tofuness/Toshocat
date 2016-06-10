@@ -37,7 +37,6 @@ html, body {
 	}
 }
 .notification-image {
-	@extend .ts;
 	overflow: hidden;
 	position: absolute;
 	top: 0;

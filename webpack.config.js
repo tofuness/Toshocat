@@ -13,8 +13,8 @@ module.exports = {
     updater: './src/updater.js'
   },
   output: {
-    path: './build',
-    publicPath: env === 'production' ? '../build/' : 'http://localhost:8080/build/',
+    path: './compiled',
+    publicPath: env === 'production' ? '../compiled/' : 'http://localhost:8080/compiled/',
     filename: '[name].js'
   },
   module: {

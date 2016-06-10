@@ -18,10 +18,10 @@
       window.ipcRenderer = require('electron').ipcRenderer;
     </script>
     <script type="text/javascript">
-      var bundlePath = '../build/main.js';
+      var bundlePath = '../compiled/main.js';
       console.log(`Toshocat running in ${process.env.NODE_ENV} mode`);
       if (typeof process !== 'undefined' && process.env.NODE_ENV === 'development') {
-        var bundlePath = 'http://localhost:8080/build/main.js';
+        var bundlePath = 'http://localhost:8080/compiled/main.js';
       }
       $.getScript(bundlePath);
     </script>
