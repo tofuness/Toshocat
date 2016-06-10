@@ -63,6 +63,9 @@ class Notification extends Component {
             'notification-image': true,
             visible: this.state.visible
           })}
+          style={{
+            background: `url(${_.get(this.state.scrobble, 'series.image_url')})`
+          }}
         >
         </div>
         <div className="notification-actions">
