@@ -280,7 +280,10 @@ export function upsertItem(item) {
 export function incrementProgress(entry, increment) {
   const { item } = entry;
   const total = entry.episodes_total || entry.chapters || 0;
-  const incrementedProgress = Math.min(Math.max(item.item_progress + (increment || 1), 0), total);
+  let incrementedProgress = Math.max(item.item_progress + (increment || 1), 0);
+  if (total > 0) {
+    incrementedProgress = Math.min(incrementedProgress, total);
+  }
   return (dispatch) => {
     return dispatch(
       updateItem(

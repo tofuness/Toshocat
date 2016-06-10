@@ -52,5 +52,18 @@ export default {
     mal_id: 123,
     episodes_total: 24,
     last_updated: new Date('2050')
+  },
+  noTotal: {
+    _id: '562696cbfd1db921d7955710',
+    title: 'Heavy Object',
+    item: {
+      item_status_text: 'Current',
+      item_status: 'current',
+      item_progress: 10,
+      item_rating: 5
+    },
+    mal_id: 123,
+    episodes_total: null,
+    last_updated: new Date('2050')
   }
 };

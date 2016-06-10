@@ -368,6 +368,30 @@ describe('list actions', () => {
       expect(toshoStore.saveList.calledOnce).to.equal(true);
       expect(store.getActions()).to.eql(expectedActions);
     });
+    it('should not change status if total episodes is unknown', () => {
+      const getState = {
+        currentList: [mockList.noTotal]
+      };
+      const expectedActions = [{
+        type: actionTypes.UPDATE_LIST_ITEM,
+        currentList: [
+          _.merge({},
+            mockList.noTotal,
+            {
+              item: {
+                item_progress: 110,
+                item_status: 'current',
+                item_status_text: 'Current'
+              }
+            }
+          )
+        ]
+      }];
+      const store = mockStore(getState);
+      store.dispatch(actions.incrementProgress(mockList.noTotal, 100));
+      expect(toshoStore.saveList.calledOnce).to.equal(true);
+      expect(store.getActions()).to.eql(expectedActions);
+    });
   });
 
   describe('upsertItem', () => {
