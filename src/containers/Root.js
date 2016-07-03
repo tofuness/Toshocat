@@ -19,7 +19,7 @@ class Root extends Component {
   componentDidMount() {
     setTimeout(() => {
       $('body').addClass('visible');
-    }, 500);
+    }, 1000);
   }
   render() {
     const store = this.props.store;

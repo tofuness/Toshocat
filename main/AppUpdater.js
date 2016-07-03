@@ -35,6 +35,10 @@ class AppUpdater extends EventEmitter {
     });
     autoUpdater.addListener('update-not-available', () => {
       console.log('No update available');
+      dialog.showMessageBox({
+        message: 'Toshocat is up to date!',
+        buttons: []
+      });
       this.setState(NO_UPDATE_AVAILABLE_STATE);
     });
   }

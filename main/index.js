@@ -10,10 +10,19 @@ const Detector = require('./MediaDetector');
 const AppUpdater = require('./AppUpdater');
 
 const settings = require('./settings');
+const AutoLaunch = require('auto-launch');
+const autoLaunch = new AutoLaunch({
+  name: 'Toshocat'
+});
+
 const __DEV__ = (process.env.NODE_ENV === 'development');
 
 if (require('electron-squirrel-startup')) {
   return;
+}
+
+if (settings.get('runOnStartup')) {
+  autoLaunch.enable();
 }
 
 let main = null;
@@ -91,16 +100,13 @@ app.on('ready', () => {
     },
     {
       label: 'Quit Toshocat',
-      click: app.quit
+      click: () => {
+        tray.destroy();
+        app.exit(0);
+      }
     }
   ]));
   tray.setToolTip('Toshocat');
-
-  // After main window is closed
-  main.window.on('closed', () => {
-    tray.destroy();
-    app.quit();
-  });
 
   // Notification/scrobble window
   const notification = new Notification();
@@ -109,6 +115,22 @@ app.on('ready', () => {
       detach: true
     });
   }
+
+  main.window.on('close', (e) => {
+    if (settings.get('minimizeToTray')) {
+      main.window.minimize();
+      main.window.setSkipTaskbar(true);
+      e.preventDefault();
+    } else {
+      main.window.close();
+    }
+  });
+
+  // After main window is closed
+  main.window.on('closed', () => {
+    tray.destroy();
+    app.exit(0);
+  });
 
   // Request scrobble
   let notificationTimeout;
@@ -144,6 +166,7 @@ app.on('ready', () => {
 
   // Detection and scrobble requesting
   const scrobble = () => {
+    if (!main) app.quit();
     if (settings.get('mediaDetection')) {
       detector.scan()
       .then((parsedMedia) => {

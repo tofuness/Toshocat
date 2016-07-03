@@ -31,11 +31,6 @@ const SideBarNavigation = () => {
           <span className="icon-map"></span>Season Charts
         </Link>
       </div>
-      <div className="sidebar-navigation-link hide">
-        <Link to="/rss" activeClassName="active">
-          <span className="icon-rss"></span>RSS Feed
-        </Link>
-      </div>
       <div className="sidebar-navigation-link">
         <Link to="/search" activeClassName="active">
           <span className="icon-search"></span>Search

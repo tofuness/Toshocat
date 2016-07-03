@@ -12,6 +12,9 @@ class ToshocatWindow {
   hide() {
     this.window.hide();
   }
+  close() {
+    this.window.close();
+  }
 }
 
 module.exports = ToshocatWindow;

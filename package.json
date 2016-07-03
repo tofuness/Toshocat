@@ -8,7 +8,7 @@
   },
   "scripts": {
     "start:dev": "cross-env NODE_ENV=development ./node_modules/.bin/electron . --enable-logging",
-    "start": "cross-env NODE_ENV=production ./node_modules/.bin/electron .",
+    "start": "./node_modules/.bin/electron .",
     "webpack:dev": "cross-env NODE_ENV=development webpack-dev-server --inline --hot",
     "test": "mocha --compilers js:babel-core/register --recursive --timeout 2000 --require mock-local-storage",
     "test:watch": "npm run test --watch",
@@ -28,17 +28,14 @@
   },
   "build": {
     "asar": true,
-    "msi": true,
-    "ignore": [
-      "test",
-      "src"
-    ],
+    "msi": false,
     "extraResources": [
       "bin"
     ],
     "productName": "Toshocat",
     "compression": "store",
     "win": {
+      "remoteReleases": "https://github.com/tofuness/Toshocat",
       "iconUrl": "https://raw.githubusercontent.com/tofuness/Toshocat/master/main/app-icon.ico"
     }
   },
@@ -48,7 +45,6 @@
     "cartesian-product": "^2.1.2",
     "classnames": "^2.2.3",
     "configstore": "^2.0.0",
-    "cross-env": "^1.0.8",
     "electron-positioner": "^3.0.0",
     "electron-squirrel-startup": "git+https://github.com/tofuness/electron-squirrel-startup.git",
     "history": "^2.1.1",
@@ -57,14 +53,14 @@
     "moment": "^2.13.0",
     "moment-timezone": "^0.5.4",
     "node-uuid": "^1.4.7",
-    "react": "^15.1.0",
+    "react": "^15.2.0",
     "react-addons-css-transition-group": "^15.1.0",
     "react-autosize-textarea": "^0.3.1",
-    "react-collapse": "^2.2.4",
-    "react-dom": "^15.1.0",
+    "react-collapse": "^2.3.0",
+    "react-dom": "^15.2.0",
     "react-height": "^2.1.0",
     "react-hotkey": "git+https://github.com/tofuness/react-hotkey.git",
-    "react-list": "^0.7.18",
+    "react-list": "^0.7.20",
     "react-motion": "^0.4.4",
     "react-outside-event": "^1.2.4",
     "react-redux": "^4.4.5",
@@ -74,15 +70,14 @@
     "react-textarea-autosize": "^4.0.2",
     "react-tooltip": "^2.0.0",
     "redux": "^3.5.2",
-    "redux-logger": "^2.6.1",
     "redux-mock-store": "^1.0.2",
     "redux-thunk": "^2.1.0",
     "reselect": "^2.5.1",
-    "seamless-immutable": "^6.1.0",
+    "seamless-immutable": "^6.1.1",
     "sortablejs": "^1.4.2",
     "spin.js": "^2.3.2",
     "superagent": "^1.8.3",
-    "tcomb-form": "^0.9.5",
+    "tcomb-form": "^0.9.8",
     "velocity-animate": "^1.2.3"
   },
   "devDependencies": {
@@ -96,8 +91,9 @@
     "babel-preset-stage-0": "^6.5.0",
     "chai": "^3.5.0",
     "coveralls": "^2.11.9",
+    "cross-env": "^1.0.8",
     "css-loader": "^0.23.1",
-    "electron-prebuilt": "^1.1.0",
+    "electron-prebuilt": "^1.2.5",
     "electron-rebuild": "^1.1.5",
     "eslint": "^2.9.0",
     "eslint-config-airbnb": "^9.0.1",
@@ -116,15 +112,13 @@
     "redux-devtools": "^3.3.1",
     "redux-devtools-dock-monitor": "^1.1.1",
     "redux-devtools-log-monitor": "^1.0.11",
+    "redux-logger": "^2.6.1",
     "redux-mock-store": "^1.1.0",
     "sass-loader": "^3.2.0",
     "sinon": "^1.17.4",
     "style-loader": "^0.13.1",
     "webpack": "^1.13.0",
     "webpack-dev-server": "^1.14.0"
-  },
-  "directories": {
-    "test": "test"
   },
   "repository": {
     "type": "git",

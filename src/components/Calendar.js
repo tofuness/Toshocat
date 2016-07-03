@@ -1,8 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import CalendarDay from './CalendarDay';
 
-import Spinner from './UI/Spinner';
-
 class Calendar extends Component {
   componentDidMount = () => {
     if (!this.props.currentCalendar.length) {
