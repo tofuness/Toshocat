@@ -32,6 +32,13 @@
     "extraResources": [
       "bin"
     ],
+    "files": [
+      "**\/*",
+      "!src${/*}",
+      "!build${/*}",
+      "!test${/*}",
+      "!dist${/*}"
+    ],
     "productName": "Toshocat",
     "compression": "store",
     "win": {

@@ -14,7 +14,7 @@ class UpdaterWindow extends ToshocatWindow {
       skipTaskbar: true,
       closable: false,
       transparent: false,
-      alwaysOnTop: true,
+      alwaysOnTop: false,
       resizable: false,
       backgroundColor: '#e3e6eb',
       show: false

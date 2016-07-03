@@ -12,10 +12,10 @@
     window.ipcRenderer = require('electron').ipcRenderer;
   </script>
   <script type="text/javascript">
-    var bundlePath = '../build/updater.js';
+    var bundlePath = '../compiled/updater.js';
     console.log(`Toshocat running in ${process.env.NODE_ENV} mode`);
     if (typeof process !== 'undefined' && process.env.NODE_ENV === 'development') {
-      var bundlePath = 'http://localhost:8080/build/updater.js';
+      var bundlePath = 'http://localhost:8080/compiled/updater.js';
     }
     $.getScript(bundlePath);
   </script>
