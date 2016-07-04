@@ -15,7 +15,7 @@ class NotificationWindow extends ToshocatWindow {
       frame: false,
       alwaysOnTop: true,
       skipTaskbar: true,
-      closable: false,
+      closable: true,
       transparent: true,
       resizable: false,
       show: false

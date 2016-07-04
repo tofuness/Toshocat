@@ -102,7 +102,7 @@ app.on('ready', () => {
       label: 'Quit Toshocat',
       click: () => {
         tray.destroy();
-        app.exit(0);
+        app.quit();
       }
     }
   ]));
@@ -129,7 +129,7 @@ app.on('ready', () => {
   // After main window is closed
   main.window.on('closed', () => {
     tray.destroy();
-    app.exit(0);
+    app.quit();
   });
 
   // Request scrobble
@@ -166,7 +166,6 @@ app.on('ready', () => {
 
   // Detection and scrobble requesting
   const scrobble = () => {
-    if (!main) app.quit();
     if (settings.get('mediaDetection')) {
       detector.scan()
       .then((parsedMedia) => {
