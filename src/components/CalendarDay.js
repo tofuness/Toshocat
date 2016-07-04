@@ -44,7 +44,23 @@ class CalendarDay extends Component {
                 'Boku no Hero Academia',
                 'Macross Δ',
                 'Re:Zero kara Hajimeru Isekai Seikatsu',
-                'Osomatsu-san'
+                'Osomatsu-san',
+                // New season
+                '91 Days',
+                'Berserk (2016)',
+                'Rewrite',
+                'Orange',
+                'Mob Psycho 100',
+                'Amanchu!',
+                'Love Live! Sunshine!!',
+                'Shokugeki no Souma: Ni no Sara',
+                'Arslan Senki: Fuujin Ranbu',
+                'Taboo-Tattoo',
+                'D.Gray-man Hallow',
+                'Battery',
+                'Amaama to Inazuma',
+                'New Game!',
+                'Handa-kun'
               ].indexOf(series.anime.romaji_title) > -1) {
                 return (
                   <CalendarFeaturedSeries
