@@ -33,7 +33,7 @@
       "bin"
     ],
     "files": [
-      "**\/*",
+      "**/*",
       "!src${/*}",
       "!build${/*}",
       "!test${/*}",
@@ -63,9 +63,9 @@
     "react": "^15.2.0",
     "react-addons-css-transition-group": "^15.1.0",
     "react-autosize-textarea": "^0.3.1",
-    "react-collapse": "^2.3.0",
+    "react-collapse": "^2.3.1",
     "react-dom": "^15.2.0",
-    "react-height": "^2.1.0",
+    "react-height": "^2.1.1",
     "react-hotkey": "git+https://github.com/tofuness/react-hotkey.git",
     "react-list": "^0.7.20",
     "react-motion": "^0.4.4",

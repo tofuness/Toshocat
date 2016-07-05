@@ -30,7 +30,7 @@ class Updater extends Component {
           Updating Toshocat...
         </div>
         <div className="updater-detail">
-          We're working hard on installing some awesome new things!
+          Please wait while the new updates are being installed.
         </div>
       </div>
     );
