@@ -1,6 +1,6 @@
 {
   "name": "Toshocat",
-  "version": "0.1.10",
+  "version": "0.1.11",
   "description": "Toshocat =^._.^=",
   "main": "./main/index.js",
   "engines": {
