@@ -291,7 +291,8 @@ export function incrementProgress(entry, increment) {
           item: {
             item_status_text: incrementedProgress === total ? 'Completed' : item.item_status_text,
             item_status: incrementedProgress === total ? 'completed' : item.item_status,
-            item_progress: incrementedProgress === total ? total : incrementedProgress
+            item_progress: incrementedProgress === total ? total : incrementedProgress,
+            last_updated: new Date()
           }
         })
       )
