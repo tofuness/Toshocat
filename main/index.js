@@ -78,6 +78,8 @@ app.on('ready', () => {
   }, 1000 * 3600);
 
   // Tray icon
+  // When trayQuit is true, window becomes closable no mate
+  let trayQuit = false;
   const tray = new Tray(path.resolve(__dirname, './app-icon.ico'));
   tray.on('click', () => {
     main.restore();
@@ -101,6 +103,7 @@ app.on('ready', () => {
     {
       label: 'Quit Toshocat',
       click: () => {
+        trayQuit = true;
         tray.destroy();
         app.quit();
       }
@@ -117,7 +120,7 @@ app.on('ready', () => {
   }
 
   main.window.on('close', (e) => {
-    if (settings.get('minimizeToTray')) {
+    if (settings.get('minimizeToTray') && !trayQuit) {
       main.window.minimize();
       main.window.setSkipTaskbar(true);
       e.preventDefault();
