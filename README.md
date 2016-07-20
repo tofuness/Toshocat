@@ -30,8 +30,8 @@ $ npm run test:watch
 $ npm run webpack:dev
 $ npm run start:dev
 ```
-Starts up the application in development mode. The Squirrel updater won't work in
-development environments and you may safely ignore those errors.
+Starts up the application in development mode. The Squirrel updater won't work in the
+development environment so you can safely ignore Squirrel errors.
 
 ### Building
 ```
