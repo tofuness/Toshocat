@@ -1,6 +1,6 @@
 const webpack = require('webpack');
 
-const env = process.env.NODE_ENV;
+const env = process.env.NODE_ENV || 'development';
 const definePlugin = new webpack.DefinePlugin({
   __DEV__: env !== 'production',
   'process.env.NODE_ENV': JSON.stringify(env),
@@ -35,6 +35,8 @@ module.exports = {
   },
   devtool: env === 'production' ? 'none' : 'eval-source-map',
   plugins: [
-    definePlugin
-  ]
+    definePlugin,
+    new webpack.NoErrorsPlugin(),
+    new webpack.optimize.DedupePlugin()
+  ].concat(env === 'production' ? [new webpack.optimize.OccurenceOrderPlugin()] : [])
 };
