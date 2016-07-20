@@ -17,23 +17,28 @@
 </p>
 
 ### Installation
-```
-$ npm install
-// Make sure the native modules are built. Don't worry about other warnings/errors.
-$ npm run rebuild
-// Start up the dev server
-$ npm run webpack:dev
-$ npm run start:dev
-```
+* You need Node.js on your machine
+* You need MSVC to build some native modules
+* You need a local global installation of `electron-builder`
+Apart from that, just run `npm install` in the project directory.
 
 ### Developing
 ```
-$ npm run test
-// To build for production
-$ npm run webpack:build
-// Test application in production mode
-$ npm run start
+$ npm run test:watch
+$ npm run webpack:dev
+$ npm run start:dev
 ```
+Starts up the application in development mode. The Squirrel updater won't work in
+development environments and you may safely ignore those errors.
+
+### Building
+```
+$ npm run test
+$ npm run webpack:build
+$ npm run dist
+```
+Make sure tests pass before running `npm webpack:build`. `npm run dist` builds
+the delta files and artifacts for 64-bit Windows.
 ---
 ### License
 GNU GPL V3
