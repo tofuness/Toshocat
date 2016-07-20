@@ -38,6 +38,8 @@ if (shouldQuit) {
   return;
 }
 
+let mustQuit = false;
+
 app.on('ready', () => {
   console.log(`Toshocat ${app.getVersion()}`);
 
@@ -79,7 +81,6 @@ app.on('ready', () => {
 
   // Tray icon
   // When trayQuit is true, window becomes closable no mate
-  let trayQuit = false;
   const tray = new Tray(path.resolve(__dirname, './app-icon.ico'));
   tray.on('click', () => {
     main.restore();
@@ -94,6 +95,7 @@ app.on('ready', () => {
     {
       label: 'Check for updates',
       click: () => {
+        mustQuit = true;
         appUpdater.check(false);
       }
     },
@@ -103,7 +105,7 @@ app.on('ready', () => {
     {
       label: 'Quit Toshocat',
       click: () => {
-        trayQuit = true;
+        mustQuit = true;
         tray.destroy();
         app.quit();
       }
@@ -120,7 +122,7 @@ app.on('ready', () => {
   }
 
   main.window.on('close', (e) => {
-    if (settings.get('minimizeToTray') && !trayQuit) {
+    if (settings.get('minimizeToTray') && !mustQuit) {
       main.window.minimize();
       main.window.setSkipTaskbar(true);
       e.preventDefault();
