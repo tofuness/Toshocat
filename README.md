@@ -16,6 +16,8 @@
   </a>
 </p>
 
+---
+
 ### Installation
 * You need Node.js on your machine
 * You need MSVC to build some native modules
@@ -39,6 +41,6 @@ $ npm run dist
 ```
 Make sure tests pass before running `npm webpack:build`. `npm run dist` builds
 the delta files and artifacts for 64-bit Windows.
----
+
 ### License
 GNU GPL V3
