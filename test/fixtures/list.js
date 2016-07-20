@@ -47,7 +47,8 @@ export default {
       item_status_text: 'Current',
       item_status: 'current',
       item_progress: 10,
-      item_rating: 5
+      item_rating: 5,
+      last_updated: new Date('2050')
     },
     mal_id: 123,
     episodes_total: 24,
@@ -60,7 +61,8 @@ export default {
       item_status_text: 'Current',
       item_status: 'current',
       item_progress: 10,
-      item_rating: 5
+      item_rating: 5,
+      last_updated: new Date('2050')
     },
     mal_id: 123,
     episodes_total: null,

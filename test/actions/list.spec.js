@@ -381,7 +381,8 @@ describe('list actions', () => {
               item: {
                 item_progress: 110,
                 item_status: 'current',
-                item_status_text: 'Current'
+                item_status_text: 'Current',
+                last_updated: new Date('2050')
               }
             }
           )
