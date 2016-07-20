@@ -34,6 +34,9 @@ class Logo extends Component {
       timer: 3000
     });
   }
+  reloadApp = () => {
+    location.reload();
+  }
   render() {
     return (
       <div className="logo">
@@ -58,6 +61,12 @@ class Logo extends Component {
           </div>
           <div className="logo-menu-option" onClick={this.openDevTools}>
             Open Developer Tools
+          </div>
+          <div
+            className="logo-menu-option"
+            onClick={this.reloadApp}
+          >
+            Reload Toshocat
           </div>
         </div>
       </div>
