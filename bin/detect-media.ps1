@@ -114,7 +114,12 @@ $ProcessNames = @(
                   'PotPlayer.exe',
                   'PotPlayer64.exe',
                   'PotPlayerMini.exe',
-                  'PotPlayerMini64.exe'
+                  'PotPlayerMini64.exe',
+                  # mpv
+                  'mpv.exe',
+                  #Kodi
+                  'Kodi.exe',
+                  'XBMC.exe'A
                 );
 
 $WindowTitles = @();
